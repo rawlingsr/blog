@@ -1,0 +1,88 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  flex-grow: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.page-footer, .page-header {
+  background-color: #ccc;
+}
+
+.page-header nav, .page-footer nav {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  min-height: 64px;
+}
+
+.logo {
+  display: inherit;
+  align-items: inherit;
+  text-decoration: none;
+
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin-left: auto;
+}
+
+nav li {
+  background-color: grey;
+  display: inline-block;
+  margin: 0 0.4em;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+}
+
+nav li a {
+  display: block;
+  padding: 0.7em;
+}
+nav p {
+  margin: 0.5em;
+}
+
+.footer-link div {
+  display: inline;
+}
+
+.icon {
+  margin: 0.5em;
+}
+
+h1 {
+  margin-block: 0.67em;
+  font-size: 1.5em;
+}
+
+main {
+  margin: 0.5em;
+}
+
+.post-list-item {
+  background: #e2dbdb;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+.post-list-item h3 {
+  margin-top: 0;
+}
+
+.post-link {
+  text-decoration: none;
+  color: black;
+}
