@@ -1,6 +1,6 @@
 # My website
 
-You can run this site locally, as long. I have only
+You can run this site locally. I have only
 tested installing the dependencies and running the site with pnpm, so
 I recommend you do the same.
 
