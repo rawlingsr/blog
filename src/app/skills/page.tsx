@@ -1,9 +1,9 @@
 export default async function Page() {
   return (
     <main>
-      <h2>About</h2>
+      <h2>Skills</h2>
       <p>
-        Ryan is a tinkerer and a lifelong learner, who
+        Some Skill stuff will go here.
       </p>
     </main>
   );

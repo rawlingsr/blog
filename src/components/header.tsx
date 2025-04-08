@@ -1,5 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
 
 export function Header() {
   return (
@@ -18,10 +23,23 @@ export function Header() {
           </Link>
           <ul>
             <li>
-              <Link href="/about/">About</Link>
+              <Link href="/skills/">Skills</Link>
             </li>
             <li>
-              <Link href="/posts/">Posts</Link>
+              <Link href="/experience/">Experience</Link>
+            </li>
+            <li>
+              <Link href="/blog/">Blog</Link>
+            </li>
+            <li>
+              <Link href="https://github.com/rawlingsr">
+                <FontAwesomeIcon icon={faGithub} />
+              </Link>
+            </li>
+            <li>
+              <Link href="https://www.linkedin.com/in/rawlingsryan/">
+                <FontAwesomeIcon icon={faLinkedinIn} />
+              </Link>
             </li>
           </ul>
         </nav>

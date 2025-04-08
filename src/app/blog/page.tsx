@@ -21,7 +21,7 @@ export default async function PostListPage() {
 function PostCard(props: { post: Post }) {
   const { post } = props;
   return (
-    <Link href={`/posts/${post.slug}`} className="post-link">
+    <Link href={`/blog/${post.slug}`} className="post-link">
       <div id={post.slug} className="post-list-item">
         <h3>
           {post.title}
