@@ -3,7 +3,7 @@ export default async function Home() {
   return (
     <main>
       <h2>
-        What's on this page
+        {"What's on this page"}
       </h2>
 
       <p>
