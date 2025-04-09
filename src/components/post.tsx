@@ -10,7 +10,7 @@ export async function BlogEntry({data}: { data: Post }) {
 
 
   return (
-    <main>
+    <article>
       <h1>{data.title}</h1>
       <time dateTime={date}>
         {date}
@@ -18,7 +18,7 @@ export async function BlogEntry({data}: { data: Post }) {
       <Markdown remarkPlugins={[remarkMath, remarkGfm]} rehypePlugins={[rehypeKatex]}>
         {content}
       </Markdown>
-    </main>
+    </article>
 
   )
 
