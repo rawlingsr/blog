@@ -1,7 +1,31 @@
 export default async function Home() {
-
   return (
     <main>
+      <article>
+        <h2>Objective</h2>
+        Utilize my 11 years of experience ensuring the quality and reliability
+        of software products. I am eager to apply my experience in a new
+        Software Engineering role.
+      </article>
+      <article>
+        <h2>Skills</h2>
+        <ul>
+          <li>Test Automation</li>
+          <li>Configuration as Code</li>
+          <li>React</li>
+          <li>Git</li>
+          <li>CI/CD</li>
+          <li>Python</li>
+          <li>JavaScript</li>
+          <li>Java</li>
+          <li>Ruby</li>
+          <li>PowerShell</li>
+          <li>HTML and CSS</li>
+          <li>SQL</li>
+          <li>C++</li>
+          <li>Rust</li>
+        </ul>
+      </article>
       <article>
         <h2>Experience</h2>
         <section>
@@ -123,9 +147,16 @@ export default async function Home() {
       <article>
         <h2>Education</h2>
         <section>
-          <header className="experience">
-            <h3>Bachelor of Science, Computer Science</h3>
-          </header>
+          <h3>
+            <ul className="experience">
+              <li>Bachelor of Science, Computer Science</li>
+              <li>WGU</li>
+              <li>
+                (Expected)
+                <time dateTime="2027-05">May 2027</time>
+              </li>
+            </ul>
+          </h3>
         </section>
       </article>
     </main>
