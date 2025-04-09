@@ -23,12 +23,6 @@ export function Header() {
           </Link>
           <ul>
             <li>
-              <Link href="/skills/">Skills</Link>
-            </li>
-            <li>
-              <Link href="/experience/">Experience</Link>
-            </li>
-            <li>
               <Link href="/blog/">Blog</Link>
             </li>
             <li>
