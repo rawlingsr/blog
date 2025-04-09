@@ -11,6 +11,7 @@ export default async function PostListPage() {
   return (
     <main>
       <h2>Posts</h2>
+      I will post here as I can, so check back.
       <div>
         {posts.map((post: Post) => <PostCard key={post.slug} post={post} />)}
       </div>
