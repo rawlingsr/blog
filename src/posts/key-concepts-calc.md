@@ -2,6 +2,9 @@
 title: Key Concepts from Calculus I
 published_at: 2025-03-25T15:57:15.572Z
 snippet: Notes from Calculus I. These notes cover approximately the first third of the OpenStax Calculus Textbook
+math: true
+gfm: false
+cc_licensed: true
 ---
 
 ## Precalculus
@@ -758,5 +761,3 @@ form $y' = f(x)g(y)$
 
 -------------------------------------------------------------------------------
 These notes are based on the [OpenStax Calculus Textbook](https://openstax.org/details/books/calculus-volume-1)
-
-[https://creativecommons.org/licenses/by-nc-sa/4.0/](https://creativecommons.org/licenses/by-nc-sa/4.0/)
