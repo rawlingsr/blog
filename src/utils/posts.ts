@@ -11,6 +11,9 @@ export interface Post {
   published_at: Date;
   content: string;
   snippet: string;
+  math: boolean;
+  gfm: boolean;
+  cc_licensed: boolean;
 }
 
 export async function getPosts(): Promise<Post[]> {
@@ -43,5 +46,8 @@ export async function getPost(slug: string): Promise<Post | null> {
     published_at: new Date(attributes.published_at),
     content: body,
     snippet: attributes.snippet,
+    math: attributes.math,
+    gfm: attributes.gfm,
+    cc_licensed: attributes.cc_licensed,
   };
 }
