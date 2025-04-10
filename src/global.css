@@ -98,6 +98,11 @@ main {
   list-style: none;
   padding: inherit;
 }
+
+.experience li {
+  display: inline-block;
+}
+
 @media screen and (min-width: 800) {
   .experience {
     flex-direction: row;
