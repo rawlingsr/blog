@@ -3,6 +3,12 @@ import "katex/dist/katex.min.css";
 import "@/global.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { Fira_Sans } from "next/font/google";
+
+const fira = Fira_Sans({
+  subsets: ["latin"],
+  weight: ["400", "600"]
+})
 
 export const metadata: Metadata = {
   title: {
@@ -18,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={fira.className}>
         <Header />
         <div className="container content">
           {children}
