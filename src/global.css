@@ -92,6 +92,7 @@ main {
 
 .experience {
   display: flex;
+
   justify-content: space-between;
   list-style: none;
   padding: inherit;
@@ -101,8 +102,14 @@ main {
   display: inline-block;
 }
 
-@media screen and (min-width: 800) {
+@media screen and (width >= 800px) {
   .experience {
-    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}
+
+@media screen and (width < 800px) {
+  .experience {
+    flex-direction: column;
   }
 }
