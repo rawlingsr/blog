@@ -7,7 +7,7 @@ import { Post } from "@/utils/posts";
 import remarkGfm from "remark-gfm";
 
 function remarkPlugins(data: Post) {
-  let plugins = [];
+  const plugins = [];
 
   if (data.math) {
     plugins.push(remarkMath);
@@ -21,7 +21,7 @@ function remarkPlugins(data: Post) {
 }
 
 function rehypePlugins(data: Post) {
-  let plugins = [];
+  const plugins = [];
 
   if (data.math) {
     plugins.push(rehypeMathJax);
@@ -31,15 +31,12 @@ function rehypePlugins(data: Post) {
 }
 
 export function BlogPost({ data }: { data: Post }) {
-  const content = data.content;
-  const date = data.published_at.toISOString().split("T")[0];
-
   return (
     <Markdown
       remarkPlugins={remarkPlugins(data)}
       rehypePlugins={rehypePlugins(data)}
     >
-      {content}
+      {data.content}
     </Markdown>
   );
 }
