@@ -1,5 +1,7 @@
+"use client";
+
 import Markdown from "react-markdown";
-import rehypeKatex from "rehype-katex";
+import rehypeMathJax from "rehype-mathjax";
 import remarkMath from "remark-math";
 import { Post } from "@/utils/posts";
 import remarkGfm from "remark-gfm";
@@ -22,7 +24,7 @@ function rehypePlugins(data: Post) {
   let plugins = [];
 
   if (data.math) {
-    plugins.push(rehypeKatex);
+    plugins.push(rehypeMathJax);
   }
 
   return plugins;
