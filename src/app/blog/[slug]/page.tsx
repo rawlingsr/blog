@@ -42,7 +42,7 @@ async function CC_Image() {
         src={"/by-nc-sa.png"}
         height={70}
         width={200}
-        alt="Creative Commons logo thing"
+        alt="Creative Commons, Attribution, Non-Commercial, Share Alike"
       />
     </Link>
   );
