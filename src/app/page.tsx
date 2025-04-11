@@ -29,22 +29,23 @@ export default async function Home() {
       <article>
         <h2>Experience</h2>
         <section>
-          <h3>
+          <h3>Return to School</h3>
+          <h4>
             <ul className="experience">
-              <li>Return to School</li>
+              <li>Western Governors University</li>
               <li>
                 <time dateTime="2023-11">Nov 2023</time>
                 {" - "}
                 Present
               </li>
             </ul>
-          </h3>
+          </h4>
         </section>
 
         <section>
-          <h3>
+          <h3>MasterControl Inc.</h3>
+          <h4>
             <ul className="experience">
-              <li>MasterControl Inc.</li>
               <li>Software Engineer II</li>
               <li>
                 <time dateTime="2016-6">June 2016</time>
@@ -52,7 +53,7 @@ export default async function Home() {
                 <time dateTime="2023-11">November 2023</time>
               </li>
             </ul>
-          </h3>
+          </h4>
 
           <p>
             Fixed defects and wrote code but focused on finding defects and
@@ -98,9 +99,9 @@ export default async function Home() {
         </section>
 
         <section>
-          <h3>
+          <h3>StorageCraft</h3>
+          <h4>
             <ul className="experience">
-              <li>StorageCraft</li>
               <li>QA specialist in Technical Support</li>
               <li>
                 <time dateTime="2012-5">May 2012</time>
@@ -108,7 +109,7 @@ export default async function Home() {
                 <time dateTime="2016-02">February 2016</time>
               </li>
             </ul>
-          </h3>
+          </h4>
 
           <p>
             Effectively resolved complex customer issues through detailed
@@ -147,16 +148,16 @@ export default async function Home() {
       <article>
         <h2>Education</h2>
         <section>
-          <h3>
+          <h3>Bachelor of Science, Computer Science</h3>
+          <h4>
             <ul className="experience">
-              <li>Bachelor of Science, Computer Science</li>
-              <li>WGU</li>
+              <li>Western Governors University</li>
               <li>
-                (Expected)
+                (Expected){" "}
                 <time dateTime="2027-05">May 2027</time>
               </li>
             </ul>
-          </h3>
+          </h4>
         </section>
       </article>
     </main>

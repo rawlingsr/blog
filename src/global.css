@@ -102,13 +102,13 @@ main {
   display: inline-block;
 }
 
-@media screen and (width >= 800px) {
+@media screen and (width >= 500px) {
   .experience {
     flex-direction: row;
   }
 }
 
-@media screen and (width < 800px) {
+@media screen and (width < 500px) {
   .experience {
     flex-direction: column;
   }
