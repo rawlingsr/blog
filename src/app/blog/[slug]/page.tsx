@@ -1,4 +1,4 @@
-import { BlogPost } from "@/components/post";
+import { BlogPost } from "@/components/blog-post";
 import { getPost } from "@/utils/posts";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
