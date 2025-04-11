@@ -24,10 +24,17 @@ export default async function Post({ params }: Props) {
   if (!post) {
     return notFound();
   }
+  const date = post.published_at.toISOString().split("T")[0];
 
   return (
     <main>
       <article>
+        <h2>{post.title}</h2>
+        <time dateTime={date}>
+          {date}
+        </time>
+        <h3>{post.snippet}</h3>
+
         <BlogPost data={post} />
         {post.cc_licensed ? <CC_Image /> : null}
       </article>
