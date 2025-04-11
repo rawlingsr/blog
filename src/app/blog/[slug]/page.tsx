@@ -1,4 +1,4 @@
-import { BlogEntry } from "@/components/post";
+import { BlogPost } from "@/components/post";
 import { getPost } from "@/utils/posts";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -28,7 +28,7 @@ export default async function Post({ params }: Props) {
   return (
     <main>
       <article>
-        <BlogEntry data={post} />
+        <BlogPost data={post} />
         {post.cc_licensed ? <CC_Image /> : null}
       </article>
     </main>
