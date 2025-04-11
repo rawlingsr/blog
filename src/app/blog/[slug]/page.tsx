@@ -28,7 +28,6 @@ export default async function Post({ params }: Props) {
   return (
     <main>
       <article>
-        <p>{post.math ? "true" : "false"}</p>
         <BlogEntry data={post} />
         {post.cc_licensed ? <CC_Image /> : null}
       </article>
