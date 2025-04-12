@@ -10,27 +10,26 @@ body {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 50rem;
   margin: 0 auto;
   width: 100%;
 }
 
 .page-footer, .page-header {
   background-color: #ccc;
+  min-height: 4rem;
 }
 
 .page-header nav, .page-footer nav {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  min-height: 64px;
 }
 
 .logo {
   display: inherit;
   align-items: inherit;
   text-decoration: none;
-
 }
 
 nav ul {
@@ -113,13 +112,13 @@ ul {
   padding: inherit;
 }
 
-@media screen and (width >= 500px) {
+@media all and (width >= 25rem) {
   .experience {
     flex-direction: row;
   }
 }
 
-@media screen and (width < 500px) {
+@media all and (width < 25rem) {
   .experience {
     flex-direction: column;
   }
