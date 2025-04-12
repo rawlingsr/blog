@@ -101,6 +101,10 @@ main {
   margin-left: 2em;
 }
 
+ul {
+  padding-left: 2em;
+}
+
 .experience {
   display: flex;
 
