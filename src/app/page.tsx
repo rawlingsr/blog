@@ -30,29 +30,25 @@ export default async function Home() {
         <h2>Experience</h2>
         <section>
           <h3>Return to School</h3>
-          <h4>
-            <ul className="experience">
-              <li>Western Governors University</li>
-              <li>
-                <time dateTime="2023-11">Nov 2023</time>
-                {" - "}
-                Present
-              </li>
-            </ul>
+          <h4 className="experience">
+            <span>Western Governors University</span>
+            <span>
+              <time dateTime="2023-11">Nov 2023</time>
+              {" - "}
+              Present
+            </span>
           </h4>
         </section>
 
         <section>
           <h3>MasterControl Inc.</h3>
-          <h4>
-            <ul className="experience">
-              <li>Software Engineer II</li>
-              <li>
-                <time dateTime="2016-6">June 2016</time>
-                {" - "}
-                <time dateTime="2023-11">November 2023</time>
-              </li>
-            </ul>
+          <h4 className="experience">
+            <span>Software Engineer II</span>
+            <span>
+              <time dateTime="2016-6">June 2016</time>
+              {" - "}
+              <time dateTime="2023-11">November 2023</time>
+            </span>
           </h4>
 
           <p>
@@ -100,15 +96,13 @@ export default async function Home() {
 
         <section>
           <h3>StorageCraft</h3>
-          <h4>
-            <ul className="experience">
-              <li>QA specialist in Technical Support</li>
-              <li>
-                <time dateTime="2012-5">May 2012</time>
-                {" - "}
-                <time dateTime="2016-02">February 2016</time>
-              </li>
-            </ul>
+          <h4 className="experience">
+            <span>QA specialist in Technical Support</span>
+            <span>
+              <time dateTime="2012-5">May 2012</time>
+              {" - "}
+              <time dateTime="2016-02">February 2016</time>
+            </span>
           </h4>
 
           <p>
@@ -149,14 +143,11 @@ export default async function Home() {
         <h2>Education</h2>
         <section>
           <h3>Bachelor of Science, Computer Science</h3>
-          <h4>
-            <ul className="experience">
-              <li>Western Governors University</li>
-              <li>
-                (Expected){" "}
-                <time dateTime="2027-05">May 2027</time>
-              </li>
-            </ul>
+          <h4 className="experience">
+            <span>Western Governors University</span>
+            <span>
+              (Expected) <time dateTime="2027-05">May 2027</time>
+            </span>
           </h4>
         </section>
       </article>
