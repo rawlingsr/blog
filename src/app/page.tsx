@@ -9,7 +9,7 @@ export default async function Home() {
       </article>
       <article>
         <h2>Skills</h2>
-        <ul>
+        <ul className="skills">
           <li>Test Automation</li>
           <li>Configuration as Code</li>
           <li>React</li>
