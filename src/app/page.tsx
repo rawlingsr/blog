@@ -45,7 +45,7 @@ export default async function Home() {
           <h4 className="experience">
             <span>Software Engineer II</span>
             <span>
-              <time dateTime="2016-6">June 2016</time>
+              <time dateTime="2016-06">June 2016</time>
               {" - "}
               <time dateTime="2023-11">November 2023</time>
             </span>
@@ -99,7 +99,7 @@ export default async function Home() {
           <h4 className="experience">
             <span>QA specialist in Technical Support</span>
             <span>
-              <time dateTime="2012-5">May 2012</time>
+              <time dateTime="2012-05">May 2012</time>
               {" - "}
               <time dateTime="2016-02">February 2016</time>
             </span>
