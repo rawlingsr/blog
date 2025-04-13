@@ -1,3 +1,11 @@
+:root {
+  color-scheme: light dark;
+}
+body {
+  color: light-dark(#000000, #ffffff);
+  background-color: light-dark(#ffffff, #1d1d1d);
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -16,7 +24,7 @@ body {
 }
 
 .page-footer, .page-header {
-  background-color: #ccc;
+  background-color: #8884;
   min-height: 4rem;
 }
 
@@ -39,14 +47,14 @@ nav ul {
 }
 
 nav li {
-  background-color: #aaa;
+  background-color: #9996;
   display: inline-block;
   margin: 0 0.4em;
 }
 
 nav a {
   text-decoration: none;
-  color: black;
+  color: inherit;
 }
 
 nav li a {
@@ -75,7 +83,7 @@ main {
 }
 
 .post-list-item {
-  background: #eee;
+  background: #eee2;
   margin: 0.5em;
   padding: 0.5em;
 }
@@ -86,7 +94,7 @@ main {
 
 .post-link {
   text-decoration: none;
-  color: black;
+  color: inherit;
 }
 
 .skills {
