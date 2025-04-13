@@ -24,6 +24,7 @@ export default async function Home() {
           <li>SQL</li>
           <li>C++</li>
           <li>Rust</li>
+          <li>Linux</li>
         </ul>
       </article>
       <article>
