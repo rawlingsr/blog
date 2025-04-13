@@ -1,9 +1,13 @@
 import { BlogPost } from "@/components/blog-post";
+import { Fallback } from "@/components/fallback";
 import { getPost } from "@/utils/posts";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
+
+export const experimental_ppr = true
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -34,8 +38,9 @@ export default async function Post({ params }: Props) {
           {date}
         </time>
         <h3>{post.snippet}</h3>
-
-        <BlogPost data={post} />
+        <Suspense fallback={<Fallback/>}>
+          <BlogPost data={post} />
+        </Suspense>
         {post.cc_licensed ? <CC_Image /> : null}
       </article>
     </main>
