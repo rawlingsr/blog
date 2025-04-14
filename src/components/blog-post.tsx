@@ -1,5 +1,3 @@
-"use client";
-
 import Markdown from "react-markdown";
 import rehypeMathJax from "rehype-mathjax";
 import remarkMath from "remark-math";
