@@ -120,13 +120,13 @@ ul {
   padding: inherit;
 }
 
-@media all and (width >= 25rem) {
+@media (width >= 25rem) {
   .experience {
     flex-direction: row;
   }
 }
 
-@media all and (width < 25rem) {
+@media (width < 25rem) {
   .experience {
     flex-direction: column;
   }
