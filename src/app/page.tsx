@@ -25,6 +25,7 @@ export default async function Home() {
           <li>C++</li>
           <li>Rust</li>
           <li>Linux</li>
+          <li>Selenium</li>
         </ul>
       </article>
       <article>
@@ -59,13 +60,20 @@ export default async function Home() {
 
           <ul>
             <li>
-              Developed and maintained internal documentation and guides,
-              addressing gaps for new team members and processes.
+              Captured and documented critical tribal knowledge, creating
+              comprehensive onboarding materials for new hires and clarifying new
+              process workflows for existing team members.
             </li>
 
             <li>
               Mentored and trained Junior Software and Quality Engineers,
               accelerating their onboarding and development.
+            </li>
+
+            <li>
+              Acted as a key point of contact with The Technical Writing and
+              Validation teams to ensure they had accurate information about
+              patches and releases.
             </li>
 
             <li>
