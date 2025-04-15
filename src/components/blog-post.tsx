@@ -28,7 +28,7 @@ function rehypePlugins(data: Post) {
   return plugins;
 }
 
-export function BlogPost({ data }: { data: Post }) {
+export async function BlogPost({ data }: { data: Post }) {
   return (
     <Markdown
       remarkPlugins={remarkPlugins(data)}
