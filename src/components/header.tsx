@@ -23,16 +23,13 @@ export function Header() {
           </Link>
           <ul>
             <li>
-              <Link href="/blog/">Blog</Link>
-            </li>
-            <li>
-              <Link href="https://github.com/rawlingsr">
-                <FontAwesomeIcon icon={faGithub} />
+              <Link href="/blog/">
+                Blog
               </Link>
             </li>
             <li>
-              <Link href="https://www.linkedin.com/in/rawlingsryan/">
-                <FontAwesomeIcon icon={faLinkedinIn} />
+              <Link href="/contact/">
+                Contact
               </Link>
             </li>
           </ul>

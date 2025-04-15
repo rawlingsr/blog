@@ -83,7 +83,7 @@ main {
 }
 
 .post-list-item {
-  background: #eee2;
+  background: #aaa4;
   margin: 0.5em;
   padding: 0.5em;
 }
@@ -118,6 +118,27 @@ ul {
   justify-content: space-between;
   list-style: none;
   padding: inherit;
+}
+
+.contact-list {
+  list-style: none;
+  padding-left: inherit;
+}
+
+.contact-btn {
+  background: #8883;
+  align-items: center;
+  display: flex;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+.contact a {
+  color: inherit;
+}
+
+.contact-text {
+  margin-left: 1em;
 }
 
 @media (width >= 30rem) {
