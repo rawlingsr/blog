@@ -1,0 +1,49 @@
+companies:
+  - name: MasterControl Inc.
+    dates_worked: [2016-06, 2023-11]
+    description: >
+      Document Control software company, that makes it easier for life sciences companies to stay in compliance with federal regulations.
+    website: https://www.mastercontrol.com/
+    positions:
+      - title: Software Quality Engineer II
+        dates_worked: [2021-03, 2023-11]
+        description: >
+          Fixed defects and wrote code but focused on finding defects and verifying fixes.
+        achievements:
+          - Captured and documented critical tribal knowledge, creating comprehensive onboarding materials for new hires and clarifying new process workflows for existing team members.
+          - Mentored and trained Junior Software and Quality Engineers, accelerating their onboarding and development.
+          - Acted as a key point of contact with The Technical Writing and Validation teams to ensure they had accurate information about patches and releases.
+          - Refactored and modernized numerous React components, improving performance and maintainability.
+          - Expanded browser compatibility for an internal Selenium wrapper, enabling Cross-platform testing, and demonstrating.
+          - Recognized by peers and mentors for meticulous attention to detail and exceptional problem-solving skills.
+          - Wrote Automated tests to produce video recordings, providing Video Evidence of tested functionalities for client validation.
+          - Automated Jenkins job execution with custom scripts, streamlining batch processing and reducing the number of points of failure.
+      # - title: Software Engineer II
+      #   dates_worked: []
+      #   description: asdf
+      #   achievements: []
+
+      # - title: Software Engineer II
+      #   dates_worked: []
+      #   description: asdf
+      #   achievements: []
+      # - title: Software Engineer II
+      #   dates_worked: []
+      #   description: asdf
+      #   achievements: []
+  - name: StorageCraft Technologies
+    dates_worked: [2012-05, 2016-02]
+    description: >
+      Backup and Disaster Recovery Software Company with robust business continuity suite
+    website: https://www.storagecraft.com/
+    positions:
+      - title: QA Specialist in Technical Support
+        dates_worked: [2012-05, 2016-02]
+        description: Effectively resolved complex customer issues through detailed investigation and root cause analysis.
+        achievements:
+          - Managed test lab environments for defect reproduction.
+          - Performed low-level network traffic analysis for troubleshooting.
+          - Conducted exploratory testing to find hidden defects.
+          - Created and executed test plans for new product releases.
+          - Utilized Jira for bug reporting and tracking.
+          - Built and maintained test infrastructure to support defect verification.

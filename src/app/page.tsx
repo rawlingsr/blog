@@ -1,3 +1,6 @@
+import { Experience } from "@/components/experience";
+import Link from "next/link";
+
 export default async function Home() {
   return (
     <main>
@@ -28,132 +31,14 @@ export default async function Home() {
           <li>Selenium</li>
         </ul>
       </article>
-      <article>
-        <h2>Experience</h2>
-        <section>
-          <h3>Return to School</h3>
-          <h4 className="experience">
-            <span>Western Governors University</span>
-            <span>
-              <time dateTime="2023-11">Nov 2023</time>
-              {" - "}
-              Present
-            </span>
-          </h4>
-        </section>
-
-        <section>
-          <h3>MasterControl Inc.</h3>
-          <h4 className="experience">
-            <span>Software Engineer II</span>
-            <span>
-              <time dateTime="2016-06">June 2016</time>
-              {" - "}
-              <time dateTime="2023-11">November 2023</time>
-            </span>
-          </h4>
-
-          <p>
-            Fixed defects and wrote code but focused on finding defects and
-            verifying fixes.
-          </p>
-
-          <ul>
-            <li>
-              Captured and documented critical tribal knowledge, creating
-              comprehensive onboarding materials for new hires and clarifying new
-              process workflows for existing team members.
-            </li>
-
-            <li>
-              Mentored and trained Junior Software and Quality Engineers,
-              accelerating their onboarding and development.
-            </li>
-
-            <li>
-              Acted as a key point of contact with The Technical Writing and
-              Validation teams to ensure they had accurate information about
-              patches and releases.
-            </li>
-
-            <li>
-              Refactored and modernized numerous React components, improving
-              performance and maintainability.
-            </li>
-
-            <li>
-              Expanded browser compatibility for an internal Selenium wrapper,
-              enabling Cross-platform testing, and demonstrating.
-            </li>
-
-            <li>
-              Recognized by peers and mentors for meticulous attention to detail
-              and exceptional problem-solving skills.
-            </li>
-
-            <li>
-              Wrote Automated tests to produce video recordings, providing Video
-              Evidence of tested functionalities for client validation.
-            </li>
-
-            <li>
-              Automated Jenkins job execution with custom scripts, streamlining
-              batch processing and reducing the number of points of failure.
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <h3>StorageCraft</h3>
-          <h4 className="experience">
-            <span>QA specialist in Technical Support</span>
-            <span>
-              <time dateTime="2012-05">May 2012</time>
-              {" - "}
-              <time dateTime="2016-02">February 2016</time>
-            </span>
-          </h4>
-
-          <p>
-            Effectively resolved complex customer issues through detailed
-            investigation and root cause analysis.
-          </p>
-
-          <ul>
-            <li>
-              Managed test lab environments for defect reproduction.
-            </li>
-
-            <li>
-              Performed low-level network traffic analysis for troubleshooting.
-            </li>
-
-            <li>
-              Conducted exploratory testing to find hidden defects.
-            </li>
-
-            <li>
-              Created and executed test plans for new product releases.
-            </li>
-
-            <li>
-              Utilized Jira for bug reporting and tracking.
-            </li>
-
-            <li>
-              Built and maintained test infrastructure to support defect
-              verification.
-            </li>
-          </ul>
-        </section>
-      </article>
+      <Experience />
 
       <article>
         <h2>Education</h2>
         <section>
           <h3>Bachelor of Science, Computer Science</h3>
-          <h4 className="experience">
-            <span>Western Governors University</span>
+          <h4 className="experience-header">
+            <Link href={"https://www.wgu.edu/"}>Western Governors University</Link>
             <span>
               (Expected) <time dateTime="2027-05">May 2027</time>
             </span>
