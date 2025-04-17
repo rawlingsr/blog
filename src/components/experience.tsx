@@ -8,8 +8,8 @@ export async function Experience() {
     <article>
       <h2>Experience</h2>
 
-      {companies.map((company) => {
-        return <CompanyExperience company={company} key={company.name} />;
+      {companies.map((company, index) => {
+        return <CompanyExperience company={company} key={index} />;
       })}
     </article>
   );
@@ -27,8 +27,8 @@ export function CompanyExperience({ company }: { company: Company }) {
         <TimeSpan dates_worked={company.dates_worked} />
       </h3>
       <p>{ company.description }</p>
-      {company.positions.map((position) => (
-        <PositionExperience position={position} key={position.title} />
+      {company.positions?.map((position, index) => (
+        <PositionExperience position={position} key={index} />
       ))}
     </section>
   );
@@ -44,7 +44,7 @@ function PositionExperience({ position }: { position: Position }) {
       </h4>
       <p>{position.description}</p>
       <ul>
-        {position.achievements.map(x => <li key={x}>{x}</li>)}
+        {position.achievements?.map(x => <li key={x}>{x}</li>)}
       </ul>
     </div>
   );
