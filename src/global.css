@@ -52,7 +52,7 @@ nav li {
   margin: 0 0.4em;
 }
 
-nav a {
+nav a, .contact a, a[href]:not(:hover)  {
   text-decoration: none;
   color: inherit;
 }
@@ -112,9 +112,9 @@ ul {
   padding-left: 2em;
 }
 
-.experience {
+.experience-header {
   display: flex;
-
+  flex-direction: column;
   justify-content: space-between;
   list-style: none;
   padding: inherit;
@@ -133,22 +133,12 @@ ul {
   padding: 0.5em;
 }
 
-.contact a {
-  color: inherit;
-}
-
 .contact-text {
   margin-left: 1em;
 }
 
 @media (width >= 30rem) {
-  .experience {
+  .experience-header {
     flex-direction: row;
-  }
-}
-
-@media (width < 30rem) {
-  .experience {
-    flex-direction: column;
   }
 }
