@@ -146,3 +146,17 @@ ul {
     flex-direction: row;
   }
 }
+
+@media print {
+  div.position-experience {
+    page-break-inside: avoid;
+  }
+
+  .page-header, .page-footer {
+    background: none;
+  }
+
+  nav p, nav li {
+    display: none;
+  }
+}
