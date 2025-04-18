@@ -25,32 +25,48 @@ export async function getCareerData(): Promise<Company[]> {
   const fileName = join(process.cwd(), "/src/career-data.yaml");
   const data = await readFile(fileName, { encoding: "utf8" });
   const parsedData = parse(data);
+  const companies: Company[] = [];
 
-  return parsedData["companies"];
+  if (!parsedData) {
+    return companies;
+  }
+
+  for (const parsedCompany of parsedData.companies) {
+    const company: Company = {
+      name: parsedCompany.name,
+      dates_worked: parsedCompany.dates_worked,
+      description: parsedCompany.description,
+      location: parsedCompany.location,
+      website: parsedCompany.website,
+      positions: getPositions(parsedCompany),
+    }
+    companies.push(company);
+  }
+
+  return parsedData.companies;
+}
+
+function getPositions(parsedCompany: Company): Position[] {
+  const parsedPositions = parsedCompany.positions;
+  const positions: Position[] = [];
+
+  if (!parsedPositions) {
+    return positions;
+  }
+
+  for (const parsedPosition of parsedPositions) {
+    const position: Position = {
+      title: parsedPosition.title,
+      dates_worked: parsedPosition.dates_worked,
+      description: parsedPosition.description,
+      achievements: parsedPosition.achievements,
+    }
+
+    positions.push(position);
+  }
+
+  return positions;
+
 }
 
 
-
-// export async function getPost(slug: string): Promise<Post | null> {
-//   const fileName = join(process.cwd(), "/src/posts/", `${slug}.md`);
-
-//   try {
-//     await fs.access(fileName);
-//   } catch {
-//     return null;
-//   }
-
-//   const text = await fs.readFile(fileName, { encoding: "utf8" });
-//   const { attributes, body } = fm<Post>(text);
-
-//   return {
-//     slug,
-//     title: attributes.title,
-//     published_at: new Date(attributes.published_at),
-//     content: body,
-//     snippet: attributes.snippet,
-//     math: attributes.math,
-//     gfm: attributes.gfm,
-//     cc_licensed: attributes.cc_licensed,
-//   };
-// }

@@ -15,27 +15,25 @@ export async function Experience() {
   );
 }
 
-export function CompanyExperience({ company }: { company: Company }) {
-  const [from, to] = company.dates_worked;
-  console.log(from);
+function CompanyExperience({ company }: { company: Company }) {
   return (
     <section>
       <h3 className="experience-header">
         <Link href={company.website}>
           {company.name}
+        {company.location ? ` | ${company.location}` : null}
         </Link>
         <TimeSpan dates_worked={company.dates_worked} />
       </h3>
-      <p>{ company.description }</p>
+      <p>{company.description}</p>
       {company.positions?.map((position, index) => (
         <PositionExperience position={position} key={index} />
       ))}
     </section>
   );
 }
-function PositionExperience({ position }: { position: Position }) {
-  const [from, to] = position.dates_worked ?? ["", ""];
 
+function PositionExperience({ position }: { position: Position }) {
   return (
     <div className="position-experience">
       <h4 className="experience-header">
@@ -44,7 +42,7 @@ function PositionExperience({ position }: { position: Position }) {
       </h4>
       <p>{position.description}</p>
       <ul>
-        {position.achievements?.map(x => <li key={x}>{x}</li>)}
+        {position.achievements?.map((x) => <li key={x}>{x}</li>)}
       </ul>
     </div>
   );
@@ -54,7 +52,21 @@ function TimeSpan({ dates_worked }: { dates_worked: [string, string] | null }) {
   if (!dates_worked) {
     return null;
   }
+
   const [from, to] = dates_worked;
+
+  if (!from || from == "") {
+    return null;
+  }
+
+  if (!to) {
+    return (
+      <span>
+        <time dateTime={from}>{from}</time>
+        {" - Present"}
+      </span>
+    );
+  }
 
   return (
     <span>
