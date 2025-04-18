@@ -37,7 +37,7 @@ function PositionExperience({ position }: { position: Position }) {
   const [from, to] = position.dates_worked ?? ["", ""];
 
   return (
-    <div>
+    <div className="position-experience">
       <h4 className="experience-header">
         <span>{position.title}</span>
         <TimeSpan dates_worked={position.dates_worked} />
