@@ -52,8 +52,11 @@ nav li {
   margin: 0 0.4em;
 }
 
-nav a, .contact a, a[href]:not(:hover)  {
+nav a, .contact a {
   text-decoration: none;
+}
+
+nav a, .contact a, a[href]:not(:hover)  {
   color: inherit;
 }
 
@@ -61,6 +64,7 @@ nav li a {
   display: block;
   padding: 0.7em;
 }
+
 nav p {
   margin: 0.5em;
 }
