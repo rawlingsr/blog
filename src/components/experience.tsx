@@ -3,7 +3,6 @@ import Link from "next/link";
 
 export async function Experience() {
   const companies = await getCareerData();
-  console.log(companies);
   return (
     <article>
       <h2>Experience</h2>
@@ -20,8 +19,17 @@ function CompanyExperience({ company }: { company: Company }) {
     <section>
       <h3 className="experience-header">
         <Link href={company.website}>
-          {company.name}
-        {company.location ? ` | ${company.location}` : null}
+          <span className="company-name">{company.name}</span>
+          {company.location
+            ? (
+              <>
+                {" | "}
+                <span className="company-location">
+                  {company.location}
+                </span>
+              </>
+            )
+            : null}
         </Link>
         <TimeSpan dates_worked={company.dates_worked} />
       </h3>
@@ -35,8 +43,8 @@ function CompanyExperience({ company }: { company: Company }) {
 
 function PositionExperience({ position }: { position: Position }) {
   return (
-    <div className="position-experience">
-      <h4 className="experience-header">
+    <section className="position">
+      <h4 className="position-header">
         <span>{position.title}</span>
         <TimeSpan dates_worked={position.dates_worked} />
       </h4>
@@ -44,7 +52,7 @@ function PositionExperience({ position }: { position: Position }) {
       <ul>
         {position.achievements?.map((x) => <li key={x}>{x}</li>)}
       </ul>
-    </div>
+    </section>
   );
 }
 
