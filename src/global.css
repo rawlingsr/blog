@@ -120,8 +120,11 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  list-style: none;
-  padding: inherit;
+}
+
+.position-header {
+  display: flex;
+  flex-direction: column;
 }
 
 .contact-list {
@@ -148,7 +151,7 @@ ul {
 }
 
 @media print {
-  div.position-experience {
+  section.position {
     page-break-inside: avoid;
   }
 
