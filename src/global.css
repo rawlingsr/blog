@@ -151,6 +151,14 @@ ul {
 }
 
 @media print {
+  .container {
+    max-width: inherit !important;
+  }
+
+  body {
+    font-size: 10pt;
+  }
+
   section.position {
     page-break-inside: avoid;
   }
@@ -160,6 +168,6 @@ ul {
   }
 
   nav p, nav li {
-    display: none;
+    display: none !important;
   }
 }
