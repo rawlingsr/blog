@@ -19,6 +19,10 @@ export interface Position {
   achievements: string[];
 }
 
+export interface Skill {
+  name: string;
+}
+
 export async function getData() {
   const fileName = join(process.cwd(), "/src/career-data.yaml");
   const data = await readFile(fileName, { encoding: "utf8" });
@@ -26,29 +30,26 @@ export async function getData() {
 }
 
 
-export function getSkills(data: any): string[] {
-  const skills: string[] = [];
+export function getSkills({ skills }: {skills: Skill[]}): string[] {
+  const return_skills: string[] = [];
 
-  console.log(data.skills)
-
-  if (!data) {
-    return skills;
+  if (!skills) {
+    return return_skills;
   }
 
-  for (const skill of data.skills) {
-    const validated: string = skill.skill;
-    skills.push(validated);
+  for (const skill of skills) {
+    return_skills.push(skill.name);
   }
 
-  return skills;
+  return return_skills;
 }
 
 
 export function getCompanies(data: any): Company[] {
-  const companies: Company[] = [];
+  const return_companies: Company[] = [];
 
   if (!data) {
-    return companies;
+    return return_companies;
   }
 
   for (const parsedCompany of data.companies) {
@@ -60,10 +61,10 @@ export function getCompanies(data: any): Company[] {
       website: parsedCompany.website,
       positions: getPositions(parsedCompany),
     }
-    companies.push(company);
+    return_companies.push(company);
   }
 
-  return companies;
+  return return_companies;
 }
 
 function getPositions(parsedCompany: Company): Position[] {
