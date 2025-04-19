@@ -19,19 +19,39 @@ export interface Position {
   achievements: string[];
 }
 
-
-
-export async function getCareerData(): Promise<Company[]> {
+export async function getData() {
   const fileName = join(process.cwd(), "/src/career-data.yaml");
   const data = await readFile(fileName, { encoding: "utf8" });
-  const parsedData = parse(data);
+  return parse(data);
+}
+
+
+export function getSkills(data: any): string[] {
+  const skills: string[] = [];
+
+  console.log(data.skills)
+
+  if (!data) {
+    return skills;
+  }
+
+  for (const skill of data.skills) {
+    const validated: string = skill.skill;
+    skills.push(validated);
+  }
+
+  return skills;
+}
+
+
+export function getCompanies(data: any): Company[] {
   const companies: Company[] = [];
 
-  if (!parsedData) {
+  if (!data) {
     return companies;
   }
 
-  for (const parsedCompany of parsedData.companies) {
+  for (const parsedCompany of data.companies) {
     const company: Company = {
       name: parsedCompany.name,
       dates_worked: parsedCompany.dates_worked,
@@ -43,7 +63,7 @@ export async function getCareerData(): Promise<Company[]> {
     companies.push(company);
   }
 
-  return parsedData.companies;
+  return companies;
 }
 
 function getPositions(parsedCompany: Company): Position[] {

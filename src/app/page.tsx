@@ -1,7 +1,12 @@
-import { Experience } from "@/components/experience";
+import Experience from "@/components/experience";
+import Skills from "@/components/skills"
+import { getData, getCompanies, getSkills } from "@/utils/career_data";
 import Link from "next/link";
 
 export default async function Home() {
+  const data = await getData();
+  const companies = getCompanies(data);
+  const skills = getSkills(data);
   return (
     <main>
       <article>
@@ -10,28 +15,8 @@ export default async function Home() {
         of software products. I am eager to apply my experience in a new
         Software Engineering role.
       </article>
-      <article>
-        <h2>Skills</h2>
-        <ul className="skills">
-          <li>Test Automation</li>
-          <li>Configuration as Code</li>
-          <li>React</li>
-          <li>Git</li>
-          <li>CI/CD</li>
-          <li>Python</li>
-          <li>JavaScript</li>
-          <li>Java</li>
-          <li>Ruby</li>
-          <li>PowerShell</li>
-          <li>HTML and CSS</li>
-          <li>SQL</li>
-          <li>C++</li>
-          <li>Rust</li>
-          <li>Linux</li>
-          <li>Selenium</li>
-        </ul>
-      </article>
-      <Experience />
+      <Skills skills={skills} />
+      <Experience companies={companies} />
 
       <article>
         <h2>Education</h2>
