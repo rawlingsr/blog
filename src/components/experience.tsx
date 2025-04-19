@@ -1,8 +1,7 @@
-import { Company, getCareerData, Position } from "@/utils/experience";
+import { Company, Position } from "@/utils/career_data";
 import Link from "next/link";
 
-export async function Experience() {
-  const companies = await getCareerData();
+export default function Experience({ companies }: { companies: Company[] }) {
   return (
     <article>
       <h2>Experience</h2>

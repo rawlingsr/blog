@@ -1,3 +1,20 @@
+skills:
+  - skill: Test Automation
+  - skill: Configuration as Code
+  - skill: React
+  - skill: Git
+  - skill: CI/CD
+  - skill: Python
+  - skill: JavaScript
+  - skill: Java
+  - skill: Ruby
+  - skill: PowerShell
+  - skill: HTML and CSS
+  - skill: SQL
+  - skill: C++
+  - skill: Rust
+  - skill: Linux
+  - skill: Selenium
 companies:
   - name: Return to School
     dates_worked: [2023-11]
