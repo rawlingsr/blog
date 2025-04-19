@@ -21,6 +21,7 @@ export interface Position {
 
 export interface Skill {
   name: string;
+  description: string;
 }
 
 export async function getData() {
@@ -30,15 +31,15 @@ export async function getData() {
 }
 
 
-export function getSkills({ skills }: {skills: Skill[]}): string[] {
-  const return_skills: string[] = [];
+export function getSkills({ skills }: {skills: Skill[]}): Skill[] {
+  const return_skills: Skill[] = [];
 
   if (!skills) {
     return return_skills;
   }
 
   for (const skill of skills) {
-    return_skills.push(skill.name);
+    return_skills.push(skill);
   }
 
   return return_skills;
