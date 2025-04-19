@@ -45,14 +45,14 @@ export function getSkills({ skills }: {skills: Skill[]}): string[] {
 }
 
 
-export function getCompanies(data: any): Company[] {
+export function getCompanies({companies}: {companies: Company[]}): Company[] {
   const return_companies: Company[] = [];
 
-  if (!data) {
+  if (!companies) {
     return return_companies;
   }
 
-  for (const parsedCompany of data.companies) {
+  for (const parsedCompany of companies) {
     const company: Company = {
       name: parsedCompany.name,
       dates_worked: parsedCompany.dates_worked,
