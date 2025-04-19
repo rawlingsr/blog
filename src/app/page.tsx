@@ -1,6 +1,6 @@
 import Experience from "@/components/experience";
 import Skills from "@/components/skills"
-import { getData, getCompanies, getSkills } from "@/utils/career_data";
+import { getData, getCompanies, getSkills } from "@/utils/career-data";
 import Link from "next/link";
 
 export default async function Home() {

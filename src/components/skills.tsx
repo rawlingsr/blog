@@ -3,7 +3,7 @@ export default async function Skills({ skills }: { skills: string[] }) {
     <article>
       <h2>Skills</h2>
       <ul className="skills">
-        {skills.map((skill) => <li>{skill}</li>)}
+        {skills.map((skill) => <li key={skill}>{skill}</li>)}
       </ul>
     </article>
   );

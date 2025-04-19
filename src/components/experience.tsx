@@ -1,4 +1,4 @@
-import { Company, Position } from "@/utils/career_data";
+import { Company, Position } from "@/utils/career-data";
 import Link from "next/link";
 
 export default function Experience({ companies }: { companies: Company[] }) {
