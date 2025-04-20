@@ -2,6 +2,19 @@ import { parse } from "yaml";
 import { readFile } from "node:fs/promises";
 import { join } from "path";
 
+export interface School {
+  name: string;
+  degree: string;
+  website: URL;
+  graduation_date: string;
+  still_attending: boolean;
+}
+
+export interface Skill {
+  name: string;
+  description: string;
+}
+
 export interface Company {
   name: string;
   dates_worked: [string, string];
@@ -19,17 +32,32 @@ export interface Position {
   achievements: string[];
 }
 
-export interface Skill {
-  name: string;
-  description: string;
-}
-
 export async function getData() {
   const fileName = join(process.cwd(), "/src/career-data.yaml");
   const data = await readFile(fileName, { encoding: "utf8" });
   return parse(data);
 }
 
+export function getSchools({ schools }: { schools: School[] }) {
+  const return_schools: School[] = [];
+
+  if (!schools) {
+    return return_schools;
+  }
+
+  for ( const school of schools ) {
+    return_schools.push({
+      name: school.name,
+      degree: school.degree,
+      website: school.website,
+      graduation_date: school.graduation_date,
+      still_attending: school.still_attending,
+    })
+  }
+
+  return return_schools;
+
+}
 
 export function getSkills({ skills }: {skills: Skill[]}): Skill[] {
   const return_skills: Skill[] = [];

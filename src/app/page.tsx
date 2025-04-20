@@ -1,16 +1,19 @@
+import Education from "@/components/education";
 import Experience from "@/components/experience";
 import Skills from "@/components/skills"
 import {
-getData,
-getCompanies,
-getSkills,
+  getData,
+  getCompanies,
+  getSkills,
+  getSchools,
 } from "@/utils/career-data";
-import Link from "next/link";
 
 export default async function Home() {
   const data = await getData();
   const companies = getCompanies(data);
   const skills = getSkills(data);
+  const schools = getSchools(data);
+
   return (
     <main>
       <article>
@@ -19,21 +22,9 @@ export default async function Home() {
         of software products. I am eager to apply my experience in a new
         Software Engineering role.
       </article>
-      <Skills skills={skills} />
+      <Education schools={schools} />
       <Experience companies={companies} />
-
-      <article>
-        <h2>Education</h2>
-        <section>
-          <h3>Bachelor of Science, Computer Science</h3>
-          <h4 className="experience-header">
-            <Link href={"https://www.wgu.edu/"}>Western Governors University</Link>
-            <span>
-              (Expected) <time dateTime="2027-05">May 2027</time>
-            </span>
-          </h4>
-        </section>
-      </article>
+      <Skills skills={skills} />
     </main>
   );
 }
