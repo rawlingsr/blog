@@ -18,9 +18,7 @@ export default async function Home() {
     <main>
       <article>
         <h2>Objective</h2>
-        Utilize my 11 years of experience ensuring the quality and reliability
-        of software products. I am eager to apply my experience in a new
-        Software Engineering role.
+        {data.objective}
       </article>
       <Education schools={schools} />
       <Experience companies={companies} />
