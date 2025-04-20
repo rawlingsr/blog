@@ -1,3 +1,9 @@
+schools:
+  - name: Western Governors University
+    degree: Bachelor of Science, Computer Science
+    website: https://www.wgu.edu/
+    graduation_date: 2027-05
+    still_attending: true
 skills:
   - name: Test Automation
   - name: Configuration as Code
@@ -16,10 +22,10 @@ skills:
   - name: Linux
   - name: Selenium
 companies:
-  - name: Return to School
-    dates_worked: [2023-11]
-    description: I'm currently attending Western Governors University full time to get my BS in Computer Science.
-    website: https://www.wgu.edu/
+  # - name: Return to School
+  #   dates_worked: [2023-11]
+  #   description: I'm currently attending Western Governors University full time to get my BS in Computer Science.
+  #   website: https://www.wgu.edu/
   - name: MasterControl Inc.
     dates_worked: [2016-06, 2023-11]
     description: Document Control software company, that makes it easier for life sciences companies and medical device manufacturers to stay in compliance with federal regulations.
@@ -53,7 +59,7 @@ companies:
     website: https://www.storagecraft.com/
     positions:
       - title: QA Specialist in Technical Support
-        # dates_worked: [2012-05, 2016-02]
+        dates_worked: [2012-05, 2016-02]
         description: Effectively resolved complex customer issues through detailed investigation and root cause analysis.
         achievements:
           - Managed test lab environments for defect reproduction.
