@@ -160,7 +160,7 @@ ul {
   }
 
   section.position {
-    page-break-inside: avoid;
+    break-inside: avoid;
   }
 
   .page-header, .page-footer {
