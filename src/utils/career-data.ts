@@ -7,7 +7,7 @@ export interface School {
   degree: string;
   description: string;
   website: URL;
-  graduation_date: string;
+  graduation_date: Date;
   still_attending: boolean;
 }
 
@@ -18,7 +18,7 @@ export interface Skill {
 
 export interface Company {
   name: string;
-  dates_worked: [string, string];
+  dates_worked: [Date, Date];
   description: string;
   location: string;
   website: URL;
@@ -28,7 +28,7 @@ export interface Company {
 
 export interface Position {
   title: string;
-  dates_worked: [string, string] | null;
+  dates_worked: [Date, Date] | null;
   description: string;
   achievements: string[];
 }
@@ -52,7 +52,7 @@ export function getSchools({ schools }: { schools: School[] }) {
       degree: school.degree,
       description: school.description,
       website: school.website,
-      graduation_date: school.graduation_date,
+      graduation_date: new Date(school.graduation_date),
       still_attending: school.still_attending,
     })
   }
@@ -84,9 +84,14 @@ export function getCompanies({companies}: {companies: Company[]}): Company[] {
   }
 
   for (const parsedCompany of companies) {
+    if (!parsedCompany.dates_worked) {
+      continue;
+    }
+    const [from, to] = parsedCompany.dates_worked;
+
     const company: Company = {
       name: parsedCompany.name,
-      dates_worked: parsedCompany.dates_worked,
+      dates_worked: [new Date(from), new Date(to)],
       description: parsedCompany.description,
       location: parsedCompany.location,
       website: parsedCompany.website,
@@ -107,9 +112,13 @@ function getPositions(parsedCompany: Company): Position[] {
   }
 
   for (const parsedPosition of parsedPositions) {
+    if (!parsedPosition.dates_worked) {
+      continue;
+    }
+    const [from, to] = parsedPosition.dates_worked;
     const position: Position = {
       title: parsedPosition.title,
-      dates_worked: parsedPosition.dates_worked,
+      dates_worked: [new Date(from), new Date(to)],
       description: parsedPosition.description,
       achievements: parsedPosition.achievements,
     }
