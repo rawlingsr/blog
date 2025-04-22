@@ -5,6 +5,7 @@ import { join } from "path";
 export interface School {
   name: string;
   degree: string;
+  description: string;
   website: URL;
   graduation_date: string;
   still_attending: boolean;
@@ -49,6 +50,7 @@ export function getSchools({ schools }: { schools: School[] }) {
     return_schools.push({
       name: school.name,
       degree: school.degree,
+      description: school.description,
       website: school.website,
       graduation_date: school.graduation_date,
       still_attending: school.still_attending,
