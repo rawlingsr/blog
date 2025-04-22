@@ -17,23 +17,23 @@ export default function Experience({ companies }: { companies: Company[] }) {
 function CompanyExperience({ company }: { company: Company }) {
   return (
     <section>
-      <h3 className="company-header">
-        <Link href={company.website}>
-          <span className="company-name">{company.name}</span>
-          {company.location
-            ? (
-              <>
-                {" | "}
-                <span className="company-location">
-                  {company.location}
-                </span>
-              </>
-            )
-            : null}
-        </Link>
-        <TimeSpan dates_worked={company.dates_worked} />
-      </h3>
-      <p className="description">{company.description}</p>
+        <h3 className="company-header">
+          <Link href={company.website}>
+            <span className="company-name">{company.name}</span>
+            {company.location
+              ? (
+                <>
+                  {" | "}
+                  <span className="company-location">
+                    {company.location}
+                  </span>
+                </>
+              )
+              : null}
+          </Link>
+          <TimeSpan dates_worked={company.dates_worked} />
+        </h3>
+        <p className="description">{company.description}</p>
       {company.positions?.map((position, index) => (
         <PositionExperience position={position} key={index} />
       ))}
@@ -50,9 +50,9 @@ function PositionExperience({ position }: { position: Position }) {
       </h4>
       <p className="description">{position.description}</p>
       <ul>
-        {position.achievements?.map((achievement) =>
+        {position.achievements?.map((achievement) => (
           <li key={achievement}>{achievement}</li>
-        )}
+        ))}
       </ul>
     </section>
   );
