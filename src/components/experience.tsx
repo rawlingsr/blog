@@ -4,8 +4,9 @@ import Link from "next/link";
 export default function Experience({ companies }: { companies: Company[] }) {
   return (
     <article>
-      <h2>Experience</h2>
-
+      <div className="experience-header">
+        <h2>Experience</h2>
+      </div>
       {companies.map((company, index) => {
         return <CompanyExperience company={company} key={index} />;
       })}
@@ -16,7 +17,7 @@ export default function Experience({ companies }: { companies: Company[] }) {
 function CompanyExperience({ company }: { company: Company }) {
   return (
     <section>
-      <h3 className="experience-header">
+      <h3 className="company-header">
         <Link href={company.website}>
           <span className="company-name">{company.name}</span>
           {company.location
@@ -32,7 +33,7 @@ function CompanyExperience({ company }: { company: Company }) {
         </Link>
         <TimeSpan dates_worked={company.dates_worked} />
       </h3>
-      <p>{company.description}</p>
+      <p className="description">{company.description}</p>
       {company.positions?.map((position, index) => (
         <PositionExperience position={position} key={index} />
       ))}
@@ -47,9 +48,11 @@ function PositionExperience({ position }: { position: Position }) {
         <span>{position.title}</span>
         <TimeSpan dates_worked={position.dates_worked} />
       </h4>
-      <p>{position.description}</p>
+      <p className="description">{position.description}</p>
       <ul>
-        {position.achievements?.map((x) => <li key={x}>{x}</li>)}
+        {position.achievements?.map((achievement) =>
+          <li key={achievement}>{achievement}</li>
+        )}
       </ul>
     </section>
   );
