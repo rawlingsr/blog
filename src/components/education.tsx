@@ -14,7 +14,7 @@ function Institution({ school }: { school: School }) {
   return (
     <section>
       <h3>{school.degree}</h3>
-      <h4 className="experience-header">
+      <h4 className="school-header">
         <Link href={school.website}>{school.name}</Link>
         <span>
           {school.still_attending ? "(Expected) " : null}
