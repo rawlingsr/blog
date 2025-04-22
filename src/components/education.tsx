@@ -13,8 +13,7 @@ export default function Education({ schools }: { schools: School[] }) {
 function Institution({ school }: { school: School }) {
   return (
     <section>
-      <h3>{school.degree}</h3>
-      <h4 className="school-header">
+      <h3 className="school-header">
         <Link href={school.website}>{school.name}</Link>
         <span>
           {school.still_attending ? "(Expected) " : null}
@@ -22,7 +21,9 @@ function Institution({ school }: { school: School }) {
             {school.graduation_date}
           </time>
         </span>
-      </h4>
+      </h3>
+      <h4>{school.degree}</h4>
+      <p className="description">{school.description}</p>
     </section>
   );
 }
