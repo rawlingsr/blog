@@ -1,4 +1,5 @@
 import { Company, Position } from "@/utils/career-data";
+import { monthYear } from "@/utils/helpers";
 import Link from "next/link";
 
 export default function Experience({ companies }: { companies: Company[] }) {
@@ -58,21 +59,21 @@ function PositionExperience({ position }: { position: Position }) {
   );
 }
 
-function TimeSpan({ dates_worked }: { dates_worked: [string, string] | null }) {
+function TimeSpan({ dates_worked }: { dates_worked: [Date, Date] | null }) {
   if (!dates_worked) {
     return null;
   }
 
   const [from, to] = dates_worked;
 
-  if (!from || from == "") {
+  if (!from) {
     return null;
   }
 
   if (!to) {
     return (
       <span>
-        <time dateTime={from}>{from}</time>
+        <time dateTime={from.toISOString()}>{monthYear(from)}</time>
         {" - Present"}
       </span>
     );
@@ -80,9 +81,9 @@ function TimeSpan({ dates_worked }: { dates_worked: [string, string] | null }) {
 
   return (
     <span>
-      <time dateTime={from}>{from}</time>
+      <time dateTime={from.toISOString()}>{monthYear(from)}</time>
       {" - "}
-      <time dateTime={to}>{to}</time>
+      <time dateTime={to.toISOString()}>{monthYear(to)}</time>
     </span>
   );
 }
