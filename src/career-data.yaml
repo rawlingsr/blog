@@ -24,10 +24,6 @@ skills:
   - name: Linux
   - name: Selenium
 companies:
-  # - name: Return to School
-  #   dates_worked: [2023-11]
-  #   description: I'm currently attending Western Governors University full time to get my BS in Computer Science.
-  #   website: https://www.wgu.edu/
   - name: MasterControl Inc.
     dates_worked: [2016-06, 2023-11]
     description: Document Control software company, that makes it easier for life sciences companies and medical device manufacturers to stay in compliance with federal regulations.
@@ -36,33 +32,30 @@ companies:
     positions:
       - title: Software Quality Engineer II
         dates_worked: [2021-03, 2023-11]
-        description: Fixed defects and wrote code but focused on finding defects and verifying fixes.
         achievements:
           - Mentored and trained Junior Software and Quality Engineers, accelerating their onboarding and development.
           - Refactored and modernized numerous React components, improving performance and maintainability.
-          - Wrote Automated tests to produce video recordings, providing Video Evidence of tested functionalities for client validation.
+          - Resolved a company wide issue that had blocked local automated ChromeDriver tests. When the discussions around the issue made it to a department wide chat, I was able to report that the pull request fixing the issue was already underway.
       - title: Software Engineer II
         dates_worked: [2019-01, 2021-03]
-        description:  Fixed defects and implemented new functionality in many areas.
         achievements:
           - Captured and documented critical tribal knowledge, creating comprehensive onboarding materials for new hires and clarifying new process workflows for existing team members.
           - Acted as a key point of contact with The Technical Writing and Validation teams to ensure they had accurate information about patches and releases.
           - Expanded browser compatibility for an internal Selenium wrapper, enabling Cross-platform testing, and demonstration of working software.
       - title: Software Quality Engineer I
         dates_worked: [2016-06, 2019-01]
-        description:
         achievements:
           - Automated Jenkins job execution with custom scripts, streamlining batch processing and reducing the number of points of failure.
           - Recognized by peers and mentors for meticulous attention to detail and exceptional problem-solving skills.
+          - Wrote Automated tests to produce video recordings, providing video evidence of working software.
   - name: StorageCraft Technologies
     dates_worked: [2012-05, 2016-02]
-    description: Backup and Disaster Recovery Software Company with robust business continuity suite
+    description: Backup and Disaster Recovery Software Company with robust business continuity suite.
     location: Draper, UT
     website: https://www.storagecraft.com/
     positions:
       - title: QA Specialist in Technical Support
         dates_worked: [2012-05, 2016-02]
-        description: Effectively resolved complex customer issues through detailed investigation and root cause analysis.
         achievements:
           - Managed test lab environments for defect reproduction.
           - Performed low-level network traffic analysis for troubleshooting.
