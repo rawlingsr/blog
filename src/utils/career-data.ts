@@ -33,6 +33,15 @@ export interface Position {
   achievements: string[];
 }
 
+export interface ContactInfo {
+  linkedin: string | null;
+  github: string | null;
+  email: string | null;
+  location: string | null;
+  phone: string | null;
+  website: string | null;
+}
+
 export async function getData() {
   const fileName = join(process.cwd(), "/src/career-data.yaml");
   const data = await readFile(fileName, { encoding: "utf8" });
@@ -130,4 +139,24 @@ function getPositions(parsedCompany: Company): Position[] {
 
 }
 
+export function getContactInfo({ contact_info }: { contact_info: ContactInfo }) {
+  if (!contact_info) {
+    return {
+      linkedin: null,
+      github: null,
+      email: null,
+      location: null,
+      phone: null,
+      website: null,
+    };
+  }
 
+  return {
+    linkedin: contact_info.linkedin,
+    github: contact_info.github,
+    email: contact_info.email,
+    location: contact_info.location,
+    phone: contact_info.phone,
+    website: contact_info.website,
+  }
+}

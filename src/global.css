@@ -1,6 +1,8 @@
 :root {
   color-scheme: light dark;
 }
+
+/*noinspection CssInvalidFunction*/
 body {
   color: light-dark(#000000, #ffffff);
   background-color: light-dark(#ffffff, #1d1d1d);
@@ -21,6 +23,14 @@ body {
   max-width: 60rem;
   margin: 0 auto;
   width: 100%;
+}
+
+.page-header h1, .page-header h2 {
+  margin: 0;
+}
+
+.page-header h2 {
+  font-size: 1em;
 }
 
 .page-footer, .page-header {
@@ -52,11 +62,11 @@ nav li {
   margin: 0 0.4em;
 }
 
-nav a, .contact a {
+nav a, a.contact {
   text-decoration: none;
 }
 
-nav a, .contact a, a[href]:not(:hover)  {
+nav a, a.contact, a[href]:not(:hover)  {
   color: inherit;
 }
 
@@ -127,11 +137,6 @@ ul {
   flex-direction: column;
 }
 
-.contact-list {
-  list-style: none;
-  padding-left: inherit;
-}
-
 .contact-btn {
   background: #8883;
   align-items: center;
@@ -155,16 +160,16 @@ ul {
     max-width: inherit !important;
   }
 
-  body {
-    font-size: 10pt;
-  }
-
-  section.position {
+  div.position {
     break-inside: avoid;
   }
 
-  .page-header, .page-footer {
+  .page-header {
     background: none;
+  }
+
+  .page-footer {
+    display: none;
   }
 
   nav p, nav li {

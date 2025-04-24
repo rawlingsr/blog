@@ -1,7 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export function Header() {
+export function Header({ name, target_position }: {
+  name: string;
+  target_position: string;
+}) {
   return (
     <header className="page-header">
       <div className="container">
@@ -14,7 +17,10 @@ export function Header() {
               height="64"
               className="icon"
             />
-            <h1>Ryan Rawlings</h1>
+            <div>
+              <h1>{name}</h1>
+              <h2>{target_position}</h2>
+            </div>
           </Link>
           <ul>
             <li>

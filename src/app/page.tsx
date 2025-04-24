@@ -1,11 +1,20 @@
+import {
+  Email,
+  GitHub,
+  Linkedin,
+  Location,
+  Phone,
+  Website,
+} from "@/components/contact";
 import Education from "@/components/education";
 import Experience from "@/components/experience";
-import Skills from "@/components/skills"
+import Skills from "@/components/skills";
 import {
-  getData,
   getCompanies,
-  getSkills,
+  getContactInfo,
+  getData,
   getSchools,
+  getSkills,
 } from "@/utils/career-data";
 
 export default async function Home() {
@@ -13,6 +22,8 @@ export default async function Home() {
   const companies = getCompanies(data);
   const skills = getSkills(data);
   const schools = getSchools(data);
+  const links = getContactInfo(data);
+  const size = 1;
 
   return (
     <main>
