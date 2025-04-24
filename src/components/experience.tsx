@@ -44,7 +44,7 @@ function CompanyExperience({ company }: { company: Company }) {
 
 function PositionExperience({ position }: { position: Position }) {
   return (
-    <section className="position">
+    <div className="position">
       <h4 className="position-header">
         <span>{position.title}</span>
         <TimeSpan dates_worked={position.dates_worked} />
@@ -55,7 +55,7 @@ function PositionExperience({ position }: { position: Position }) {
           <li key={achievement}>{achievement}</li>
         ))}
       </ul>
-    </section>
+    </div>
   );
 }
 

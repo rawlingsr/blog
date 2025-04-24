@@ -3,28 +3,53 @@ import "@/global.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Fira_Sans } from "next/font/google";
+import { getData } from "@/utils/career-data";
 
 const fira = Fira_Sans({
   subsets: ["latin"],
   weight: ["400", "600"]
 })
 
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Ryan Rawlings - Developer in Test",
-    default: "Ryan Rawlings - Developer in Test",
-  },
-};
+const data = getData().then(data => {
+  let name;
+  let target_position;
 
-export default function RootLayout({
+  if (!data || !data.name) {
+    name = "USER NAME";
+  } else {
+    name = data.name;
+  }
+
+  if (!data || !data.target_position) {
+    target_position = "TARGET POSITION";
+  } else {
+    target_position = data.target_position;
+  }
+
+  return {name, target_position};
+});
+
+export async function generateMetadata(): Promise<Metadata> {
+  const {name: name, target_position: target_position} = await data;
+  return {
+    title: {
+      template: `%s | ${name}`,
+      default: `${name} - ${target_position}`,
+    },
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const {name: name, target_position: target_position} = await data;
+
   return (
     <html lang="en">
       <body className={fira.className}>
-        <Header />
+        <Header name={name} target_position={target_position} />
         <div className="container content">
           {children}
         </div>
