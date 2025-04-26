@@ -52,7 +52,7 @@ companies:
           - Wrote Automated tests to produce video recordings, providing video evidence of working software.
   - name: StorageCraft Technologies
     dates_worked: [2012-05, 2016-02]
-    description: Backup and Disaster Recovery Software Company with robust business continuity suite.
+#    description: Backup and Disaster Recovery Software Company with robust business continuity suite.
     location: Draper, UT
     website: https://www.storagecraft.com/
     positions:
