@@ -139,7 +139,7 @@ function getPositions(parsedCompany: Company): Position[] {
 
 }
 
-export function getContactInfo({ contact_info }: { contact_info: ContactInfo }) {
+export function getContactInfo({ contact_info }: { contact_info: ContactInfo }): ContactInfo {
   if (!contact_info) {
     return {
       linkedin: null,
