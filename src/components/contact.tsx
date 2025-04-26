@@ -1,5 +1,3 @@
-import { ContactInfo } from "@/utils/career-data";
-
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import {
   faEnvelope,
