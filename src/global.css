@@ -112,13 +112,12 @@ main {
 }
 
 .skills {
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
   padding-left: 0;
 }
 
 .skills li {
-  flex: 0 0 10em;
   margin-left: 2em;
 }
 
