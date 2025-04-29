@@ -7,8 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 
-export const experimental_ppr = true
-
 interface Props {
   params: Promise<{ slug: string }>;
 }
