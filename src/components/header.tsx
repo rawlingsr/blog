@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function Header({ name, target_position }: {
   name: string;
-  target_position: string;
+  target_position?: string;
 }) {
   return (
     <header className="page-header">
@@ -19,7 +19,7 @@ export function Header({ name, target_position }: {
             />
             <div>
               <h1>{name}</h1>
-              <h2>{target_position}</h2>
+              {target_position ? <h2>{target_position}</h2> : null}
             </div>
           </Link>
           <ul>
