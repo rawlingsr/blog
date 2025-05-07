@@ -8,7 +8,7 @@ export function Introduction({
   is_resume = false,
 }: {
   data: Intro;
-  is_resume: boolean;
+  is_resume?: boolean;
 }) {
   const class_name = is_resume ? "intro-heading" : "";
   if (data.summary) {
