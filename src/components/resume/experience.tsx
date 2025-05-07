@@ -2,7 +2,7 @@ import { Company, Position } from "@/utils/career-data";
 import { monthYear } from "@/utils/helpers";
 import Link from "next/link";
 
-export default function Experience({ companies }: { companies: Company[] }) {
+export function Experience({ companies }: { companies: Company[] }) {
   return (
     <article>
       <div className="experience-header">
@@ -18,23 +18,11 @@ export default function Experience({ companies }: { companies: Company[] }) {
 function CompanyExperience({ company }: { company: Company }) {
   return (
     <section>
-        <h3 className="company-header">
-          <Link href={company.website}>
-            <span className="company-name">{company.name}</span>
-            {company.location
-              ? (
-                <>
-                  {" | "}
-                  <span className="company-location">
-                    {company.location}
-                  </span>
-                </>
-              )
-              : null}
-          </Link>
-          <TimeSpan dates_worked={company.dates_worked} />
-        </h3>
-        <p className="description">{company.description}</p>
+      <h3 className="company-header">
+        <CompanyName company={company} />
+        <TimeSpan dates_worked={company.dates_worked} />
+      </h3>
+      <p className="description">{company.description}</p>
       {company.positions?.map((position, index) => (
         <PositionExperience position={position} key={index} />
       ))}
@@ -42,6 +30,34 @@ function CompanyExperience({ company }: { company: Company }) {
   );
 }
 
+function CompanyName({ company }: { company: Company }) {
+  const location = (
+    <span className="company-location">
+      {company.location}
+    </span>
+  );
+  const name = (
+    <>
+      <span className="company-name">{company.name}</span>
+      {company.location
+        ? (
+          <>
+            {" | "}
+            {location}
+          </>
+        )
+        : null}
+    </>
+  );
+  if (company.website) {
+    return <Link href={company.website}>
+      {name}
+    </Link>
+  }
+  return (
+    <>{name}</>
+  );
+}
 function PositionExperience({ position }: { position: Position }) {
   return (
     <div className="position">

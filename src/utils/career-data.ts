@@ -13,7 +13,8 @@ export interface School {
 
 export interface Skill {
   name: string;
-  description: string;
+  keywords: string[]
+  description?: string;
 }
 
 export interface Company {
@@ -34,12 +35,12 @@ export interface Position {
 }
 
 export interface ContactInfo {
-  linkedin: string | null;
-  github: string | null;
-  email: string | null;
-  location: string | null;
-  phone: string | null;
-  website: string | null;
+  linkedin?: string;
+  github?: string;
+  email?: string;
+  location?: string;
+  phone?: string;
+  website?: string;
 }
 
 export async function getData() {
@@ -141,22 +142,15 @@ function getPositions(parsedCompany: Company): Position[] {
 
 export function getContactInfo({ contact_info }: { contact_info: ContactInfo }): ContactInfo {
   if (!contact_info) {
-    return {
-      linkedin: null,
-      github: null,
-      email: null,
-      location: null,
-      phone: null,
-      website: null,
-    };
+    return {};
   }
 
   return {
-    linkedin: contact_info.linkedin,
-    github: contact_info.github,
-    email: contact_info.email,
-    location: contact_info.location,
-    phone: contact_info.phone,
-    website: contact_info.website,
+    linkedin: contact_info?.linkedin,
+    github: contact_info?.github,
+    email: contact_info?.email,
+    location: contact_info?.location,
+    phone: contact_info?.phone,
+    website: contact_info?.website,
   }
 }

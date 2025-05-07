@@ -25,11 +25,11 @@ body {
   width: 100%;
 }
 
-.page-header h1, .page-header h2 {
+.page-header h1, .page-header h2, .resume-header {
   margin: 0;
 }
 
-.page-header h2 {
+.page-header h2, .resume-header h2 {
   font-size: 1em;
 }
 
@@ -38,10 +38,14 @@ body {
   min-height: 4rem;
 }
 
-.page-header nav, .page-footer nav {
+.page-header nav, .page-footer nav, .resume-header nav {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
+}
+
+.intro-heading {
+  margin-top: 0;
 }
 
 .logo {
@@ -53,6 +57,10 @@ body {
 nav ul {
   list-style: none;
   padding: 0;
+  margin-left: auto;
+}
+
+.resume-header-links {
   margin-left: auto;
 }
 
@@ -92,10 +100,6 @@ h1 {
   font-size: 1.5em;
 }
 
-main {
-  margin: 0.5em;
-}
-
 .post-list-item {
   background: #8883;
   margin: 0.5em;
@@ -119,6 +123,16 @@ main {
 
 .skills li {
   margin-left: 2em;
+}
+
+.skill-keywords li {
+  display: inline;
+  list-style: none;
+}
+
+.skill-keywords li:not(:last-child)::after {
+  content: "|";
+  margin: 0 0.5em;
 }
 
 ul {
@@ -155,6 +169,10 @@ ul {
 }
 
 @media print {
+  .cover-letter {
+    break-after: page;
+  }
+
   .container {
     max-width: inherit !important;
   }

@@ -2,7 +2,7 @@ import { School } from "@/utils/career-data";
 import { monthYear } from "@/utils/helpers"
 import Link from "next/link";
 
-export default function Education({ schools }: { schools: School[] }) {
+export function Education({ schools }: { schools: School[] }) {
   return (
     <article>
       <h2>Education</h2>

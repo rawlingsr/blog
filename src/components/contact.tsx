@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 
 export function Linkedin({ linkedin, size }: {
-  linkedin: string | null;
+  linkedin?: string;
   size: number;
 }) {
   if (!linkedin) {
@@ -34,7 +34,7 @@ export function Linkedin({ linkedin, size }: {
 }
 
 export function GitHub({ github, size }: {
-  github: string | null;
+  github?: string;
   size: number;
 }) {
   if (!github) {
@@ -59,7 +59,7 @@ export function GitHub({ github, size }: {
 }
 
 export function Email({ email, size }: {
-  email: string | null;
+  email?: string;
   size: number;
 }) {
   if (!email) {
@@ -76,7 +76,7 @@ export function Email({ email, size }: {
           className={`fa-${size}x fa-fw`}
         />
         <span className="contact-text">
-          Email Address: {email}
+          Email: {email}
         </span>
       </div>
     </Link>
@@ -84,7 +84,7 @@ export function Email({ email, size }: {
 }
 
 export function Location({ location, size }: {
-  location: string | null;
+  location?: string;
   size: number;
 }) {
   if (!location) {
@@ -110,7 +110,7 @@ export function Location({ location, size }: {
 
 
 export function Website({ website, size }: {
-  website: string | null;
+  website?: string;
   size: number;
 }) {
   if (!website) {
@@ -135,7 +135,7 @@ export function Website({ website, size }: {
 }
 
 export function Phone({ phone, size }: {
-  phone: string | null;
+  phone?: string;
   size: number;
 }) {
   if (!phone) {
