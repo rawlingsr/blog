@@ -5,87 +5,114 @@ objective:
   software products. I am eager to apply my experience in a new Software
   Engineering role.
 schools:
-- name: Western Governors University
-  degree: Bachelor of Science, Computer Science
-  description: Curriculum focused on Computer Science. C++, Java, and Web
-    Development courses, mixed in with Math, Technology, and General education
-    courses.
-  website: https://www.wgu.edu/
-  graduation_date: 2027-05
-  still_attending: true
+  - name: Western Governors University
+    degree: Bachelor of Science, Computer Science
+    description: Curriculum focused on Computer Science. C++, Java, and Web
+      Development courses, mixed in with Math, Technology, and General education
+      courses.
+    website: https://www.wgu.edu/
+    graduation_date: 2027-05
+    still_attending: true
 skills:
-- name: Test Automation
-- name: Configuration as Code
-- name: React
-- name: Git
-- name: CI/CD
-- name: Python
-- name: JavaScript
-- name: Java
-- name: Ruby
-- name: PowerShell
-- name: HTML and CSS
-- name: SQL
-- name: C++
-- name: Rust
-- name: Linux
-- name: Selenium
+  - name: Programming & Development
+    keywords: [
+      JavaScript,
+      HTML/CSS,
+      SQL,
+      Git,
+      Problem Solving,
+      Debugging,
+      Technical Documentation,
+    ]
+  - name: Testing & Quality Assurance
+    keywords: [
+      Functional Testing,
+      Integration Testing,
+      Test Automation Concepts,
+      Test Plan Creation,
+      Defect Analysis,
+    ]
+  - name: Tools & Technologies
+    keywords: [
+      Postman,
+      Chrome DevTools,
+      Jenkins,
+      Jira,
+      API Testing,
+      Database Querying,
+    ]
+  - name: Methodologies
+    keywords: [
+      Agile Development,
+      SDLC,
+      Code Reviews,
+      Requirements Analysis,
+    ]
+  - name: Communication & Collaboration
+    keywords: [
+      Cross-functional Collaboration,
+      Technical Communication,
+      Mentoring,
+      Stakeholder Management,
+    ]
+  - name: Operating Systems & Environments
+    keywords: [
+      Windows,
+      Linux,
+      Web Applications,
+    ]
 companies:
-- name: MasterControl Inc.
-  dates_worked: [2016-06, 2023-11]
-  description: Document Control software company, that makes it easier for life
-    sciences companies and medical device manufacturers to stay in compliance
-    with federal regulations.
-  location: Salt Lake City, UT
-  website: https://www.mastercontrol.com/
-  positions:
-  - title: Software Quality Engineer II
-    dates_worked: [2021-03, 2023-11]
-    achievements:
-    - Mentored and trained Junior Software and Quality Engineers, accelerating
-      their onboarding and development.
-    - Refactored and modernized numerous React components, improving performance
-      and maintainability.
-    - Resolved a company wide issue that had blocked local automated
-      ChromeDriver tests. When the discussions around the issue made it to a
-      department wide chat, I was able to report that the pull request fixing
-      the issue was already underway.
-  - title: Software Engineer II
-    dates_worked: [2019-01, 2021-03]
-    achievements:
-    - Captured and documented critical tribal knowledge, creating comprehensive
-      onboarding materials for new hires and clarifying new process workflows
-      for existing team members.
-    - Acted as a key point of contact with The Technical Writing and Validation
-      teams to ensure they had accurate information about patches and releases.
-    - Expanded browser compatibility for an internal Selenium wrapper, enabling
-      Cross-platform testing, and demonstration of working software.
-  - title: Software Quality Engineer I
-    dates_worked: [2016-06, 2019-01]
-    achievements:
-    - Automated Jenkins job execution with custom scripts, streamlining batch
-      processing and reducing the number of points of failure.
-    - Recognized by peers and mentors for meticulous attention to detail and
-      exceptional problem-solving skills.
-    - Wrote Automated tests to produce video recordings, providing video
-      evidence of working software.
-- name: StorageCraft Technologies
-  dates_worked: [2012-05, 2016-02]
-  description:
-    Backup and Disaster Recovery Software Company with robust business
-    continuity suite.
-  location: Draper, UT
-  website: https://www.storagecraft.com/
-  positions:
-  - title: QA Specialist in Technical Support
+  - name: MasterControl Inc.
+    dates_worked: [2016-06, 2023-11]
+    description: null
+    location: Salt Lake City, UT
+    website: https://www.mastercontrol.com/
+    positions:
+      - title: Software Quality Engineer II
+        dates_worked: [2021-03, 2023-11]
+        achievements:
+          - Mentored and trained Junior Software and Quality Engineers, accelerating
+            their onboarding and development.
+          - Refactored and modernized numerous React components, improving performance
+            and maintainability.
+          - Resolved a company wide issue that had blocked local automated
+            ChromeDriver tests. When the discussions around the issue made it to a
+            department wide chat, I was able to report that the pull request fixing
+            the issue was already underway.
+      - title: Software Engineer II
+        dates_worked: [2019-01, 2021-03]
+        achievements:
+          - Captured and documented critical tribal knowledge, creating comprehensive
+            onboarding materials for new hires and clarifying new process workflows
+            for existing team members.
+          - Acted as a key point of contact with The Technical Writing and Validation
+            teams to ensure they had accurate information about patches and releases.
+          - Expanded browser compatibility for an internal Selenium wrapper, enabling
+            Cross-platform testing, and demonstration of working software.
+      - title: Software Quality Engineer I
+        dates_worked: [2016-06, 2019-01]
+        achievements:
+          - Automated Jenkins job execution with custom scripts, streamlining batch
+            processing and reducing the number of points of failure.
+          - Recognized by peers and mentors for meticulous attention to detail and
+            exceptional problem-solving skills.
+          - Wrote Automated tests to produce video recordings, providing video
+            evidence of working software.
+  - name: StorageCraft Technologies
     dates_worked: [2012-05, 2016-02]
-    achievements:
-    - Managed test lab environments for defect reproduction.
-    - Performed low-level network traffic analysis for troubleshooting.
-    - Conducted exploratory testing to find hidden defects.
-    - Created and executed test plans for new product releases.
-    - Utilized Jira for bug reporting and tracking.
-    - Built and maintained test infrastructure to support defect verification.
+    description: null
+    location: Draper, UT
+    website: https://www.storagecraft.com/
+    positions:
+      - title: QA Specialist in Technical Support
+        dates_worked: [2012-05, 2016-02]
+        achievements:
+          - Managed test lab environments for defect reproduction.
+          - Performed low-level network traffic analysis for troubleshooting.
+          - Conducted exploratory testing to find hidden defects.
+          - Created and executed test plans for new product releases.
+          - Utilized Jira for bug reporting and tracking.
+          - Built and maintained test infrastructure to support defect verification.
 contact_info:
   linkedin: rawlingsryan
   github: rawlingsr
