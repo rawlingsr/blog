@@ -100,6 +100,10 @@ h1 {
   font-size: 1.5em;
 }
 
+main {
+  margin: 0.5em;
+}
+
 .post-list-item {
   background: #8883;
   margin: 0.5em;
