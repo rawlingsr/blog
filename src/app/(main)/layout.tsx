@@ -18,10 +18,10 @@ export default async function RootLayout({
 }>) {
   return (
     <>
-      <Header name={"Ryan Rawlings"}/>
-        <div className="container content">
-          {children}
-        </div>
+      <Header name={"Ryan Rawlings"} />
+      <div className="container content">
+        {children}
+      </div>
       <Footer />
     </>
   );
