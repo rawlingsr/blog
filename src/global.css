@@ -74,7 +74,7 @@ nav a, a.contact {
   text-decoration: none;
 }
 
-nav a, a.contact, a[href]:not(:hover)  {
+nav a, a.contact, a[href]:not(:hover) {
   color: inherit;
 }
 
@@ -167,7 +167,7 @@ ul {
 }
 
 @media (width >= 40rem) {
-  .company-header, .school-header  {
+  .company-header, .school-header {
     flex-direction: row;
   }
 }
@@ -195,5 +195,9 @@ ul {
 
   nav p, nav li {
     display: none !important;
+  }
+
+  main {
+    margin: 0;
   }
 }
