@@ -17,28 +17,23 @@ schools:
 skills:
   - name: Programming & Development
     keywords: [
-      JavaScript,
+      TypeScript,
       HTML/CSS,
+      React,
       SQL,
       Git,
       Problem Solving,
       Debugging,
       Technical Documentation,
     ]
-  - name: Testing & Quality Assurance
-    keywords: [
-      Functional Testing,
-      Integration Testing,
-      Test Automation Concepts,
-      Test Plan Creation,
-      Defect Analysis,
-    ]
   - name: Tools & Technologies
     keywords: [
       Postman,
-      Chrome DevTools,
+      Vercel,
       Jenkins,
       Jira,
+      Node.js,
+      PostgreSQL
       API Testing,
       Database Querying,
     ]
@@ -56,6 +51,14 @@ skills:
       Mentoring,
       Stakeholder Management,
     ]
+  - name: Testing & Quality Assurance
+    keywords: [
+      Functional Testing,
+      Integration Testing,
+      Test Automation Concepts,
+      Test Plan Creation,
+      Defect Analysis,
+    ]
   - name: Operating Systems & Environments
     keywords: [
       Windows,
@@ -72,26 +75,26 @@ companies:
       - title: Software Quality Engineer II
         dates_worked: [2021-03, 2023-11]
         achievements:
-          - Mentored and trained Junior Software and Quality Engineers, accelerating
-            their onboarding and development.
-          - Acted as a key point of contact with The Technical Writing and Validation
-            teams to ensure they had accurate information about patches and releases,
-            demonstrating strong communication skills for cross-functional collaboration.
           - Refactored and modernized numerous React components, improving performance
             and maintainability.
           - Identified and resolved a critical company-wide issue blocking automated ChromeDriver tests, implementing a
             solution before the problem escalated to department-level concern, demonstrating strong initiative and
             technical troubleshooting abilities.
+          - Mentored and trained Junior Software and Quality Engineers, accelerating
+            their onboarding and development.
+          - Acted as a key point of contact with The Technical Writing and Validation
+            teams to ensure they had accurate information about patches and releases,
+            demonstrating strong communication skills for cross-functional collaboration.
       - title: Software Engineer II
         dates_worked: [2019-01, 2021-03]
         achievements:
+          - Expanded browser compatibility for an internal Selenium wrapper, enabling
+            Cross-platform testing, and demonstration of working software.
           - Captured and documented critical tribal knowledge, creating comprehensive
             onboarding materials for new hires and clarifying new process workflows
             for existing team members.
           - Acted as a key point of contact with The Technical Writing and Validation
             teams to ensure they had accurate information about patches and releases.
-          - Expanded browser compatibility for an internal Selenium wrapper, enabling
-            Cross-platform testing, and demonstration of working software.
       - title: Software Quality Engineer I
         dates_worked: [2016-06, 2019-01]
         achievements:
