@@ -1,9 +1,9 @@
 name: Ryan Rawlings
 target_position: Software Developer
-objective:
+summary:
   Dedicated software professional with 11 years of industry experience spanning quality assurance and development.
-  Looking to leverage my strong technical background in JavaScript, HTML/CSS, SQL, and testing methodologies to
-  transition into a Software Developer role where I can contribute to creating robust, high-quality applications while
+  Looking to leverage my strong technical background in JavaScript, HTML/CSS, SQL, and testing methodologies. This
+  makes me a good fit for a Software Developer role, where I can contribute to creating robust, high-quality applications while
   continuing to grow my programming skills.
 schools:
   - name: Western Governors University
@@ -59,12 +59,12 @@ skills:
       Test Plan Creation,
       Defect Analysis,
     ]
-  - name: Operating Systems & Environments
-    keywords: [
-      Windows,
-      Linux,
-      Web Applications,
-    ]
+  # - name: Operating Systems & Environments
+  #   keywords: [
+  #     Windows,
+  #     Linux,
+  #     Web Applications,
+  #   ]
 companies:
   - name: MasterControl Inc.
     dates_worked: [2016-06, 2023-11]
