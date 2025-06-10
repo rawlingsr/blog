@@ -9,10 +9,10 @@ schools:
   - name: Western Governors University
     degree: Bachelor of Science, Computer Science
     description:
-      Curriculum focused on Computer Science. C++, Java, and Web Development courses, mixed in with Math, Technology,
+      Curriculum focused on Computer Science. C++, Java, Python, and Web Development courses, mixed in with Math, Technology,
       and General Education courses.
     website: https://www.wgu.edu/
-    graduation_date: 2027-05
+    graduation_date: 2027-06
     still_attending: true
 skills:
   - name: Programming & Development
@@ -33,7 +33,7 @@ skills:
       Jenkins,
       Jira,
       Node.js,
-      PostgreSQL
+      PostgreSQL,
       API Testing,
       Database Querying,
     ]
