@@ -12,7 +12,7 @@ schools:
       Curriculum focused on Computer Science. C++, Java, Python, and Web Development courses, mixed in with Math, Technology,
       and General Education courses.
     website: https://www.wgu.edu/
-    graduation_date: 2027-06
+    graduation_date: 2027-07
     still_attending: true
 skills:
   - name: Programming & Development
