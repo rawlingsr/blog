@@ -21,10 +21,11 @@ skills:
       HTML/CSS,
       React,
       SQL,
+      Rust
       Git,
       Problem Solving,
       Debugging,
-      Technical Documentation,
+      # Technical Documentation,
     ]
   - name: Tools & Technologies
     keywords: [
@@ -33,9 +34,10 @@ skills:
       Jenkins,
       Jira,
       Node.js,
-      PostgreSQL,
+      # PostgreSQL,
       API Testing,
       Database Querying,
+      Spring,
     ]
   - name: Methodologies
     keywords: [
@@ -43,21 +45,15 @@ skills:
       SDLC,
       Code Reviews,
       Requirements Analysis,
-    ]
-  - name: Communication & Collaboration
-    keywords: [
-      Cross-functional Collaboration,
-      Technical Communication,
-      Mentoring,
-      Stakeholder Management,
+      # Stakeholder Management,
     ]
   - name: Testing & Quality Assurance
     keywords: [
       Functional Testing,
       Integration Testing,
       Test Automation Concepts,
-      Test Plan Creation,
-      Defect Analysis,
+      # Test Plan Creation,
+      # Defect Analysis,
     ]
   # - name: Operating Systems & Environments
   #   keywords: [
@@ -82,9 +78,6 @@ companies:
             technical troubleshooting abilities.
           - Mentored and trained Junior Software and Quality Engineers, accelerating
             their onboarding and development.
-          - Acted as a key point of contact with The Technical Writing and Validation
-            teams to ensure they had accurate information about patches and releases,
-            demonstrating strong communication skills for cross-functional collaboration.
       - title: Software Engineer II
         dates_worked: [2019-01, 2021-03]
         achievements:
@@ -94,7 +87,8 @@ companies:
             onboarding materials for new hires and clarifying new process workflows
             for existing team members.
           - Acted as a key point of contact with The Technical Writing and Validation
-            teams to ensure they had accurate information about patches and releases.
+            teams to ensure they had accurate information about patches and releases,
+            demonstrating strong communication skills for cross-functional collaboration.
       - title: Software Quality Engineer I
         dates_worked: [2016-06, 2019-01]
         achievements:
