@@ -1,4 +1,4 @@
-import { Company, Position } from "@/utils/career-data";
+import { Company, dates_worked, Position } from "@/utils/career-data";
 import { monthYear } from "@/utils/helpers";
 import Link from "next/link";
 
@@ -75,7 +75,7 @@ function PositionExperience({ position }: { position: Position }) {
   );
 }
 
-function TimeSpan({ dates_worked }: { dates_worked: [Date, Date] | null }) {
+function TimeSpan({ dates_worked }: { dates_worked?: dates_worked }) {
   if (!dates_worked) {
     return null;
   }
@@ -86,7 +86,7 @@ function TimeSpan({ dates_worked }: { dates_worked: [Date, Date] | null }) {
     return null;
   }
 
-  if (!to) {
+  if (!to || to == null || Number.isNaN(to.getDate()) ) {
     return (
       <span>
         <time dateTime={from.toISOString()}>{monthYear(from)}</time>
