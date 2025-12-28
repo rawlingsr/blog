@@ -19,7 +19,7 @@ export interface Skill {
 
 export interface Company {
   name: string;
-  dates_worked: [Date, Date];
+  dates_worked?: dates_worked;
   description: string;
   location: string;
   website: URL;
@@ -29,7 +29,7 @@ export interface Company {
 
 export interface Position {
   title: string;
-  dates_worked: [Date, Date] | null;
+  dates_worked?: dates_worked;
   description: string;
   achievements: string[];
 }
@@ -42,6 +42,8 @@ export interface ContactInfo {
   phone?: string;
   website?: string;
 }
+
+export type  dates_worked = [Date, Date | null];
 
 export async function getData() {
   const fileName = join(process.cwd(), "/src/career-data.yaml");
@@ -99,9 +101,16 @@ export function getCompanies({companies}: {companies: Company[]}): Company[] {
     }
     const [from, to] = parsedCompany.dates_worked;
 
+    let dates_worked: dates_worked;
+    if (!to || to == null) {
+      dates_worked = [new Date(from), null]
+    } else {
+      dates_worked = [new Date(from), new Date(to)]
+    }
+
     const company: Company = {
       name: parsedCompany.name,
-      dates_worked: [new Date(from), new Date(to)],
+      dates_worked: dates_worked,
       description: parsedCompany.description,
       location: parsedCompany.location,
       website: parsedCompany.website,
@@ -126,9 +135,15 @@ function getPositions(parsedCompany: Company): Position[] {
       continue;
     }
     const [from, to] = parsedPosition.dates_worked;
+    let dates_worked: dates_worked;
+    if (!to || to == null) {
+      dates_worked = [new Date(from), null]
+    } else {
+      dates_worked = [new Date(from), new Date(to)]
+    }
     const position: Position = {
       title: parsedPosition.title,
-      dates_worked: [new Date(from), new Date(to)],
+      dates_worked: dates_worked,
       description: parsedPosition.description,
       achievements: parsedPosition.achievements,
     }
