@@ -31,9 +31,9 @@ export default async function Home() {
       <main>
         <div className="container content">
           <Introduction data={data} is_resume={true} />
-          <Education schools={schools} />
-          <Experience companies={companies} />
           <SkillsWithKeywords skills={skills} />
+          <Experience companies={companies} />
+          <Education schools={schools} />
         </div>
       </main>
     </>

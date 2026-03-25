@@ -1,4 +1,4 @@
-import { Company, dates_worked, Position } from "@/utils/career-data";
+import { Company, DatesWorked, Position } from "@/utils/career-data";
 import { monthYear } from "@/utils/helpers";
 import Link from "next/link";
 
@@ -63,7 +63,12 @@ function PositionExperience({ position }: { position: Position }) {
     <div className="position">
       <h4 className="position-header">
         <span>{position.title}</span>
-        <TimeSpan dates_worked={position.dates_worked} />
+        {
+          position.dates_worked ?
+            <TimeSpan dates_worked={position.dates_worked} />
+            :
+            null
+        }
       </h4>
       <p className="description">{position.description}</p>
       <ul>
@@ -75,7 +80,7 @@ function PositionExperience({ position }: { position: Position }) {
   );
 }
 
-function TimeSpan({ dates_worked }: { dates_worked?: dates_worked }) {
+function TimeSpan({ dates_worked }: { dates_worked?: DatesWorked }) {
   if (!dates_worked) {
     return null;
   }
