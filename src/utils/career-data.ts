@@ -43,7 +43,7 @@ export interface ContactInfo {
   website?: string;
 }
 
-export type  DatesWorked = [Date, Date | null];
+export type  DatesWorked = [Date, Date | null] | null;
 
 export async function getData() {
   const fileName = join(process.cwd(), "/src/career-data.yaml");
@@ -108,20 +108,6 @@ export function getCompanies({companies}: {companies: Company[]}): Company[] {
       dates_worked = [new Date(from), new Date(to)]
     }
 
-    // let dates_worked: DatesWorked | undefined;
-
-    // if (parsedCompany.dates_worked == null) {
-    //   dates_worked = undefined;
-    // } else {
-    //   const [from, to] = parsedCompany.dates_worked;
-
-    //   if (!to || to == null) {
-    //     dates_worked = [new Date(from), null]
-    //   } else {
-    //     dates_worked = [new Date(from), new Date(to)]
-    //   }
-    // }
-
     const company: Company = {
       name: parsedCompany.name,
       dates_worked: dates_worked,
@@ -145,15 +131,18 @@ function getPositions(parsedCompany: Company): Position[] {
   }
 
   for (const parsedPosition of parsedPositions) {
-    if (!parsedPosition.dates_worked) {
-      continue;
-    }
-    const [from, to] = parsedPosition.dates_worked;
     let dates_worked: DatesWorked;
-    if (!to || to == null) {
-      dates_worked = [new Date(from), null]
-    } else {
-      dates_worked = [new Date(from), new Date(to)]
+    if (!parsedPosition.dates_worked) {
+      dates_worked = null;
+    }
+    else
+    {
+      const [from, to] = parsedPosition.dates_worked;
+      if (!to || to == null) {
+        dates_worked = [new Date(from), null]
+      } else {
+        dates_worked = [new Date(from), new Date(to)]
+      }
     }
     const position: Position = {
       title: parsedPosition.title,
@@ -161,8 +150,8 @@ function getPositions(parsedCompany: Company): Position[] {
       description: parsedPosition.description,
       achievements: parsedPosition.achievements,
     }
-
     positions.push(position);
+
   }
 
   return positions;
