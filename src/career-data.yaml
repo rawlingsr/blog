@@ -3,8 +3,7 @@ target_position: Software Developer
 summary:
   Dedicated software professional with 11 years of industry experience spanning quality assurance and development.
   Looking to leverage my strong technical background in JavaScript, HTML/CSS, SQL, and testing methodologies. This
-  makes me a good fit for a Software Developer role, where I can contribute to creating robust, high-quality applications while
-  continuing to grow my programming skills.
+  makes me a good fit for a Software Developer role, where I can contribute to creating robust, high-quality applications.
 schools:
   - name: Western Governors University
     degree: Bachelor of Science, Computer Science
@@ -12,108 +11,158 @@ schools:
       Curriculum focused on Computer Science. C++, Java, Python, and Web Development courses, mixed in with Math, Technology,
       and General Education courses.
     website: https://www.wgu.edu/
-    graduation_date: 2027-07
+    graduation_date: 2028-04
     still_attending: true
 skills:
   - name: Programming & Development
     keywords: [
       TypeScript,
+      JavaScript
       HTML/CSS,
       React,
+      Angular,
       SQL,
-      Rust
-      Git,
+      Rust,
+      Git/Version Control,
       Problem Solving,
       Debugging,
-      # Technical Documentation,
-    ]
-  - name: Tools & Technologies
-    keywords: [
+      Java Development,
+      Selenium Webdriver,
+      Technical Documentation,
+  #   ]
+  # - name: Technical Skills
+  #   keywords: [
       Postman,
       Vercel,
       Jenkins,
       Jira,
       Node.js,
-      # PostgreSQL,
+      PostgreSQL,
       API Testing,
       Database Querying,
       Spring,
     ]
-  - name: Methodologies
+  - name: Engineering Practices
     keywords: [
+      Object-oriented Programming,
       Agile Development,
       SDLC,
       Code Reviews,
       Requirements Analysis,
-      # Stakeholder Management,
+      CI/CD,
+      DevOps,
+      Regulatory Compliance,
+      Manual Testing,
+      Stakeholder Management,
     ]
   - name: Testing & Quality Assurance
     keywords: [
-      Functional Testing,
+      Performance Testing,
+      UI Testing,
+      Regression Testing,
       Integration Testing,
-      Test Automation Concepts,
-      # Test Plan Creation,
-      # Defect Analysis,
+      Automated Testing,
+      Test Case coverage,
+      TDD,
+      Defect Analysis,
     ]
-  # - name: Operating Systems & Environments
-  #   keywords: [
-  #     Windows,
-  #     Linux,
-  #     Web Applications,
-  #   ]
+  - name: Operating Systems & Environments
+    keywords: [
+      Windows,
+      Linux,
+      Unix,
+    ]
 companies:
+  - name: Career Break
+    dates_worked: [2023-11]
+    description: null
+    positions:
+      - title: Full-time Student
+        description: I am ready to rejoin the workforce after a 2 year career break.
+        dates_worked: [2024-05]
   - name: MasterControl Inc.
     dates_worked: [2016-06, 2023-11]
-    description: null
+    description: Company that makes Software for Highly regulated industries like pharmaceutical companies and medical device manufacturers.
     location: Salt Lake City, UT
     website: https://www.mastercontrol.com/
     positions:
       - title: Software Quality Engineer II
         dates_worked: [2021-03, 2023-11]
         achievements:
-          - Refactored and modernized numerous React components, improving performance
-            and maintainability.
-          - Identified and resolved a critical company-wide issue blocking automated ChromeDriver tests, implementing a
-            solution before the problem escalated to department-level concern, demonstrating strong initiative and
-            technical troubleshooting abilities.
-          - Mentored and trained Junior Software and Quality Engineers, accelerating
+          - Refactored and modernized numerous Front-end React components, improving performance, security, and maintainability.
+          - Identified and resolved a critical department-wide issue blocking automated ChromeDriver tests, implementing a
+            solution before the problem escalated to department-level concern, demonstrating Agility and
+            preventing 3 to 4 days of Automated Testing downtime.
+          - Showed Leadership by mentoring Junior Software and Quality Engineers, accelerating
             their onboarding and development.
       - title: Software Engineer II
         dates_worked: [2019-01, 2021-03]
         achievements:
           - Expanded browser compatibility for an internal Selenium wrapper, enabling
-            Cross-platform testing, and demonstration of working software.
-          - Captured and documented critical tribal knowledge, creating comprehensive
+            Cross-platform Testing, and demonstration of working software.
+          - Owned process for shepherding patches into the released branches,
+            making me one of only a handful of people in the whole company with hands
+            on experience with every part of the Software Development Lifecycle at the
+            company.
+          - Captured and documented critical tribal knowledge, creating extensive
             onboarding materials for new hires and clarifying new process workflows
             for existing team members.
-          - Acted as a key point of contact with The Technical Writing and Validation
+          - Acted as a key point of contact with the Technical Writing and Validation
             teams to ensure they had accurate information about patches and releases,
+            preventing about 5 hours of extra work every week, and
             demonstrating strong communication skills for cross-functional collaboration.
       - title: Software Quality Engineer I
         dates_worked: [2016-06, 2019-01]
         achievements:
           - Automated Jenkins job execution with custom scripts, streamlining batch
-            processing and reducing the number of points of failure.
-          - Recognized by peers and mentors for meticulous attention to detail and
+            processing, saving 20 minutes a week, and reducing the number of points of failure.
+          - Recognized by peers and mentors for meticulous attention to detail, accuracy, and
             exceptional problem-solving skills.
-          - Wrote Automated tests to produce video recordings, providing video
-            evidence of working software.
+          - Helped with Test automation effort to convert manual tests into test scripts
+            that produced recordings, providing video
+            evidence of alignment between the Functional Requirements and the software.
   - name: StorageCraft Technologies
     dates_worked: [2012-05, 2016-02]
-    description: null
+    description: Software company that offered fast and reliable Backup and Disaster Recovery solutions.
     location: Draper, UT
     website: https://www.storagecraft.com/
     positions:
       - title: QA Specialist in Technical Support
         dates_worked: [2012-05, 2016-02]
         achievements:
-          - Managed test lab environments for defect reproduction.
+          - Helped implement Quality Control processes, to improve case outcomes.
+          - Managed test lab environments for defect reproduction and root cause analysis.
           - Performed low-level network traffic analysis for troubleshooting.
-          - Conducted exploratory testing to find hidden defects.
+          - Conducted exploratory Testing to find hidden defects.
           - Created and executed test plans for new product releases.
-          - Utilized Jira for bug reporting and tracking.
+          - Utilized Jira for bug reporting and tracking and data entry.
           - Built and maintained test infrastructure to support defect verification.
+          - Used Excel to track and report on missing and outstanding storage media.
+  - name: iTOK Inc.
+    dates_worked: [2010-09, 2012-05]
+    description: Managed Service Provider specializing in Home users and Small Business.
+    location: Lehi, UT
+    website: https://www.bask.com/
+    positions:
+      - title: Technical Support Agent
+        achievements:
+          - Handled inbound chats and calls from iTOK subscribers and helped them to troubleshoot technical issues on their home computers.
+          - Maintained a high level of customer service and met the requested and anticipated customer needs.
+          - Provided Guidance for newer employees, helping them to become more effective. Quickly became a go to resource for Technical questions.
+  # - name: American Fork City Public Library
+  #   dates_worked: [2007-09, 2010-09]
+  #   description: Public Library serving residents of American Fork City.
+  #   location: American Fork, UT
+  #   website: https://americanfork.gov/203/Library
+  #   positions:
+  #     - title: Library Clerk
+  #       achievements:
+  #         - Helped patrons in courteous manner. Quickly and efficiently found relevant information and materials
+  #         - Provided basic computer support to Library patrons in the computer lab
+  #         - Clerical work like checking out materials to patrons, filing, checking in materials, Shelving, Minor book repair.
+  #         - Prepared books for circulation. Applied barcodes, security devices, and protective covers.
+  #         - Followed opening and closing procedures to ensure building was secure and tidy.
 contact_info:
   linkedin: rawlingsryan
   github: rawlingsr
-  email: contact@ryan-rawlings.com
+  website: ryan-rawlings.com
