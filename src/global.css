@@ -181,8 +181,17 @@ ul {
     max-width: inherit !important;
   }
 
-  div.position {
-    break-inside: avoid;
+  .company-summary,
+  .company-summary > *,
+  .position-experience,
+  .position-experience > *,
+  .position-experience li,
+  .education-section,
+  .education-section > *,
+  .skills-section,
+  .skills-section > * {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
   }
 
   .page-header {

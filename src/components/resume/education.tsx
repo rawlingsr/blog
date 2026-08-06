@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function Education({ schools }: { schools: School[] }) {
   return (
-    <article>
+    <article className="education-section">
       <h2>Education</h2>
       {schools.map((school) => <Institution key={school.degree} school={school} />)}
     </article>

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function Experience({ companies }: { companies: Company[] }) {
   return (
-    <article>
+    <article className="experience">
       <div className="experience-header">
         <h2>Experience</h2>
       </div>
@@ -17,12 +17,14 @@ export function Experience({ companies }: { companies: Company[] }) {
 
 function CompanyExperience({ company }: { company: Company }) {
   return (
-    <section>
-      <h3 className="company-header">
-        <CompanyName company={company} />
-        <TimeSpan dates_worked={company.dates_worked} />
-      </h3>
-      <p className="description">{company.description}</p>
+    <section className="company-experience">
+      <div className="company-summary">
+        <h3 className="company-header">
+          <CompanyName company={company} />
+          <TimeSpan dates_worked={company.dates_worked} />
+        </h3>
+        <p className="description">{company.description}</p>
+      </div>
       {company.positions?.map((position, index) => (
         <PositionExperience position={position} key={index} />
       ))}
@@ -60,7 +62,7 @@ function CompanyName({ company }: { company: Company }) {
 }
 function PositionExperience({ position }: { position: Position }) {
   return (
-    <div className="position">
+    <div className="position-experience">
       <h4 className="position-header">
         <span>{position.title}</span>
         {
