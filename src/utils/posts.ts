@@ -18,12 +18,11 @@ export interface Post {
 
 export async function getPosts(): Promise<Post[]> {
   const files = await fs.readdir(join(process.cwd(), "/src/posts/"));
-  const promises = [];
-  for (const file of files) {
-    const slug = file.replace(".md", "");
-    promises.push(getPost(slug));
-  }
-  const posts = await Promise.all(promises) as Post[];
+  const slugs = files
+    .filter((file) => file.endsWith(".md"))
+    .map((file) => file.slice(0, -".md".length));
+  const results = await Promise.all(slugs.map(getPost));
+  const posts = results.filter((post): post is Post => post !== null);
   posts.sort((a, b) => b.published_at.getTime() - a.published_at.getTime());
   return posts;
 }
