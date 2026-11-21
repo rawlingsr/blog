@@ -28,6 +28,11 @@ export async function getPosts(): Promise<Post[]> {
 }
 
 export async function getPost(slug: string): Promise<Post | null> {
+  // Slugs come from the URL; only allow plain filenames so they can't escape src/posts.
+  if (!/^[a-z0-9-]+$/i.test(slug)) {
+    return null;
+  }
+
   const fileName = join(process.cwd(), "/src/posts/", `${slug}.md`);
 
   try {
@@ -38,11 +43,15 @@ export async function getPost(slug: string): Promise<Post | null> {
 
   const text = await fs.readFile(fileName, { encoding: "utf8" });
   const { attributes, body } = fm<Post>(text);
+  const published_at = new Date(attributes.published_at);
+  if (Number.isNaN(published_at.getTime())) {
+    return null;
+  }
 
   return {
     slug,
     title: attributes.title,
-    published_at: new Date(attributes.published_at),
+    published_at,
     content: body,
     snippet: attributes.snippet,
     math: attributes.math,
