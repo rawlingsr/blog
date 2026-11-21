@@ -13,13 +13,13 @@ import Image from "next/image";
 interface Data {
   name: string,
   target_position: string,
-  contact_info: ContactInfo
+  contact_info?: ContactInfo | null
 }
 
 export async function Header({ data }: {
   data: Data
 }) {
-  const links = data.contact_info;
+  const links: ContactInfo = data.contact_info ?? {};
   const size = 1;
 
   return (
