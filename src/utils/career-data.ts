@@ -45,10 +45,40 @@ export interface ContactInfo {
 
 export type  DatesWorked = [Date, Date | null] | null;
 
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value) && !(value instanceof Date);
+}
+
+// Objects merge recursively; scalars, arrays, and nulls in `override` replace the base value.
+function deepMerge(base: unknown, override: unknown): unknown {
+  if (!isPlainObject(base) || !isPlainObject(override)) {
+    return override === undefined ? base : override;
+  }
+  const result: Record<string, unknown> = { ...base };
+  for (const [key, value] of Object.entries(override)) {
+    result[key] = deepMerge(base[key], value);
+  }
+  return result;
+}
+
+async function readYaml(fileName: string, optional = false) {
+  try {
+    const data = await readFile(join(process.cwd(), fileName), { encoding: "utf8" });
+    return parse(data) ?? {};
+  } catch (err) {
+    if (optional && (err as NodeJS.ErrnoException).code === "ENOENT") {
+      return {};
+    }
+    throw err;
+  }
+}
+
 export async function getData() {
-  const fileName = join(process.cwd(), "/src/career-data.yaml");
-  const data = await readFile(fileName, { encoding: "utf8" });
-  return parse(data);
+  const base = await readYaml("/src/career-data.yaml");
+  // Gitignored local overrides (contact info, per-print tweaks like target_position).
+  const override = await readYaml("/src/career-data.override.yaml", true);
+  // Keep the same loose type `parse` returned before, so callers are unchanged.
+  return deepMerge(base, override) as ReturnType<typeof parse>;
 }
 
 export function getSchools({ schools }: { schools: School[] }) {

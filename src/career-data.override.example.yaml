@@ -1,0 +1,10 @@
+# Copy to career-data.override.yaml (gitignored) to override any field in career-data.yaml locally.
+#
+# Merge rules:
+#   - Objects (maps) merge key by key, recursively.
+#   - Scalars and arrays (e.g. companies, skills) REPLACE the base value entirely.
+#   - Setting a key to null replaces the base value with null (treated as missing).
+target_position: Some Other Position
+contact_info:
+  phone: 555-555-5555
+  email: you@example.com
