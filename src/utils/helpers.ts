@@ -14,5 +14,5 @@ const months = [
 ]
 
 export function monthYear(date: Date) {
-  return `${months[date.getUTCMonth()]} ${date.getFullYear()}`
+  return `${months[date.getUTCMonth()]} ${date.getUTCFullYear()}`
 }
