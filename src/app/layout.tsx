@@ -1,3 +1,5 @@
+// Package styles first, so the site's global.css can override them.
+import "resume-from-yaml/styles.css";
 import "@/global.css";
 import { Fira_Sans } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";

@@ -12,10 +12,10 @@ export function ContactLinks({ info, renderIcon }: {
   return (
     <>
       {contactLinks(info).map((link) => (
-        <a key={link.type} href={link.href} className="contact">
-          <div className="contact-btn">
+        <a key={link.type} href={link.href} className="resume-contact">
+          <div className="resume-contact-btn">
             {renderIcon?.(link)}
-            <span className="contact-text">{`${link.label}: ${link.value}`}</span>
+            <span className="resume-contact-text">{`${link.label}: ${link.value}`}</span>
           </div>
         </a>
       ))}

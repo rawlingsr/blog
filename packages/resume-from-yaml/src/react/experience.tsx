@@ -3,8 +3,8 @@ import type { Company, DatesWorked, Position } from "../types";
 
 export function Experience({ companies }: { companies: Company[] }) {
   return (
-    <article className="experience">
-      <div className="experience-header">
+    <article className="resume-experience">
+      <div className="resume-experience-header">
         <h2>Experience</h2>
       </div>
       {companies.map((company, index) => <CompanyExperience company={company} key={index} />)}
@@ -14,13 +14,13 @@ export function Experience({ companies }: { companies: Company[] }) {
 
 function CompanyExperience({ company }: { company: Company }) {
   return (
-    <section className="company-experience">
-      <div className="company-summary">
-        <h3 className="company-header">
+    <section className="resume-company">
+      <div className="resume-company-summary">
+        <h3 className="resume-company-header">
           <CompanyName company={company} />
           <TimeSpan dates_worked={company.dates_worked} />
         </h3>
-        <p className="description">{company.description}</p>
+        <p className="resume-description">{company.description}</p>
       </div>
       {company.positions?.map((position, index) => (
         <PositionExperience position={position} key={index} />
@@ -32,12 +32,12 @@ function CompanyExperience({ company }: { company: Company }) {
 function CompanyName({ company }: { company: Company }) {
   const name = (
     <>
-      <span className="company-name">{company.name}</span>
+      <span className="resume-company-name">{company.name}</span>
       {company.location
         ? (
           <>
             {" | "}
-            <span className="company-location">{company.location}</span>
+            <span className="resume-company-location">{company.location}</span>
           </>
         )
         : null}
@@ -48,12 +48,12 @@ function CompanyName({ company }: { company: Company }) {
 
 function PositionExperience({ position }: { position: Position }) {
   return (
-    <div className="position-experience">
-      <h4 className="position-header">
+    <div className="resume-position">
+      <h4 className="resume-position-header">
         <span>{position.title}</span>
         <TimeSpan dates_worked={position.dates_worked} />
       </h4>
-      <p className="description">{position.description}</p>
+      <p className="resume-description">{position.description}</p>
       <ul>
         {position.achievements?.map((achievement) => (
           <li key={achievement}>{achievement}</li>

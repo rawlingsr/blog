@@ -3,7 +3,7 @@ import type { School } from "../types";
 
 export function Education({ schools }: { schools: School[] }) {
   return (
-    <article className="education-section">
+    <article className="resume-education">
       <h2>Education</h2>
       {schools.map((school) => <Institution key={school.degree} school={school} />)}
     </article>
@@ -13,7 +13,7 @@ export function Education({ schools }: { schools: School[] }) {
 function Institution({ school }: { school: School }) {
   return (
     <section>
-      <h3 className="school-header">
+      <h3 className="resume-school-header">
         <a href={school.website}>{school.name}</a>
         <span>
           {school.still_attending ? "(Expected) " : null}
@@ -23,7 +23,7 @@ function Institution({ school }: { school: School }) {
         </span>
       </h3>
       <h4>{school.degree}</h4>
-      <p className="description">{school.description}</p>
+      <p className="resume-description">{school.description}</p>
     </section>
   );
 }

@@ -27,5 +27,9 @@ export function Resume({
     experience: () => <Experience key="experience" companies={resume.companies} />,
     skills: () => <SkillsWithKeywords key="skills" skills={resume.skills} />,
   } satisfies Record<ResumeSection, () => ReactNode>;
-  return <div className={className}>{sections.map((section) => render[section]())}</div>;
+  return (
+    <div className={className ? `resume ${className}` : "resume"}>
+      {sections.map((section) => render[section]())}
+    </div>
+  );
 }

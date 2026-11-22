@@ -21,7 +21,7 @@ export function ResumeHeader({
   return (
     <header className="resume-header">
       <nav>
-        <a href={homeHref} className="logo">
+        <a href={homeHref} className="resume-header-home">
           {logo}
           <div>
             <h1>{name}</h1>

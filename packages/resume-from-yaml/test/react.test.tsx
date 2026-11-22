@@ -50,7 +50,11 @@ describe("<Resume>", () => {
 
   it("renders no intro when there is no summary or objective", () => {
     const markup = html(<Resume resume={{ ...resume, intro: null }} sections={["intro"]} />);
-    expect(markup).toBe("<div></div>");
+    expect(markup).toBe('<div class="resume"></div>');
+  });
+
+  it("adds a caller's className next to the resume class", () => {
+    expect(html(<Resume resume={resume} sections={[]} className="mine" />)).toBe('<div class="resume mine"></div>');
   });
 
   it("labels an objective as Objective and applies the heading class", () => {
@@ -117,13 +121,13 @@ describe("<ResumeHeader>", () => {
         homeHref="/home"
       />,
     );
-    expect(markup).toContain('<a href="/home" class="logo"><img src="/logo.png" alt="logo"/>');
+    expect(markup).toContain('<a href="/home" class="resume-header-home"><img src="/logo.png" alt="logo"/>');
     expect(markup).toContain("<h1>Sample Person</h1><h2>Developer</h2>");
     expect(markup).toContain("GitHub Profile: sample");
   });
 
   it("leaves out the position heading when there is none", () => {
     const markup = html(<ResumeHeader name="A" />);
-    expect(markup).toContain('<a href="/" class="logo"><div><h1>A</h1></div></a>');
+    expect(markup).toContain('<a href="/" class="resume-header-home"><div><h1>A</h1></div></a>');
   });
 });

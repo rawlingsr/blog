@@ -25,11 +25,11 @@ body {
   width: 100%;
 }
 
-.page-header h1, .page-header h2, .resume-header {
+.page-header h1, .page-header h2 {
   margin: 0;
 }
 
-.page-header h2, .resume-header h2 {
+.page-header h2 {
   font-size: 1em;
 }
 
@@ -38,7 +38,7 @@ body {
   min-height: 4rem;
 }
 
-.page-header nav, .page-footer nav, .resume-header nav {
+.page-header nav, .page-footer nav {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -60,21 +60,17 @@ nav ul {
   margin-left: auto;
 }
 
-.resume-header-links {
-  margin-left: auto;
-}
-
 nav li {
   background-color: #9996;
   display: inline-block;
   margin: 0 0.4em;
 }
 
-nav a, a.contact {
+nav a {
   text-decoration: none;
 }
 
-nav a, a.contact, a[href]:not(:hover) {
+nav a, a[href]:not(:hover) {
   color: inherit;
 }
 
@@ -119,57 +115,8 @@ main {
   color: inherit;
 }
 
-.skills {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
-  padding-left: 0;
-}
-
-.skills li {
-  margin-left: 2em;
-}
-
-.skill-keywords li {
-  display: inline;
-  list-style: none;
-}
-
-.skill-keywords li:not(:last-child)::after {
-  content: "|";
-  margin: 0 0.5em;
-}
-
 ul {
   padding-left: 2em;
-}
-
-.company-header, .school-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.position-header {
-  display: flex;
-  flex-direction: column;
-}
-
-.contact-btn {
-  background: #8883;
-  align-items: center;
-  display: flex;
-  margin: 0.2em;
-  padding: 0.2em;
-}
-
-.contact-text {
-  margin-left: 1em;
-}
-
-@media (width >= 40rem) {
-  .company-header, .school-header {
-    flex-direction: row;
-  }
 }
 
 @media print {
@@ -179,19 +126,6 @@ ul {
 
   .container {
     max-width: inherit !important;
-  }
-
-  .company-summary,
-  .company-summary > *,
-  .position-experience,
-  .position-experience > *,
-  .position-experience li,
-  .education-section,
-  .education-section > *,
-  .skills-section,
-  .skills-section > * {
-    break-inside: avoid-page;
-    page-break-inside: avoid;
   }
 
   .page-header {

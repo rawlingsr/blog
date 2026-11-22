@@ -2,9 +2,9 @@ import type { Skill } from "../types";
 
 export function Skills({ skills }: { skills: Skill[] }) {
   return (
-    <article className="skills-section">
+    <article className="resume-skills">
       <h2>Skills</h2>
-      <ul className="skills">
+      <ul className="resume-skill-list">
         {skills.map((skill) => <li key={skill.name}>{skill.name}</li>)}
       </ul>
     </article>
@@ -13,9 +13,9 @@ export function Skills({ skills }: { skills: Skill[] }) {
 
 export function SkillsWithKeywords({ skills }: { skills: Skill[] }) {
   return (
-    <article className="skills-section">
+    <article className="resume-skills">
       <h2>Skills</h2>
-      <ul className="skills-alt">
+      <ul className="resume-skill-list-keywords">
         {skills.map((skill) => (
           <li key={skill.name}>
             {skill.name}
@@ -32,7 +32,7 @@ function Keywords({ keywords }: { keywords?: string[] }) {
     return null;
   }
   return (
-    <ul className="skill-keywords">
+    <ul className="resume-skill-keywords">
       {keywords.map((keyword) => <li key={keyword}>{keyword}</li>)}
     </ul>
   );
