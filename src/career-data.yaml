@@ -1,9 +1,11 @@
 name: Ryan Rawlings
 target_position: Software Developer
 summary:
-  Dedicated software professional with 11 years of industry experience spanning quality assurance and development.
-  Looking to leverage my strong technical background in JavaScript, HTML/CSS, SQL, and testing methodologies. This
-  makes me a good fit for a Software Developer role, where I can contribute to creating robust, high-quality applications.
+  Software professional with 11+ years in the industry, including 7+ years at a company building software for
+  FDA-regulated industries. Experience spans front-end development in React and Angular, test automation in Ruby and
+  Selenium, and six years as the primary owner of weekly patch releases across five supported release branches.
+  Finishing a B.S. in Computer Science at WGU and looking for a Software Developer role building reliable,
+  well-tested applications.
 schools:
   - name: Western Governors University
     degree: Bachelor of Science, Computer Science
@@ -14,154 +16,126 @@ schools:
     graduation_date: 2028-04
     still_attending: true
 skills:
-  - name: Programming & Development
-    keywords: [
-      TypeScript,
-      JavaScript
-      HTML/CSS,
-      React,
-      Angular,
-      SQL,
-      Rust,
-      Git/Version Control,
-      Problem Solving,
-      Debugging,
-      Java Development,
-      Selenium Webdriver,
-      Technical Documentation,
-  #   ]
-  # - name: Technical Skills
-  #   keywords: [
-      Postman,
-      Vercel,
-      Jenkins,
-      Jira,
-      Node.js,
-      PostgreSQL,
-      API Testing,
-      Database Querying,
-      Spring,
-    ]
+  - name: Languages & Frameworks
+    keywords:
+      - TypeScript
+      - JavaScript
+      - HTML/CSS
+      - React
+      - Angular
+      - Node.js
+      - Java
+      - Ruby
+      - ColdFusion
+      - SQL
+      - Rust
+  - name: Tools & Platforms
+    keywords:
+      - Git
+      - Jenkins
+      - Selenium WebDriver
+      - PostgreSQL
+      - Postman
+      - Jira
+      - Vercel
+      - Linux
+      - Windows
   - name: Engineering Practices
-    keywords: [
-      Object-oriented Programming,
-      Agile Development,
-      SDLC,
-      Code Reviews,
-      Requirements Analysis,
-      CI/CD,
-      DevOps,
-      Regulatory Compliance,
-      Manual Testing,
-      Stakeholder Management,
-    ]
-  - name: Testing & Quality Assurance
-    keywords: [
-      Performance Testing,
-      UI Testing,
-      Regression Testing,
-      Integration Testing,
-      Automated Testing,
-      Test Case coverage,
-      TDD,
-      Defect Analysis,
-    ]
-  - name: Operating Systems & Environments
-    keywords: [
-      Windows,
-      Linux,
-      Unix,
-    ]
+    keywords:
+      - Release Management
+      - Branching & Merge Strategy
+      - CI/CD
+      - Automated Testing
+      - Integration Testing
+      - TDD
+      - Code Reviews
+      - Debugging
+      - Agile Development
+      - Technical Documentation
+      - Regulatory Compliance (FDA/GxP)
 companies:
   - name: Career Break
     dates_worked: [2023-11]
-    description: null
+    description: Time away for family responsibilities and a cross-country move, while returning to school full time.
     positions:
-      - title: Full-time Student
-        description: I am ready to rejoin the workforce after a 3 year career break.
+      - title: Full-time Computer Science Student, WGU
         dates_worked: [2024-05]
+        achievements:
+          - Coursework in C++, Java, Python, and web development.
   - name: MasterControl Inc.
     dates_worked: [2016-06, 2023-11]
-    description: Company that makes Software for Highly regulated industries like pharmaceutical companies and medical device manufacturers.
+    description: Builds quality-management software for highly regulated industries like pharmaceutical companies and medical device manufacturers.
     location: Salt Lake City, UT
     website: https://www.mastercontrol.com/
     positions:
       - title: Software Quality Engineer II
         dates_worked: [2021-03, 2023-11]
         achievements:
-          - Refactored and modernized numerous Front-end React components, improving performance, security, and maintainability.
-          - Identified and resolved a critical department-wide issue blocking automated ChromeDriver tests, implementing a
-            solution before the problem escalated to department-level concern, demonstrating Agility and
-            preventing 3 to 4 days of Automated Testing downtime.
-          - Showed Leadership by mentoring Junior Software and Quality Engineers, accelerating
-            their onboarding and development.
+          - Shipped production bug fixes and features in React components, and fixed security issues while
+            modernizing them for better performance and maintainability.
+          - Wrote automated tests for the components I worked on, using the team's Ruby and Selenium framework.
+          - Diagnosed and fixed a department-wide ChromeDriver failure that was blocking automated tests,
+            preventing 3 to 4 days of automated testing downtime.
+          - Mentored 4+ junior software and quality engineers, which sped up their onboarding.
       - title: Software Engineer II
         dates_worked: [2019-01, 2021-03]
         achievements:
-          - Expanded browser compatibility for an internal Selenium wrapper, enabling
-            Cross-platform Testing, and demonstration of working software.
-          - Owned process for shepherding patches into the released branches,
-            making me one of only a handful of people in the whole company with hands
-            on experience with every part of the Software Development Lifecycle at the
-            company.
-          - Captured and documented critical tribal knowledge, creating extensive
-            onboarding materials for new hires and clarifying new process workflows
+          - Extended the company's internal Ruby Selenium wrapper to support more browsers, enabling
+            cross-browser testing and live demos of working software.
+          - Wrote down undocumented team knowledge as onboarding guides for new hires and process docs
             for existing team members.
-          - Acted as a key point of contact with the Technical Writing and Validation
-            teams to ensure they had accurate information about patches and releases,
-            preventing about 5 hours of extra work every week, and
-            demonstrating strong communication skills for cross-functional collaboration.
       - title: Software Quality Engineer I
         dates_worked: [2016-06, 2019-01]
         achievements:
-          - Automated Jenkins job execution with custom scripts, streamlining batch
-            processing, saving 20 minutes a week, and reducing the number of points of failure.
-          - Recognized by peers and mentors for meticulous attention to detail, accuracy, and
-            exceptional problem-solving skills.
-          - Helped with Test automation effort to convert manual tests into test scripts
-            that produced recordings, providing video
-            evidence of alignment between the Functional Requirements and the software.
+          - Wrote scripts to automate Jenkins job runs, which saved 20 minutes a week and removed manual
+            steps that could fail.
+          - Helped convert manual tests into automated scripts that record video evidence that the software
+            meets its functional requirements, as regulated customers need.
+      - title: Patch Steward (concurrent with roles above)
+        dates_worked: [2016-11, 2023-02]
+        achievements:
+          - Owned weekly patch releases across ~5 supported branches and their upgrade paths, checking against
+            the defect tracker that every fix reached every affected version.
+          - Kept patches safe by including multi-commit fixes all-or-nothing and holding back unfinished work,
+            and told teams ahead of time when their changes would miss the cut.
+          - Gave Technical Writing and Validation exact per-branch lists of stories and defects, saving about
+            5 hours of rework a week.
   - name: StorageCraft Technologies
     dates_worked: [2012-05, 2016-02]
-    description: Software company that offered fast and reliable Backup and Disaster Recovery solutions.
+    description: Software company offering backup and disaster recovery products.
     location: Draper, UT
     website: https://www.storagecraft.com/
     positions:
       - title: QA Specialist in Technical Support
         dates_worked: [2012-05, 2016-02]
         achievements:
-          - Helped implement Quality Control processes, to improve case outcomes.
-          - Managed test lab environments for defect reproduction and root cause analysis.
-          - Performed low-level network traffic analysis for troubleshooting.
-          - Conducted exploratory Testing to find hidden defects.
-          - Created and executed test plans for new product releases.
-          - Utilized Jira for bug reporting and tracking and data entry.
-          - Built and maintained test infrastructure to support defect verification.
-          - Used Excel to track and report on missing and outstanding storage media.
+          - Built and maintained test lab environments for reproducing defects and finding their root causes.
+          - Wrote and ran test plans for new product releases, and did exploratory testing to find hidden defects.
+          - Analyzed low-level network traffic to troubleshoot customer issues.
+          - Helped put quality control processes in place that improved support case outcomes.
   - name: iTOK Inc.
     dates_worked: [2010-09, 2012-05]
-    description: Managed Service Provider specializing in Home users and Small Business.
+    description: Managed service provider for home users and small businesses.
     location: Lehi, UT
     website: https://www.bask.com/
     positions:
       - title: Technical Support Agent
         achievements:
-          - Handled inbound chats and calls from iTOK subscribers and helped them to troubleshoot technical issues on their home computers.
-          - Maintained a high level of customer service and met the requested and anticipated customer needs.
-          - Provided Guidance for newer employees, helping them to become more effective. Quickly became a go to resource for Technical questions.
-  # - name: American Fork City Public Library
-  #   dates_worked: [2007-09, 2010-09]
-  #   description: Public Library serving residents of American Fork City.
-  #   location: American Fork, UT
-  #   website: https://americanfork.gov/203/Library
-  #   positions:
-  #     - title: Library Clerk
-  #       achievements:
-  #         - Helped patrons in courteous manner. Quickly and efficiently found relevant information and materials
-  #         - Provided basic computer support to Library patrons in the computer lab
-  #         - Clerical work like checking out materials to patrons, filing, checking in materials, Shelving, Minor book repair.
-  #         - Prepared books for circulation. Applied barcodes, security devices, and protective covers.
-  #         - Followed opening and closing procedures to ensure building was secure and tidy.
+          - Troubleshot subscribers' computer problems over inbound chat and phone.
+          - Became a go-to resource for technical questions and coached newer agents.
+  - name: American Fork City Public Library
+    # dates_worked: [2007-09, 2010-09]
+    description: Public Library serving residents of American Fork City.
+    location: American Fork, UT
+    website: https://americanfork.gov/203/Library
+    positions:
+      - title: Library Clerk
+        achievements:
+          - Helped patrons in courteous manner. Quickly and efficiently found relevant information and materials
+          - Provided basic computer support to Library patrons in the computer lab
+          - Clerical work like checking out materials to patrons, filing, checking in materials, Shelving, Minor book repair.
+          - Prepared books for circulation. Applied barcodes, security devices, and protective covers.
+          - Followed opening and closing procedures to ensure building was secure and tidy.
 contact_info:
   linkedin: rawlingsryan
   github: rawlingsr
