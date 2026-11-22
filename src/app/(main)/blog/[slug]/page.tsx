@@ -1,6 +1,6 @@
 import { BlogPost } from "@/components/blog-post";
 import { Fallback } from "@/components/fallback";
-import { getPost } from "@/utils/posts";
+import { getPost, getPosts } from "@/utils/posts";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -10,6 +10,15 @@ import { Suspense } from "react";
 interface Props {
   params: Promise<{ slug: string }>;
 }
+
+// Posts only change with a new build, so render each one (including MathJax) once at build time.
+export async function generateStaticParams() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ slug: post.slug }));
+}
+
+// Any slug not returned above is a 404, without running the page code.
+export const dynamicParams = false;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPost((await params).slug);
