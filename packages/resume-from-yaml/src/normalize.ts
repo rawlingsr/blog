@@ -1,12 +1,12 @@
-import type { Company, ContactInfo, DatesWorked, Position, School, Skill } from "./types";
+import type { Company, ContactInfo, DatesWorked, Intro, Position, RawResume, Resume, School, Skill } from "./types";
 
 // Throws instead of returning an Invalid Date, so bad YAML fails the build with a message that names the entry.
 function parseDate(value: unknown, field: string): Date {
   const date = value instanceof Date ? value : new Date(value as string);
   if (value == null || value === "" || Number.isNaN(date.getTime())) {
     throw new Error(
-      `Invalid ${field}: ${JSON.stringify(value)} in career data ` +
-      `(src/career-data.yaml or its override). Expected a date like 2023-11.`,
+      `Invalid ${field}: ${JSON.stringify(value)} in resume data. ` +
+      `Expected a date like 2023-11.`,
     );
   }
   return date;
@@ -16,7 +16,7 @@ function parseDate(value: unknown, field: string): Date {
 function parseDatesWorked(value: unknown, owner: string): [Date, Date | null] {
   if (!Array.isArray(value) || value.length === 0 || value.length > 2) {
     throw new Error(
-      `Invalid dates_worked for ${owner}: ${JSON.stringify(value)} in career data. ` +
+      `Invalid dates_worked for ${owner}: ${JSON.stringify(value)} in resume data. ` +
       `Expected [start] or [start, end], e.g. [2016-06, 2023-11].`,
     );
   }
@@ -27,7 +27,7 @@ function parseDatesWorked(value: unknown, owner: string): [Date, Date | null] {
   ];
 }
 
-function isPlainObject(value: unknown): value is Record<string, unknown> {
+export function isPlainObject(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value) && !(value instanceof Date);
 }
 
@@ -147,4 +147,31 @@ export function getContactInfo({ contact_info }: { contact_info: ContactInfo }):
     phone: contact_info?.phone,
     website: contact_info?.website,
   }
+}
+
+function getIntro({ summary, objective }: { summary?: unknown; objective?: unknown }): Intro | null {
+  if (summary) {
+    return { kind: "summary", text: String(summary) };
+  }
+  if (objective) {
+    return { kind: "objective", text: String(objective) };
+  }
+  return null;
+}
+
+/** Validates raw resume data and converts it into a `Resume`. Throws on malformed dates. */
+export function normalizeResume(raw: RawResume): Resume {
+  // The getters still declare their input as already-typed; raw data is checked inside them.
+  const data = raw as never;
+  return {
+    name: typeof raw.name === "string" ? raw.name : "",
+    target_position: typeof raw.target_position === "string" && raw.target_position
+      ? raw.target_position
+      : undefined,
+    intro: getIntro(raw),
+    schools: getSchools(data),
+    skills: getSkills(data),
+    companies: getCompanies(data),
+    contact_info: getContactInfo(data),
+  };
 }
