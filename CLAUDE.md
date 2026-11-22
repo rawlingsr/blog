@@ -24,8 +24,8 @@ Check changes with `pnpm lint`, `pnpm test`, and `pnpm build`.
 
 Vitest. The root `vitest.config.mts` defines two kinds of projects: `site` (the `@` alias, `test/**/*.test.ts`) and `packages/*`, each with its own `vitest.config.mts`. Both configs set `TZ=Pacific/Honolulu` on purpose so code that mixes local time and UTC fails in tests.
 
-- `packages/resume-from-yaml/test/`: pure logic (`deepMerge`, the getters, date validation, `monthYear`). They import from `../src/index`, never from `@/`.
-- `test/career-loader.test.ts`, `test/posts.test.ts`: loaders that read from `process.cwd()`. They use `vi.spyOn(process, "cwd")` to point at directories under `test/fixtures/<name>/`, each shaped like the repo root (`src/career-data.yaml`, `src/posts/`).
+- `packages/resume-from-yaml/test/`: the package's logic (`deepMerge`, the getters, date validation, `monthYear`, `parseResumeYaml`, `normalizeResume`) and its Node loader. They import from `../src/index` or `../src/node`, never from `@/`. Loader tests pass explicit paths to `test/fixtures/*.yaml`; no cwd mock.
+- `test/career-loader.test.ts`, `test/posts.test.ts`: the site's loaders, which read from `process.cwd()`. They use `vi.spyOn(process, "cwd")` to point at directories under `test/fixtures/<name>/`, each shaped like the repo root (`src/career-data.yaml`, `src/posts/`).
 - `test/real-content.test.ts`: smoke test on the real `src/career-data.yaml` (plus your local override, if you have one) and checks that every real post loads.
 
 ## Layout
@@ -45,7 +45,7 @@ src/
     blog-post.tsx           # react-markdown with plugins enabled per post
     contact.tsx             # one FontAwesome link component per contact type
   utils/
-    career-data.ts          # getData(): reads the site's YAML files; re-exports the getters/types from resume-from-yaml
+    career-data.ts          # getData(): passes the site's YAML paths to readResumeYaml; re-exports the getters/types
     posts.ts                # loads Markdown posts with front-matter
     helpers.ts              # re-exports monthYear() from resume-from-yaml
   career-data.yaml          # resume source of truth (committed)
@@ -54,21 +54,24 @@ src/
   global.css                # all styles, including the @media print rules
 test/                       # site vitest tests + fixtures (see Tests)
 packages/resume-from-yaml/
-  src/index.ts              # public entry (package.json "exports" points at TS source; no build step yet)
-  src/types.ts              # School, Skill, Company, Position, ContactInfo, DatesWorked
-  src/normalize.ts          # parseDate, parseDatesWorked, deepMerge, getSchools/getSkills/getCompanies/getContactInfo
+  src/index.ts              # "." entry: types, parseResumeYaml, normalizeResume, getters, monthYear (no fs)
+  src/node.ts               # "./node" entry: readResumeYaml (raw merged), loadResume (normalized); explicit paths
+  src/types.ts              # School, Skill, Company, Position, ContactInfo, DatesWorked, RawResume, Resume, Intro
+  src/normalize.ts          # parseDate, parseDatesWorked, deepMerge, getters, normalizeResume
+  src/parse.ts              # parseResumeYaml(text, overrideText?): YAML → merged RawResume
   src/format.ts             # monthYear()
   test/                     # package tests
 ```
 
-`next.config.ts` lists `resume-from-yaml` in `transpilePackages` because the package ships TypeScript source.
+`next.config.ts` lists `resume-from-yaml` in `transpilePackages` because the package's `exports` point at TypeScript source (no build step yet).
 
 The `@/*` import alias maps to `src/*`.
 
 ## Career data (resume)
 
-- `getData()` in `src/utils/career-data.ts` reads `src/career-data.yaml`. If `src/career-data.override.yaml` exists (it's gitignored), it is deep-merged on top. Objects merge key by key. Scalars, arrays, and `null` replace the base value, so overriding `skills` or `companies` replaces the whole list. Use the override file for private details (phone, email) and for per-application tweaks such as `target_position`.
-- `getData()` returns an untyped object. The `getCompanies`, `getSchools`, `getSkills`, and `getContactInfo` helpers turn it into the typed interfaces and convert date strings to `Date`. They and `deepMerge` live in `packages/resume-from-yaml/src/normalize.ts`; `src/utils/career-data.ts` re-exports them so pages import from `@/utils/career-data` as before.
+- `getData()` in `src/utils/career-data.ts` calls `readResumeYaml` from `resume-from-yaml/node` with `src/career-data.yaml` and `src/career-data.override.yaml`. Build these paths from literal segments (`join(process.cwd(), "src", "career-data.yaml")`); a variable path makes Turbopack trace the whole project and warn. If the override file exists (it's gitignored), it is deep-merged on top. Objects merge key by key. Scalars, arrays, and `null` replace the base value, so overriding `skills` or `companies` replaces the whole list. Use the override file for private details (phone, email) and for per-application tweaks such as `target_position`.
+- The top level of each file must be a YAML mapping. YAML syntax errors name the file.
+- `getData()` returns an untyped object. The `getCompanies`, `getSchools`, `getSkills`, and `getContactInfo` helpers turn it into the typed interfaces and convert date strings to `Date`. They and `deepMerge` live in `packages/resume-from-yaml/src/normalize.ts`; `src/utils/career-data.ts` re-exports them so pages import from `@/utils/career-data` as before. The package's `normalizeResume(raw)` runs all of them at once and returns a typed `Resume` (with `intro` resolved from `summary`/`objective`), but the site's pages don't use it yet.
 - Companies **without** `dates_worked` (missing or `null`) are silently dropped. This is intentional: it's how to hide a company. Position `dates_worked` is optional. Write dates as `[from]` or `[from, to]`; a `to` of null or empty renders as "Present".
 - Malformed dates fail the build instead of rendering. `parseDate` / `parseDatesWorked` throw an error that names the entry for a bad value (e.g. `2020-13`), an empty `dates_worked: []`, or a missing `graduation_date`.
 - `contact_info` may be missing or `null`. Pages then render no contact links.
