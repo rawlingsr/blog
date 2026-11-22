@@ -181,6 +181,10 @@ describe("getContactInfo", () => {
     expect(contactInfo(null)).toEqual({});
   });
 
+  it("throws at load time for a github value that isn't a GitHub URL", () => {
+    expect(() => contactInfo({ github: "https://gitlab.com/me" })).toThrow(/Invalid contact_info\.github/);
+  });
+
   it("keeps only the known keys", () => {
     const result = contactInfo({ github: "me", email: "a@b.c", favorite_color: "blue" });
     expect(result).toMatchObject({ github: "me", email: "a@b.c" });

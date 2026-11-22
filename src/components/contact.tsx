@@ -5,156 +5,65 @@ import {
   faMapLocation,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { contactLinks, type ContactType } from "resume-from-yaml";
 
-export function Linkedin({ linkedin, size }: {
-  linkedin?: string;
+const icons: Record<ContactType, IconDefinition> = {
+  linkedin: faLinkedin,
+  github: faGithub,
+  email: faEnvelope,
+  location: faMapLocation,
+  website: faGlobe,
+  phone: faPhone,
+};
+
+// URLs and labels come from resume-from-yaml; this file only adds the site's FontAwesome look.
+function ContactButton({ type, value, size }: {
+  type: ContactType;
+  value?: string;
   size: number;
 }) {
-  if (!linkedin) {
+  const [link] = contactLinks({ [type]: value });
+  if (!link) {
     return null;
   }
   return (
-    <Link
-      href={`https://www.linkedin.com/in/${linkedin}/`}
-      className="contact"
-    >
+    <Link href={link.href} className="contact">
       <div className="contact-btn">
         <FontAwesomeIcon
-          icon={faLinkedin}
+          icon={icons[type]}
           className={`fa-${size}x fa-fw`}
         />
         <span className="contact-text">
-          LinkedIn Profile: {linkedin}
+          {`${link.label}: ${link.value}`}
         </span>
       </div>
     </Link>
   );
 }
 
-export function GitHub({ github, size }: {
-  github?: string;
-  size: number;
-}) {
-  if (!github) {
-    return null;
-  }
-  return (
-    <Link
-      href={`https://github.com/${github}/`}
-      className="contact"
-    >
-      <div className="contact-btn">
-        <FontAwesomeIcon
-          icon={faGithub}
-          className={`fa-${size}x fa-fw`}
-        />
-        <span className="contact-text">
-          GitHub Profile: {github}
-        </span>
-      </div>
-    </Link>
-  );
+export function Linkedin({ linkedin, size }: { linkedin?: string; size: number }) {
+  return <ContactButton type="linkedin" value={linkedin} size={size} />;
 }
 
-export function Email({ email, size }: {
-  email?: string;
-  size: number;
-}) {
-  if (!email) {
-    return null;
-  }
-  return (
-    <Link
-      href={`mailto:${email}`}
-      className="contact"
-    >
-      <div className="contact-btn">
-        <FontAwesomeIcon
-          icon={faEnvelope}
-          className={`fa-${size}x fa-fw`}
-        />
-        <span className="contact-text">
-          Email: {email}
-        </span>
-      </div>
-    </Link>
-  );
+export function GitHub({ github, size }: { github?: string; size: number }) {
+  return <ContactButton type="github" value={github} size={size} />;
 }
 
-export function Location({ location, size }: {
-  location?: string;
-  size: number;
-}) {
-  if (!location) {
-    return null;
-  }
-  return (
-    <Link
-      href={`https://www.google.com/maps/place/${location}/`}
-      className="contact"
-    >
-      <div className="contact-btn">
-        <FontAwesomeIcon
-          icon={faMapLocation}
-          className={`fa-${size}x fa-fw`}
-        />
-        <span className="contact-text">
-          Location: {location}
-        </span>
-      </div>
-    </Link>
-  );
+export function Email({ email, size }: { email?: string; size: number }) {
+  return <ContactButton type="email" value={email} size={size} />;
 }
 
-
-export function Website({ website, size }: {
-  website?: string;
-  size: number;
-}) {
-  if (!website) {
-    return null;
-  }
-  return (
-    <Link
-      href={`https://${website}/`}
-      className="contact"
-    >
-      <div className="contact-btn">
-        <FontAwesomeIcon
-          icon={faGlobe}
-          className={`fa-${size}x fa-fw`}
-        />
-        <span className="contact-text">
-          Website: {website}
-        </span>
-      </div>
-    </Link>
-  );
+export function Location({ location, size }: { location?: string; size: number }) {
+  return <ContactButton type="location" value={location} size={size} />;
 }
 
-export function Phone({ phone, size }: {
-  phone?: string;
-  size: number;
-}) {
-  if (!phone) {
-    return null;
-  }
-  return (
-    <Link
-      href={`tel:${phone}`}
-      className="contact"
-    >
-      <div className="contact-btn">
-        <FontAwesomeIcon
-          icon={faPhone}
-          className={`fa-${size}x fa-fw`}
-        />
-        <span className="contact-text">
-          Phone Number: {phone}
-        </span>
-      </div>
-    </Link>
-  );
+export function Website({ website, size }: { website?: string; size: number }) {
+  return <ContactButton type="website" value={website} size={size} />;
+}
+
+export function Phone({ phone, size }: { phone?: string; size: number }) {
+  return <ContactButton type="phone" value={phone} size={size} />;
 }

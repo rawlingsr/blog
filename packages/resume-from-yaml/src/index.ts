@@ -18,4 +18,5 @@ export {
   normalizeResume,
 } from "./normalize";
 export { parseResumeYaml } from "./parse";
-export { monthYear } from "./format";
+export { contactLinks, formatDateRange, monthYear } from "./format";
+export type { ContactLink, ContactType } from "./format";

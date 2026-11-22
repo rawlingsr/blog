@@ -1,3 +1,4 @@
+import { contactLinks } from "./format";
 import type { Company, ContactInfo, DatesWorked, Intro, Position, RawResume, Resume, School, Skill } from "./types";
 
 // Throws instead of returning an Invalid Date, so bad YAML fails the build with a message that names the entry.
@@ -139,14 +140,18 @@ export function getContactInfo({ contact_info }: { contact_info: ContactInfo }):
     return {};
   }
 
-  return {
+  const info: ContactInfo = {
     linkedin: contact_info?.linkedin,
     github: contact_info?.github,
     email: contact_info?.email,
     location: contact_info?.location,
     phone: contact_info?.phone,
     website: contact_info?.website,
-  }
+  };
+  // Building the links validates them (e.g. a github value that isn't a GitHub URL), so bad
+  // contact info fails when the resume is loaded rather than when a page renders it.
+  contactLinks(info);
+  return info;
 }
 
 function getIntro({ summary, objective }: { summary?: unknown; objective?: unknown }): Intro | null {
