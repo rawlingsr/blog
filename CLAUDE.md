@@ -12,9 +12,19 @@ pnpm dev      # next dev --turbopack
 pnpm build    # production build; also type-checks
 pnpm start
 pnpm lint     # eslint (next core-web-vitals + typescript configs)
+pnpm test     # vitest run
+pnpm test:watch
 ```
 
-There is no test suite. Check changes with `pnpm lint` and `pnpm build`.
+Check changes with `pnpm lint`, `pnpm test`, and `pnpm build`.
+
+## Tests
+
+Vitest, configured in `vitest.config.mts` (the `@` alias, `test/**/*.test.ts`). The config sets `TZ=Pacific/Honolulu` on purpose so code that mixes local time and UTC fails in tests.
+
+- `test/career-data.test.ts`, `test/helpers.test.ts`: pure logic (`deepMerge`, the getters, date validation, `monthYear`). They will move with the resume logic when it's extracted into its own package.
+- `test/career-loader.test.ts`, `test/posts.test.ts`: loaders that read from `process.cwd()`. They use `vi.spyOn(process, "cwd")` to point at directories under `test/fixtures/<name>/`, each shaped like the repo root (`src/career-data.yaml`, `src/posts/`).
+- `test/real-content.test.ts`: smoke test on the real `src/career-data.yaml` (plus your local override, if you have one) and checks that every real post loads.
 
 ## Layout
 
@@ -40,6 +50,7 @@ src/
   career-data.override.example.yaml
   posts/*.md                # blog posts; the filename is the slug
   global.css                # all styles, including the @media print rules
+test/                       # vitest tests + fixtures (see Tests)
 ```
 
 The `@/*` import alias maps to `src/*`.

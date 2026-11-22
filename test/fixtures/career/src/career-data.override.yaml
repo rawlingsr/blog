@@ -1,0 +1,6 @@
+target_position: Override Position
+contact_info:
+  email: me@example.com
+skills:
+  - name: Override Skill
+    keywords: [c]

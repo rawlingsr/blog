@@ -1,0 +1,8 @@
+name: Base Name
+target_position: Base Position
+contact_info:
+  github: base-gh
+  website: example.com
+skills:
+  - name: Base Skill
+    keywords: [a, b]

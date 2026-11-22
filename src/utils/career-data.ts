@@ -77,7 +77,7 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
 }
 
 // Objects merge recursively; scalars, arrays, and nulls in `override` replace the base value.
-function deepMerge(base: unknown, override: unknown): unknown {
+export function deepMerge(base: unknown, override: unknown): unknown {
   if (!isPlainObject(base) || !isPlainObject(override)) {
     return override === undefined ? base : override;
   }
