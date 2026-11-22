@@ -1,5 +1,3 @@
-"use server";
-
 import fm from "front-matter";
 import fs from "node:fs/promises";
 import { join } from "path";
