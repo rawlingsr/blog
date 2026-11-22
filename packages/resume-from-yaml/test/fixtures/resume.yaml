@@ -1,0 +1,19 @@
+name: Sample Person
+target_position: Developer
+summary: Builds things.
+contact_info:
+  github: sample
+companies:
+  - name: Visible Co
+    dates_worked: [2016-06, 2020-01]
+    positions:
+      - title: Engineer
+        achievements: [Shipped it]
+  - name: Hidden Co
+schools:
+  - name: Sample U
+    degree: BS
+    graduation_date: 2015-05
+skills:
+  - name: Languages
+    keywords: [TypeScript]
