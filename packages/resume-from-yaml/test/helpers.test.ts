@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { monthYear } from "@/utils/helpers";
+import { monthYear } from "../src/index";
 
 describe("monthYear", () => {
   it("formats a YAML-style year-month in UTC, regardless of local time zone", () => {

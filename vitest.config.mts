@@ -9,7 +9,12 @@ export default defineConfig({
     alias: { "@": path.resolve(import.meta.dirname, "src") },
   },
   test: {
-    include: ["test/**/*.test.ts"],
     environment: "node",
+    projects: [
+      // The site's own tests, using this file's alias and settings.
+      { extends: true, test: { name: "site", include: ["test/**/*.test.ts"] } },
+      // Each workspace package brings its own vitest.config.mts.
+      "packages/*",
+    ],
   },
 });

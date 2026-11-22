@@ -5,7 +5,7 @@ import {
   getContactInfo,
   getSchools,
   getSkills,
-} from "@/utils/career-data";
+} from "../src/index";
 
 // The getters accept raw parsed YAML, which doesn't match their declared types (dates are still strings).
 const companies = (value: unknown) => getCompanies({ companies: value } as never);
