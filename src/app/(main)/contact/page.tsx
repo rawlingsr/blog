@@ -1,30 +1,13 @@
-import { getData, getContactInfo } from "@/utils/career-data";
-
-import {
-  Email,
-  GitHub,
-  Linkedin,
-  Location,
-  Phone,
-  Website,
-} from "@/components/contact";
+import { ContactLinks } from "resume-from-yaml/react";
+import { fontAwesomeContactIcon } from "@/components/contact";
+import { getResume } from "@/utils/career-data";
 
 export default async function ContactPage() {
-  const data = await getData();
-  const links = getContactInfo(data);
-  if (!links) {
-    return null;
-  }
-  const size = 3;
+  const { contact_info } = await getResume();
   return (
     <main>
       <h2>Links</h2>
-      <Linkedin linkedin={links.linkedin} size={size} />
-      <GitHub github={links.github} size={size} />
-      <Email email={links.email} size={size} />
-      <Location location={links.location} size={size} />
-      <Website website={links.website} size={size} />
-      <Phone phone={links.phone} size={size} />
+      <ContactLinks info={contact_info} renderIcon={fontAwesomeContactIcon(3)} />
     </main>
   );
 }

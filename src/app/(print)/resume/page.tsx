@@ -1,42 +1,39 @@
-import { Introduction } from "@/components/resume/introduction";
-import { Education } from "@/components/resume/education";
-import { Experience } from "@/components/resume/experience";
-import { SkillsWithKeywords } from "@/components/resume/skills";
-import { Header } from "@/components/resume/header";
-import {
-  getCompanies,
-  getData,
-  getSchools,
-  getSkills,
-} from "@/utils/career-data";
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import Image from "next/image";
+import { Resume, ResumeHeader } from "resume-from-yaml/react";
+import { fontAwesomeContactIcon } from "@/components/contact";
+import { getResume } from "@/utils/career-data";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const data = await getData();
+  const { name, target_position } = await getResume();
 
   return {
     // Also the default filename when printing to PDF, so never append an empty position.
-    title: data.target_position
-      ? `${data.name} - ${data.target_position}`
-      : data.name,
+    title: target_position ? `${name} - ${target_position}` : name,
   };
 }
 
-export default async function Home() {
-  const data = await getData();
-  const companies = getCompanies(data);
-  const skills = getSkills(data);
-  const schools = getSchools(data);
+export default async function ResumePage() {
+  const resume = await getResume();
 
   return (
     <>
-      <Header data={data} />
+      <div className="container">
+        <ResumeHeader
+          name={resume.name}
+          target_position={resume.target_position}
+          contact_info={resume.contact_info}
+          logo={<Image src="/icon.png" alt="RR Icon" width="64" height="64" className="icon" />}
+          renderIcon={fontAwesomeContactIcon(1)}
+        />
+      </div>
       <main>
         <div className="container content">
-          <Introduction data={data} is_resume={true} />
-          <SkillsWithKeywords skills={skills} />
-          <Experience companies={companies} />
-          <Education schools={schools} />
+          <Resume
+            resume={resume}
+            sections={["intro", "skills", "experience", "education"]}
+            introHeadingClassName="intro-heading"
+          />
         </div>
       </main>
     </>
