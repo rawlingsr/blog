@@ -15,7 +15,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const data = await getData();
 
   return {
-    title: `${data.name} - ${data.target_position}`,
+    // Also the default filename when printing to PDF, so never append an empty position.
+    title: data.target_position
+      ? `${data.name} - ${data.target_position}`
+      : data.name,
   };
 }
 
