@@ -45,6 +45,33 @@ export interface ContactInfo {
 
 export type  DatesWorked = [Date, Date | null] | null;
 
+// Throws instead of returning an Invalid Date, so bad YAML fails the build with a message that names the entry.
+function parseDate(value: unknown, field: string): Date {
+  const date = value instanceof Date ? value : new Date(value as string);
+  if (value == null || value === "" || Number.isNaN(date.getTime())) {
+    throw new Error(
+      `Invalid ${field}: ${JSON.stringify(value)} in career data ` +
+      `(src/career-data.yaml or its override). Expected a date like 2023-11.`,
+    );
+  }
+  return date;
+}
+
+// `[from]` or `[from, null]` means "to Present".
+function parseDatesWorked(value: unknown, owner: string): [Date, Date | null] {
+  if (!Array.isArray(value) || value.length === 0 || value.length > 2) {
+    throw new Error(
+      `Invalid dates_worked for ${owner}: ${JSON.stringify(value)} in career data. ` +
+      `Expected [start] or [start, end], e.g. [2016-06, 2023-11].`,
+    );
+  }
+  const [from, to] = value;
+  return [
+    parseDate(from, `dates_worked start for ${owner}`),
+    to == null || to === "" ? null : parseDate(to, `dates_worked end for ${owner}`),
+  ];
+}
+
 function isPlainObject(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value) && !(value instanceof Date);
 }
@@ -94,7 +121,7 @@ export function getSchools({ schools }: { schools: School[] }) {
       degree: school.degree,
       description: school.description,
       website: school.website,
-      graduation_date: new Date(school.graduation_date),
+      graduation_date: parseDate(school.graduation_date, `graduation_date for school "${school.name}"`),
       still_attending: school.still_attending,
     })
   }
@@ -129,18 +156,9 @@ export function getCompanies({companies}: {companies: Company[]}): Company[] {
     if (!parsedCompany.dates_worked) {
       continue;
     }
-    const [from, to] = parsedCompany.dates_worked;
-
-    let dates_worked: DatesWorked;
-    if (!to || to == null) {
-      dates_worked = [new Date(from), null]
-    } else {
-      dates_worked = [new Date(from), new Date(to)]
-    }
-
     const company: Company = {
       name: parsedCompany.name,
-      dates_worked: dates_worked,
+      dates_worked: parseDatesWorked(parsedCompany.dates_worked, `company "${parsedCompany.name}"`),
       description: parsedCompany.description,
       location: parsedCompany.location,
       website: parsedCompany.website,
@@ -161,19 +179,12 @@ function getPositions(parsedCompany: Company): Position[] {
   }
 
   for (const parsedPosition of parsedPositions) {
-    let dates_worked: DatesWorked;
-    if (!parsedPosition.dates_worked) {
-      dates_worked = null;
-    }
-    else
-    {
-      const [from, to] = parsedPosition.dates_worked;
-      if (!to || to == null) {
-        dates_worked = [new Date(from), null]
-      } else {
-        dates_worked = [new Date(from), new Date(to)]
-      }
-    }
+    const dates_worked: DatesWorked = parsedPosition.dates_worked
+      ? parseDatesWorked(
+        parsedPosition.dates_worked,
+        `position "${parsedPosition.title}" at "${parsedCompany.name}"`,
+      )
+      : null;
     const position: Position = {
       title: parsedPosition.title,
       dates_worked: dates_worked,
