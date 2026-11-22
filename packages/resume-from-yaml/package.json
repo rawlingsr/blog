@@ -1,0 +1,17 @@
+{
+  "name": "resume-from-yaml",
+  "version": "0.0.0",
+  "description": "Turn a resume written in YAML into validated data and React components.",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^5.1.1"
+  }
+}
