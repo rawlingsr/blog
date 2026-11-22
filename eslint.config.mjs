@@ -8,6 +8,13 @@ const __dirname = dirname(__filename);
 
 const eslintConfig = [...nextCoreWebVitals, ...nextTypescript, {
   ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts"]
+}, {
+  // Workspace packages are framework-neutral: plain <img> and <a> are correct there, not next/image or next/link.
+  files: ["packages/**"],
+  rules: {
+    "@next/next/no-img-element": "off",
+    "@next/next/no-html-link-for-pages": "off",
+  },
 }];
 
 export default eslintConfig;

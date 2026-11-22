@@ -7,15 +7,28 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./node": "./src/node.ts"
+    "./node": "./src/node.ts",
+    "./react": "./src/react/index.ts"
   },
   "scripts": {
     "test": "vitest run"
   },
-  "devDependencies": {
-    "vitest": "^5.1.1"
-  },
   "dependencies": {
     "yaml": "^2.9.1"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "vitest": "^5.1.1"
   }
 }
