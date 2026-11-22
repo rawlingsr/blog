@@ -42,3 +42,6 @@ next-env.d.ts
 
 # local career data overrides (contact info, per-print tweaks)
 /src/career-data.override.yaml
+
+# private notes and alternate resume variants (never commit)
+/private/
