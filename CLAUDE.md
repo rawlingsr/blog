@@ -2,6 +2,8 @@
 
 Personal website: resume, blog, and contact page. Built with Next.js 16 (App Router), React 19, and TypeScript. There is no database and no CMS. All content comes from YAML and Markdown files in `src/`, which server components read from disk at request or build time.
 
+The repo is a pnpm workspace. The Next.js site is the root package. The YAML → resume logic is being extracted into `packages/resume-from-yaml/` (MIT, not yet published) so it can be used from other sites. The site depends on it as `resume-from-yaml: workspace:^`.
+
 ## Commands
 
 Use **pnpm**. It's the only package manager that has been tested with this repo.
@@ -12,7 +14,7 @@ pnpm dev      # next dev --turbopack
 pnpm build    # production build; also type-checks
 pnpm start
 pnpm lint     # eslint (next core-web-vitals + typescript configs)
-pnpm test     # vitest run
+pnpm test     # vitest run: site tests + every workspace package
 pnpm test:watch
 ```
 
@@ -20,9 +22,9 @@ Check changes with `pnpm lint`, `pnpm test`, and `pnpm build`.
 
 ## Tests
 
-Vitest, configured in `vitest.config.mts` (the `@` alias, `test/**/*.test.ts`). The config sets `TZ=Pacific/Honolulu` on purpose so code that mixes local time and UTC fails in tests.
+Vitest. The root `vitest.config.mts` defines two kinds of projects: `site` (the `@` alias, `test/**/*.test.ts`) and `packages/*`, each with its own `vitest.config.mts`. Both configs set `TZ=Pacific/Honolulu` on purpose so code that mixes local time and UTC fails in tests.
 
-- `test/career-data.test.ts`, `test/helpers.test.ts`: pure logic (`deepMerge`, the getters, date validation, `monthYear`). They will move with the resume logic when it's extracted into its own package.
+- `packages/resume-from-yaml/test/`: pure logic (`deepMerge`, the getters, date validation, `monthYear`). They import from `../src/index`, never from `@/`.
 - `test/career-loader.test.ts`, `test/posts.test.ts`: loaders that read from `process.cwd()`. They use `vi.spyOn(process, "cwd")` to point at directories under `test/fixtures/<name>/`, each shaped like the repo root (`src/career-data.yaml`, `src/posts/`).
 - `test/real-content.test.ts`: smoke test on the real `src/career-data.yaml` (plus your local override, if you have one) and checks that every real post loads.
 
@@ -43,22 +45,30 @@ src/
     blog-post.tsx           # react-markdown with plugins enabled per post
     contact.tsx             # one FontAwesome link component per contact type
   utils/
-    career-data.ts          # loads and normalizes the resume YAML
+    career-data.ts          # getData(): reads the site's YAML files; re-exports the getters/types from resume-from-yaml
     posts.ts                # loads Markdown posts with front-matter
-    helpers.ts              # monthYear()
+    helpers.ts              # re-exports monthYear() from resume-from-yaml
   career-data.yaml          # resume source of truth (committed)
   career-data.override.example.yaml
   posts/*.md                # blog posts; the filename is the slug
   global.css                # all styles, including the @media print rules
-test/                       # vitest tests + fixtures (see Tests)
+test/                       # site vitest tests + fixtures (see Tests)
+packages/resume-from-yaml/
+  src/index.ts              # public entry (package.json "exports" points at TS source; no build step yet)
+  src/types.ts              # School, Skill, Company, Position, ContactInfo, DatesWorked
+  src/normalize.ts          # parseDate, parseDatesWorked, deepMerge, getSchools/getSkills/getCompanies/getContactInfo
+  src/format.ts             # monthYear()
+  test/                     # package tests
 ```
+
+`next.config.ts` lists `resume-from-yaml` in `transpilePackages` because the package ships TypeScript source.
 
 The `@/*` import alias maps to `src/*`.
 
 ## Career data (resume)
 
 - `getData()` in `src/utils/career-data.ts` reads `src/career-data.yaml`. If `src/career-data.override.yaml` exists (it's gitignored), it is deep-merged on top. Objects merge key by key. Scalars, arrays, and `null` replace the base value, so overriding `skills` or `companies` replaces the whole list. Use the override file for private details (phone, email) and for per-application tweaks such as `target_position`.
-- `getData()` returns an untyped object. The `getCompanies`, `getSchools`, `getSkills`, and `getContactInfo` helpers turn it into the typed interfaces and convert date strings to `Date`.
+- `getData()` returns an untyped object. The `getCompanies`, `getSchools`, `getSkills`, and `getContactInfo` helpers turn it into the typed interfaces and convert date strings to `Date`. They and `deepMerge` live in `packages/resume-from-yaml/src/normalize.ts`; `src/utils/career-data.ts` re-exports them so pages import from `@/utils/career-data` as before.
 - Companies **without** `dates_worked` (missing or `null`) are silently dropped. This is intentional: it's how to hide a company. Position `dates_worked` is optional. Write dates as `[from]` or `[from, to]`; a `to` of null or empty renders as "Present".
 - Malformed dates fail the build instead of rendering. `parseDate` / `parseDatesWorked` throw an error that names the entry for a bad value (e.g. `2020-13`), an empty `dates_worked: []`, or a missing `graduation_date`.
 - `contact_info` may be missing or `null`. Pages then render no contact links.
@@ -81,4 +91,5 @@ The `@/*` import alias maps to `src/*`.
 
 - Everything renders on the server: no `"use client"` components, no API routes, and no Server Actions. Components are a mix of sync and async server components. Don't add `"use server"` to data helpers like `src/utils/posts.ts`, because that would turn them into publicly callable endpoints.
 - Styling is plain global CSS with class names. No CSS modules and no Tailwind.
+- `packages/resume-from-yaml` must stay framework-neutral: no `next/*` imports, no `@/` imports, and nothing site-specific (paths, branding, FontAwesome). Site-specific code stays in `src/`.
 - `.idea/` is committed because the author uses JetBrains IDEs.
