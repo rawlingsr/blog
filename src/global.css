@@ -2,6 +2,15 @@
   color-scheme: light dark;
 }
 
+/* Set by the theme toggle (src/components/theme-toggle.tsx); absent = follow the system. */
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
 /*noinspection CssInvalidFunction*/
 body {
   color: light-dark(#000000, #ffffff);
@@ -83,6 +92,44 @@ nav p {
   margin: 0.5em;
 }
 
+.theme-toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1.1em;
+  padding: 0.7em;
+  margin-right: 0.4em;
+}
+
+.theme-toggle:hover {
+  opacity: 0.7;
+}
+
+/* Show the current mode: half-circle (system, no data-theme), sun (light), moon (dark). */
+.theme-mode-light,
+.theme-mode-dark,
+:root[data-theme] .theme-mode-system {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-mode-light,
+:root[data-theme="dark"] .theme-mode-dark {
+  display: inline;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 .footer-link div {
   display: inline;
 }
@@ -120,6 +167,13 @@ ul {
 }
 
 @media print {
+  /* Print dark text on white even when the OS or the theme toggle picks dark;
+     browsers drop background colors by default. Matches :root[data-theme="dark"]'s specificity. */
+  :root,
+  :root[data-theme] {
+    color-scheme: light;
+  }
+
   .cover-letter {
     break-after: page;
   }
@@ -136,7 +190,7 @@ ul {
     display: none;
   }
 
-  nav p, nav li {
+  nav p, nav li, .theme-toggle {
     display: none !important;
   }
 

@@ -46,6 +46,7 @@ src/
   components/
     blog-post.tsx           # react-markdown with plugins enabled per post
     contact.tsx             # fontAwesomeContactIcon(size): the site's renderIcon for the package's contact links
+    theme-toggle.tsx        # <ThemeToggle> button (header) + <ThemeScript> inline script (root layout)
   utils/
     career-data.ts          # getResume() (validated Resume, used by pages), getData() (raw merged YAML); re-exports the getters/types
     posts.ts                # loads Markdown posts with front-matter
@@ -108,11 +109,12 @@ The `@/*` import alias maps to `src/*`.
 
 ## Print resume
 
-`/resume` is the page to print to PDF. The page-break rules (`break-inside: avoid-page` on `.resume-company-summary`, `.resume-position`, `.resume-education`, and `.resume-skills`) live in the package's `src/styles.css`. The site's `@media print` block at the end of `src/global.css` handles only the page chrome: it hides `.page-footer` and `nav p, nav li`, and removes the `.page-header` background. The site header's logo and name are **not** hidden, so the `(main)` pages don't print cleanly; use `/resume`. Section order differs from the home page (Skills, then Experience, then Education), set with `<Resume sections={[…]}>`. The print page passes `introHeadingClassName="intro-heading"` (a site rule in `global.css`). The browser tab title (and so the default PDF filename) is `${name} - ${target_position}`, or just `name` when `target_position` is empty.
+`/resume` is the page to print to PDF. The page-break rules (`break-inside: avoid-page` on `.resume-company-summary`, `.resume-position`, `.resume-education`, and `.resume-skills`) live in the package's `src/styles.css`. The site's `@media print` block at the end of `src/global.css` forces `color-scheme: light` (so a dark theme, from the OS or the toggle, still prints dark text on white) and otherwise handles only the page chrome: it hides `.page-footer` and `nav p, nav li`, and removes the `.page-header` background. The site header's logo and name are **not** hidden, so the `(main)` pages don't print cleanly; use `/resume`. Section order differs from the home page (Skills, then Experience, then Education), set with `<Resume sections={[…]}>`. The print page passes `introHeadingClassName="intro-heading"` (a site rule in `global.css`). The browser tab title (and so the default PDF filename) is `${name} - ${target_position}`, or just `name` when `target_position` is empty.
 
 ## Conventions
 
 - Everything renders on the server: no `"use client"` components, no API routes, and no Server Actions. Components are a mix of sync and async server components. Don't add `"use server"` to data helpers like `src/utils/posts.ts`, because that would turn them into publicly callable endpoints.
+- The one piece of client JS is the three-way theme toggle in `src/components/theme-toggle.tsx`. Each click cycles system → light → dark, and the button's icon shows the current mode. `<ThemeScript>` is an inline `<script>` in the root layout's `<head>`. Before paint it applies the saved choice (`localStorage.theme`, `light` or `dark`) as `data-theme` on `<html>`, and it handles clicks on the server-rendered `.theme-toggle` button in the header through a delegated document listener. `global.css` maps `data-theme` to `color-scheme`, so any color written with `light-dark()` follows it. System mode is no `data-theme` and nothing saved, so the site follows `prefers-color-scheme`. `<html>` has `suppressHydrationWarning` because of that attribute.
 - Styling is plain global CSS with class names. No CSS modules and no Tailwind. `src/app/layout.tsx` imports `yaml-to-resume/styles.css` before `global.css` so site rules can override the package's.
 - `packages/yaml-to-resume` must stay framework-neutral: no `next/*` imports, no `@/` imports, and nothing site-specific (paths, branding, FontAwesome). Site-specific code stays in `src/` and goes in through props (`logo`, `renderIcon`, `className`). Its components are server-safe (no hooks, no `"use client"`), and every class name they use starts with `resume-`. `eslint.config.mjs` turns off the Next-specific `no-img-element` and `no-html-link-for-pages` rules for `packages/**`.
 - `.idea/` is committed because the author uses JetBrains IDEs.

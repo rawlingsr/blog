@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Header({ name, target_position }: {
   name: string;
@@ -34,6 +35,7 @@ export function Header({ name, target_position }: {
               </Link>
             </li>
           </ul>
+          <ThemeToggle />
         </nav>
       </div>
     </header>

@@ -2,6 +2,7 @@
 import "yaml-to-resume/styles.css";
 import "@/global.css";
 import { Fira_Sans } from "next/font/google";
+import { ThemeScript } from "@/components/theme-toggle";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
@@ -18,7 +19,11 @@ export default async function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
+    // ThemeScript sets data-theme on <html> before hydration.
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+      </head>
       <body className={fira.className}>
         {children}
       </body>
