@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Resume, ResumeHeader } from "resume-from-yaml/react";
+import { Resume, ResumeHeader } from "yaml-to-resume/react";
 import { fontAwesomeContactIcon } from "@/components/contact";
 import { getResume } from "@/utils/career-data";
 

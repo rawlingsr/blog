@@ -1,5 +1,5 @@
 {
-  "name": "resume-from-yaml",
+  "name": "yaml-to-resume",
   "version": "0.0.0",
   "description": "Turn a resume written in YAML into validated data and React components.",
   "private": true,

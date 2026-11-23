@@ -1,4 +1,4 @@
-import { ContactLinks } from "resume-from-yaml/react";
+import { ContactLinks } from "yaml-to-resume/react";
 import { fontAwesomeContactIcon } from "@/components/contact";
 import { getResume } from "@/utils/career-data";
 

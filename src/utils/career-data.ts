@@ -1,10 +1,10 @@
 import type { parse } from "yaml";
 import { join } from "node:path";
-import { loadResume, readResumeYaml } from "resume-from-yaml/node";
+import { loadResume, readResumeYaml } from "yaml-to-resume/node";
 
-// The parsing, validation, and merge rules live in the resume-from-yaml package.
+// The parsing, validation, and merge rules live in the yaml-to-resume package.
 // This file only knows where the site keeps its data.
-export { deepMerge, getCompanies, getContactInfo, getSchools, getSkills } from "resume-from-yaml";
+export { deepMerge, getCompanies, getContactInfo, getSchools, getSkills } from "yaml-to-resume";
 export type {
   Company,
   ContactInfo,
@@ -12,7 +12,7 @@ export type {
   Position,
   School,
   Skill,
-} from "resume-from-yaml";
+} from "yaml-to-resume";
 
 // Literal path segments keep Turbopack's file tracing scoped to src/ instead of the whole project.
 function resumeFiles() {
@@ -23,7 +23,7 @@ function resumeFiles() {
   };
 }
 
-/** The validated resume, ready for the resume-from-yaml/react components. */
+/** The validated resume, ready for the yaml-to-resume/react components. */
 export async function getResume() {
   return loadResume(resumeFiles());
 }

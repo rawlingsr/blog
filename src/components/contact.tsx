@@ -7,8 +7,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import type { ContactType } from "resume-from-yaml";
-import type { RenderContactIcon } from "resume-from-yaml/react";
+import type { ContactType } from "yaml-to-resume";
+import type { RenderContactIcon } from "yaml-to-resume/react";
 
 const icons: Record<ContactType, IconDefinition> = {
   linkedin: faLinkedin,
@@ -20,7 +20,7 @@ const icons: Record<ContactType, IconDefinition> = {
 };
 
 /**
- * The site's FontAwesome icons for resume-from-yaml's <ContactLinks> and <ResumeHeader>.
+ * The site's FontAwesome icons for yaml-to-resume's <ContactLinks> and <ResumeHeader>.
  * `size` is FontAwesome's multiplier (fa-1x, fa-3x, ...).
  */
 export function fontAwesomeContactIcon(size: number): RenderContactIcon {

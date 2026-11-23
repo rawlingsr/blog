@@ -1,5 +1,5 @@
 /*
- * Optional default styles for resume-from-yaml/react.
+ * Optional default styles for yaml-to-resume/react.
  * Every selector starts with a .resume-* class, so these rules don't touch the rest of your site.
  * Import this before your own CSS so your rules win.
  */

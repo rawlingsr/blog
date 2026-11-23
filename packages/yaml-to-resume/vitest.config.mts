@@ -5,7 +5,7 @@ process.env.TZ = "Pacific/Honolulu";
 
 export default defineConfig({
   test: {
-    name: "resume-from-yaml",
+    name: "yaml-to-resume",
     include: ["test/**/*.test.{ts,tsx}"],
     environment: "node",
   },

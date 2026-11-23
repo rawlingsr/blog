@@ -2,7 +2,7 @@
 
 Personal website: resume, blog, and contact page. Built with Next.js 16 (App Router), React 19, and TypeScript. There is no database and no CMS. All content comes from YAML and Markdown files in `src/`, which server components read from disk at request or build time.
 
-The repo is a pnpm workspace. The Next.js site is the root package. The YAML → resume logic and the resume React components live in `packages/resume-from-yaml/` (MIT, not yet published) so they can be used from other sites. The site depends on it as `resume-from-yaml: workspace:^`.
+The repo is a pnpm workspace. The Next.js site is the root package. The YAML → resume logic and the resume React components live in `packages/yaml-to-resume/` (MIT, not yet published) so they can be used from other sites. The site depends on it as `yaml-to-resume: workspace:^`.
 
 ## Commands
 
@@ -24,7 +24,7 @@ Check changes with `pnpm lint`, `pnpm test`, and `pnpm build`.
 
 Vitest. The root `vitest.config.mts` defines two kinds of projects: `site` (the `@` alias, `test/**/*.test.ts`) and `packages/*`, each with its own `vitest.config.mts`. Both configs set `TZ=Pacific/Honolulu` on purpose so code that mixes local time and UTC fails in tests.
 
-- `packages/resume-from-yaml/test/`: the package's logic (`deepMerge`, the getters, date validation, `parseResumeYaml`, `normalizeResume`), formatting (`format.test.ts`: `monthYear`, `formatDateRange`, `contactLinks`), its Node loader, and its components (`react.test.tsx`, rendered with `react-dom/server` `renderToStaticMarkup`, no DOM). They import from `../src/index`, `../src/node`, or `../src/react/index`, never from `@/`. Loader tests pass explicit paths to `test/fixtures/*.yaml`; no cwd mock. The package's vitest config includes `*.test.ts` and `*.test.tsx`.
+- `packages/yaml-to-resume/test/`: the package's logic (`deepMerge`, the getters, date validation, `parseResumeYaml`, `normalizeResume`), formatting (`format.test.ts`: `monthYear`, `formatDateRange`, `contactLinks`), its Node loader, and its components (`react.test.tsx`, rendered with `react-dom/server` `renderToStaticMarkup`, no DOM). They import from `../src/index`, `../src/node`, or `../src/react/index`, never from `@/`. Loader tests pass explicit paths to `test/fixtures/*.yaml`; no cwd mock. The package's vitest config includes `*.test.ts` and `*.test.tsx`.
 - `test/career-loader.test.ts`, `test/posts.test.ts`: the site's loaders, which read from `process.cwd()`. They use `vi.spyOn(process, "cwd")` to point at directories under `test/fixtures/<name>/`, each shaped like the repo root (`src/career-data.yaml`, `src/posts/`).
 - `test/real-content.test.ts`: smoke test on the real `src/career-data.yaml` (plus your local override, if you have one) and checks that every real post loads.
 
@@ -33,12 +33,12 @@ Vitest. The root `vitest.config.mts` defines two kinds of projects: `site` (the 
 ```
 src/
   app/
-    layout.tsx              # root: resume-from-yaml/styles.css then global.css, Fira Sans, FontAwesome CSS setup
+    layout.tsx              # root: yaml-to-resume/styles.css then global.css, Fira Sans, FontAwesome CSS setup
     (main)/                 # site chrome: Header + Footer, title template "%s | Ryan Rawlings"
-      page.tsx              # home = <Resume> from resume-from-yaml/react
+      page.tsx              # home = <Resume> from yaml-to-resume/react
       blog/page.tsx         # post list
       blog/[slug]/page.tsx  # single post (notFound() if the file is missing)
-      contact/page.tsx      # <ContactLinks> from resume-from-yaml/react
+      contact/page.tsx      # <ContactLinks> from yaml-to-resume/react
     (print)/resume/page.tsx # print-optimized resume: <ResumeHeader> + <Resume> (no site nav/footer)
   components/
     blog-post.tsx           # react-markdown with plugins enabled per post
@@ -51,7 +51,7 @@ src/
   posts/*.md                # blog posts; the filename is the slug
   global.css                # site styles (chrome, nav, blog, page-level print); resume styles come from the package
 test/                       # site vitest tests + fixtures (see Tests)
-packages/resume-from-yaml/
+packages/yaml-to-resume/
   src/index.ts              # "." entry: types, parseResumeYaml, normalizeResume, getters, format helpers (no fs, no React)
   src/node.ts               # "./node" entry: readResumeYaml (raw merged), loadResume (normalized); explicit paths
   src/types.ts              # School, Skill, Company, Position, ContactInfo, DatesWorked, RawResume, Resume, Intro
@@ -63,15 +63,15 @@ packages/resume-from-yaml/
   test/                     # package tests
 ```
 
-`next.config.ts` lists `resume-from-yaml` in `transpilePackages` because the package's `exports` point at TypeScript source (no build step yet).
+`next.config.ts` lists `yaml-to-resume` in `transpilePackages` because the package's `exports` point at TypeScript source (no build step yet).
 
 The `@/*` import alias maps to `src/*`.
 
 ## Career data (resume)
 
-- `getResume()` in `src/utils/career-data.ts` calls `loadResume` from `resume-from-yaml/node` with `src/career-data.yaml` and `src/career-data.override.yaml` and returns a validated `Resume`; pages pass it to the `resume-from-yaml/react` components. `getData()` reads the same files with `readResumeYaml` and returns the raw merged data (the site tests use it). Build these paths from literal segments (`join(process.cwd(), "src", "career-data.yaml")`); a variable path makes Turbopack trace the whole project and warn. If the override file exists (it's gitignored), it is deep-merged on top. Objects merge key by key. Scalars, arrays, and `null` replace the base value, so overriding `skills` or `companies` replaces the whole list. Use the override file for private details (phone, email) and for per-application tweaks such as `target_position`.
+- `getResume()` in `src/utils/career-data.ts` calls `loadResume` from `yaml-to-resume/node` with `src/career-data.yaml` and `src/career-data.override.yaml` and returns a validated `Resume`; pages pass it to the `yaml-to-resume/react` components. `getData()` reads the same files with `readResumeYaml` and returns the raw merged data (the site tests use it). Build these paths from literal segments (`join(process.cwd(), "src", "career-data.yaml")`); a variable path makes Turbopack trace the whole project and warn. If the override file exists (it's gitignored), it is deep-merged on top. Objects merge key by key. Scalars, arrays, and `null` replace the base value, so overriding `skills` or `companies` replaces the whole list. Use the override file for private details (phone, email) and for per-application tweaks such as `target_position`.
 - The top level of each file must be a YAML mapping. YAML syntax errors name the file.
-- `normalizeResume(raw)` (used by `loadResume`) runs the `getCompanies`, `getSchools`, `getSkills`, and `getContactInfo` getters, converts date strings to `Date`, and resolves `intro` from `summary`/`objective`. They and `deepMerge` live in `packages/resume-from-yaml/src/normalize.ts`; `src/utils/career-data.ts` re-exports the getters and types.
+- `normalizeResume(raw)` (used by `loadResume`) runs the `getCompanies`, `getSchools`, `getSkills`, and `getContactInfo` getters, converts date strings to `Date`, and resolves `intro` from `summary`/`objective`. They and `deepMerge` live in `packages/yaml-to-resume/src/normalize.ts`; `src/utils/career-data.ts` re-exports the getters and types.
 - Companies **without** `dates_worked` (missing or `null`) are silently dropped. This is intentional: it's how to hide a company. Position `dates_worked` is optional. Write dates as `[from]` or `[from, to]`; a `to` of null or empty renders as "Present".
 - Malformed dates fail the build instead of rendering. `parseDate` / `parseDatesWorked` throw an error that names the entry for a bad value (e.g. `2020-13`), an empty `dates_worked: []`, or a missing `graduation_date`.
 - `contact_info` may be missing or `null`. Pages then render no contact links. `contactLinks()` in the package's `format.ts` owns the URL rules: `website` may be a bare domain (gets `https://`) or a full URL; `linkedin`/`github` may be a username or a full URL on that site. Any other `linkedin`/`github` value fails at load time with an error naming the field.
@@ -93,6 +93,6 @@ The `@/*` import alias maps to `src/*`.
 ## Conventions
 
 - Everything renders on the server: no `"use client"` components, no API routes, and no Server Actions. Components are a mix of sync and async server components. Don't add `"use server"` to data helpers like `src/utils/posts.ts`, because that would turn them into publicly callable endpoints.
-- Styling is plain global CSS with class names. No CSS modules and no Tailwind. `src/app/layout.tsx` imports `resume-from-yaml/styles.css` before `global.css` so site rules can override the package's.
-- `packages/resume-from-yaml` must stay framework-neutral: no `next/*` imports, no `@/` imports, and nothing site-specific (paths, branding, FontAwesome). Site-specific code stays in `src/` and goes in through props (`logo`, `renderIcon`, `className`). Its components are server-safe (no hooks, no `"use client"`), and every class name they use starts with `resume-`. `eslint.config.mjs` turns off the Next-specific `no-img-element` and `no-html-link-for-pages` rules for `packages/**`.
+- Styling is plain global CSS with class names. No CSS modules and no Tailwind. `src/app/layout.tsx` imports `yaml-to-resume/styles.css` before `global.css` so site rules can override the package's.
+- `packages/yaml-to-resume` must stay framework-neutral: no `next/*` imports, no `@/` imports, and nothing site-specific (paths, branding, FontAwesome). Site-specific code stays in `src/` and goes in through props (`logo`, `renderIcon`, `className`). Its components are server-safe (no hooks, no `"use client"`), and every class name they use starts with `resume-`. `eslint.config.mjs` turns off the Next-specific `no-img-element` and `no-html-link-for-pages` rules for `packages/**`.
 - `.idea/` is committed because the author uses JetBrains IDEs.
