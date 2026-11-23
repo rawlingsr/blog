@@ -16,15 +16,18 @@ pnpm start
 pnpm lint     # eslint (next core-web-vitals + typescript configs)
 pnpm test     # vitest run: site tests + every workspace package
 pnpm test:watch
+
+pnpm --filter yaml-to-resume build      # tsdown → packages/yaml-to-resume/dist/ (only needed to pack/publish)
+pnpm --filter yaml-to-resume typecheck  # tsc on the package alone
 ```
 
-Check changes with `pnpm lint`, `pnpm test`, and `pnpm build`.
+Check changes with `pnpm lint`, `pnpm test`, and `pnpm build`. For package changes, also run the package's `typecheck`.
 
 ## Tests
 
 Vitest. The root `vitest.config.mts` defines two kinds of projects: `site` (the `@` alias, `test/**/*.test.ts`) and `packages/*`, each with its own `vitest.config.mts`. Both configs set `TZ=Pacific/Honolulu` on purpose so code that mixes local time and UTC fails in tests.
 
-- `packages/yaml-to-resume/test/`: the package's logic (`deepMerge`, the getters, date validation, `parseResumeYaml`, `normalizeResume`), formatting (`format.test.ts`: `monthYear`, `formatDateRange`, `contactLinks`), its Node loader, and its components (`react.test.tsx`, rendered with `react-dom/server` `renderToStaticMarkup`, no DOM). They import from `../src/index`, `../src/node`, or `../src/react/index`, never from `@/`. Loader tests pass explicit paths to `test/fixtures/*.yaml`; no cwd mock. The package's vitest config includes `*.test.ts` and `*.test.tsx`.
+- `packages/yaml-to-resume/test/`: the package's logic (`deepMerge`, the getters, date validation, `parseResumeYaml`, `normalizeResume`), formatting (`format.test.ts`: `monthYear`, `formatDateRange`, `contactLinks`), its Node loader, and its components (`react.test.tsx`, rendered with `react-dom/server` `renderToStaticMarkup`, no DOM). They import from `../src/index`, `../src/node`, or `../src/react/index`, never from `@/`. Loader tests pass explicit paths to `test/fixtures/*.yaml`; no cwd mock. `examples.test.tsx` loads and renders `examples/resume.yaml` (+ override) so the shipped example can't drift from the code. The package's vitest config includes `*.test.ts` and `*.test.tsx`.
 - `test/career-loader.test.ts`, `test/posts.test.ts`: the site's loaders, which read from `process.cwd()`. They use `vi.spyOn(process, "cwd")` to point at directories under `test/fixtures/<name>/`, each shaped like the repo root (`src/career-data.yaml`, `src/posts/`).
 - `test/real-content.test.ts`: smoke test on the real `src/career-data.yaml` (plus your local override, if you have one) and checks that every real post loads.
 
@@ -61,11 +64,28 @@ packages/yaml-to-resume/
   src/react/                # "./react" entry: Resume, ResumeHeader, ContactLinks, Introduction, Education, Experience, Skills(WithKeywords)
   src/styles.css            # "./styles.css" entry: optional default styles for the components, incl. print page breaks
   test/                     # package tests
+  examples/                 # resume.yaml + resume.override.yaml: fictional template users copy; shipped and tested
+  README.md                 # the user-facing docs (shipped on npm)
+  tsdown.config.ts          # build config (see "Publishing yaml-to-resume")
+  tsconfig.json             # package-only TS config, used by typecheck and the .d.ts build
+  dist/                     # build output, gitignored (also ignored by the root tsconfig and eslint)
 ```
 
-`next.config.ts` lists `yaml-to-resume` in `transpilePackages` because the package's `exports` point at TypeScript source (no build step yet).
+Inside the workspace, the package's `exports` point at TypeScript source in `src/`, so the site and tests use it without a build step; that's why `next.config.ts` lists `yaml-to-resume` in `transpilePackages`. Published copies use the compiled `dist/` instead (see "Publishing yaml-to-resume").
 
 The `@/*` import alias maps to `src/*`.
+
+## Publishing yaml-to-resume
+
+- **Build:** tsdown, pinned to an exact version (it's 0.x). `tsdown.config.ts` builds ESM `.js` + `.d.ts` for the three entries into `dist/` and copies `styles.css`. `platform: "neutral"` (the main and react entries also run in browsers), `fixedExtension: false` (plain `.js`/`.d.ts`), and `deps.neverBundle: [/^node:/]`; `yaml` and `react` stay external as dependency/peer. Check tsdown option names against its installed `.d.ts` files, not memory.
+- **Two sets of exports:** `exports` → `src/` (workspace), `publishConfig.exports` → `dist/`. pnpm swaps in `publishConfig.exports` when packing or publishing. Add a new entry point to both.
+- **Package metadata:** `files` = `dist`, `examples`, `README.md`, `LICENSE`. `engines.node >= 22`. React is an optional peer (`>=18`); the main and `/node` entries work without it. `"private": true` stays until Ryan decides to publish (his npm account); `repository`/`homepage` are still empty.
+- **Docs:** `README.md` is what users read. When the public API, props, or YAML rules change, update the README and, if relevant, `examples/resume.yaml` (its test will catch drift in the example, not in the README prose).
+- **Before a release,** test the packed package outside the workspace (this was done for 0.1.0, all passing):
+  1. `pnpm --filter yaml-to-resume build`, then `pnpm pack` from the package directory into a scratch folder. Check with `tar -tzf` that the tarball has only `dist/`, `examples/`, `README.md`, `LICENSE`, `package.json`, and that its `exports` point at `dist/`.
+  2. In an empty `"type": "module"` project, `npm install <tarball> react react-dom` and run a script that `loadResume`s the example and renders `<Resume>` with `renderToStaticMarkup`. Also check the main entry without React installed.
+  3. Type-check a file importing from `.`, `/node`, and `/react` with `tsc --noEmit` under both `moduleResolution: bundler` and `node16`.
+  4. A fresh Next.js app built from the README's own snippets, **without** `transpilePackages`: `next build`, then serve and check the HTML and that the `.resume-*` styles are in the CSS.
 
 ## Career data (resume)
 
