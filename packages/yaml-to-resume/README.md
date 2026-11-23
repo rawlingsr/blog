@@ -119,7 +119,7 @@ Import the default styles once, before your own CSS so your rules win:
 ```tsx
 // app/layout.tsx
 import "yaml-to-resume/styles.css";
-import "./globals.css";
+// ...your own CSS imports go after this line, so your rules win
 ```
 
 ### Components
