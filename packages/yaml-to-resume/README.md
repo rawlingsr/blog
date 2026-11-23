@@ -58,12 +58,29 @@ The fields:
 
 ## Overrides
 
-Pass a second file as `overrideFile` and it is deep-merged on top of the first. A missing override file is fine. See [`examples/resume.override.yaml`](examples/resume.override.yaml).
+Pass one optional override file as `overrideFile` (any name, any location) and it is deep-merged on top of the first. If the file doesn't exist, it's skipped. See [`examples/resume.override.yaml`](examples/resume.override.yaml).
 
 - Objects merge key by key, so you can add `contact_info.email` and keep `contact_info.github`.
 - Scalars, lists and `null` **replace** the base value, so overriding `skills` replaces the whole list.
 
-Two common uses: keep your phone and email in a gitignored override, or keep one override per job application with a different `target_position`.
+Only one override is merged at a time. Two ways to use it:
+
+- **Private details:** keep your phone and email in an override file listed in `.gitignore`, so the main resume can be public.
+- **Tailoring for an application:** keep one override per application (for example `content/overrides/acme.yaml` with a different `target_position` or `summary`) and pass the path of the one you want when you load the resume. Since only one is merged, an application's file should also include any private details it needs.
+
+For example, to choose the override with an environment variable:
+
+```tsx
+// RESUME_FOR=acme npm run build   →   uses content/overrides/acme.yaml
+// With RESUME_FOR unset, no override is used.
+const application = process.env.RESUME_FOR;
+const resume = await loadResume({
+  file: join(process.cwd(), "content", "resume.yaml"),
+  overrideFile: application
+    ? join(process.cwd(), "content", "overrides", `${application}.yaml`)
+    : undefined,
+});
+```
 
 ## Use it in Next.js (App Router)
 
