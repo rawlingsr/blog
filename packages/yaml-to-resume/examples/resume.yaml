@@ -1,0 +1,75 @@
+# Example resume for yaml-to-resume. Everyone and everything here is fictional.
+# Copy this file into your project and edit the copy, then load it with:
+#   loadResume({ file: "content/resume.yaml", overrideFile: "content/resume.override.yaml" })
+
+name: Alex Rivera
+target_position: Software Engineer
+
+# Use `summary` or `objective`. If both are present, `summary` wins.
+summary: >
+  Software engineer with eight years of experience building web applications in
+  TypeScript and React, with a focus on accessible interfaces and well-tested code.
+
+contact_info:
+  github: alex-rivera-example                      # a username...
+  linkedin: https://www.linkedin.com/in/alex-rivera-example/   # ...or a full URL on that site
+  website: example.com                             # a bare domain gets https:// added
+  location: Portland, OR
+  # Keep email and phone in the override file if this file is public.
+
+# Dates are YYYY-MM. `[from]` or `[from, null]` means "to Present".
+companies:
+  - name: Example Labs
+    location: Remote
+    website: https://example.com/labs
+    description: Builds scheduling software for small clinics.
+    dates_worked: [2021-03]
+    positions:
+      - title: Senior Software Engineer
+        dates_worked: [2023-01]
+        description: Leads the front-end team.
+        achievements:
+          - Cut page load time in half by splitting the booking app into smaller bundles.
+          - Introduced automated accessibility checks in CI.
+      - title: Software Engineer
+        dates_worked: [2021-03, 2022-12]
+        description: Full-stack work on the booking app.
+        achievements:
+          - Built the appointment reminder service used by every clinic.
+
+  - name: Sample Systems
+    location: Seattle, WA
+    website: https://example.com/sample
+    description: Inventory tools for retail stores.
+    dates_worked: [2017-06, 2021-02]
+    positions:
+      # Position dates are optional.
+      - title: Software Developer
+        description: Built internal tools in React and Node.js.
+        achievements:
+          - Replaced a spreadsheet workflow with a web app used by 40 stores.
+
+  # No `dates_worked`: omitted on purpose. This is how to hide a company
+  # without deleting it.
+  - name: Old Internship Co
+    description: Summer internship.
+    positions: []
+
+schools:
+  - name: Example State University
+    degree: Bachelor of Science, Computer Science
+    description: Coursework in algorithms, databases, and human-computer interaction.
+    website: https://example.edu/
+    graduation_date: 2017-05
+  - name: Online Institute of Examples
+    degree: Master of Science, Software Engineering
+    description: Part-time program.
+    website: https://example.org/
+    graduation_date: 2027-06
+    still_attending: true   # shown as "(Expected) June 2027"
+
+skills:
+  - name: Languages & Frameworks
+    keywords: [TypeScript, JavaScript, React, Node.js, SQL]
+  - name: Practices
+    keywords: [Accessibility, Automated Testing, Code Review]

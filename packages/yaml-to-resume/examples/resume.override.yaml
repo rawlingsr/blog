@@ -1,0 +1,12 @@
+# Optional override file, deep-merged on top of resume.yaml.
+# Keep it out of version control (e.g. in .gitignore) for private details,
+# or keep one per job application.
+#
+# Merge rules:
+#   - Objects (maps) merge key by key, recursively.
+#   - Scalars and arrays (e.g. companies, skills) REPLACE the base value entirely.
+#   - Setting a key to null replaces the base value with null (treated as missing).
+target_position: Senior Front-End Engineer
+contact_info:
+  email: alex@example.com
+  phone: 555-555-0100
