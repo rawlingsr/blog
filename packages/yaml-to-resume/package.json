@@ -1,17 +1,55 @@
 {
   "name": "yaml-to-resume",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Turn a resume written in YAML into validated data and React components.",
   "private": true,
   "license": "MIT",
+  "keywords": [
+    "resume",
+    "cv",
+    "yaml",
+    "react",
+    "print",
+    "pdf"
+  ],
   "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "exports": {
     ".": "./src/index.ts",
     "./node": "./src/node.ts",
     "./react": "./src/react/index.ts",
     "./styles.css": "./src/styles.css"
   },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./node": {
+        "types": "./dist/node.d.ts",
+        "default": "./dist/node.js"
+      },
+      "./react": {
+        "types": "./dist/react/index.d.ts",
+        "default": "./dist/react/index.js"
+      },
+      "./styles.css": "./dist/styles.css"
+    }
+  },
   "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p .",
     "test": "vitest run"
   },
   "dependencies": {
@@ -26,10 +64,13 @@
     }
   },
   "devDependencies": {
+    "@types/node": "^22.20.5",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "react": "19.2.7",
     "react-dom": "19.2.7",
+    "tsdown": "0.23.7",
+    "typescript": "^5.9.3",
     "vitest": "^5.1.1"
   }
 }
