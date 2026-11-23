@@ -10,11 +10,6 @@ export default defineConfig({
   },
   test: {
     environment: "node",
-    projects: [
-      // The site's own tests, using this file's alias and settings.
-      { extends: true, test: { name: "site", include: ["test/**/*.test.ts"] } },
-      // Each workspace package brings its own vitest.config.mts.
-      "packages/*",
-    ],
+    include: ["test/**/*.test.ts"],
   },
 });

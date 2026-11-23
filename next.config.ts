@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // The workspace package ships TypeScript source until it gets a build step.
+  // yaml-to-resume is installed from GitHub as TypeScript source (no build step), so Next compiles it.
   transpilePackages: ["yaml-to-resume"],
 };
 

@@ -20,9 +20,6 @@ node_modules/
 # production
 /build
 
-# workspace package build output (yaml-to-resume's tsdown build)
-packages/*/dist/
-
 # misc
 .DS_Store
 *.pem
