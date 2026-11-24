@@ -38,7 +38,7 @@ src/
       blog/page.tsx         # post list
       blog/[slug]/page.tsx  # single post (notFound() if the file is missing)
       contact/page.tsx      # <ContactLinks> from yaml-to-resume/react
-    (print)/resume/page.tsx # print-optimized resume: <ResumeHeader> + <Resume> (no site nav/footer)
+    (print)/resume/page.tsx # print-optimized resume: <ResumeHeader> + <Resume> (no site nav/footer), preceded by the optional cover letter
   components/
     blog-post.tsx           # react-markdown with plugins enabled per post
     contact.tsx             # fontAwesomeContactIcon(size): the site's renderIcon for the package's contact links
@@ -46,6 +46,7 @@ src/
   utils/
     career-data.ts          # getResume() (validated Resume, used by pages), getData() (raw merged YAML); re-exports the getters/types
     posts.ts                # loads Markdown posts with front-matter
+    cover-letter.ts         # getCoverLetter(): private/cover-letter.md or null
   career-data.yaml          # resume source of truth (committed)
   career-data.override.example.yaml
   posts/*.md                # blog posts; the filename is the slug
@@ -83,7 +84,7 @@ The `@/*` import alias maps to `src/*`.
 
 ## Print resume
 
-`/resume` is the page to print to PDF. The page-break rules (`break-inside: avoid-page` on `.resume-company-summary`, `.resume-position`, `.resume-education`, and `.resume-skills`) live in the package's `src/styles.css`. The site's `@media print` block at the end of `src/global.css` forces `color-scheme: light` (so a dark theme, from the OS or the toggle, still prints dark text on white) and otherwise handles only the page chrome: it hides `.page-footer` and `nav p, nav li`, and removes the `.page-header` background. The site header's logo and name are **not** hidden, so the `(main)` pages don't print cleanly; use `/resume`. Section order differs from the home page (Skills, then Experience, then Education), set with `<Resume sections={[…]}>`. The print page passes `introHeadingClassName="intro-heading"` (a site rule in `global.css`). The browser tab title (and so the default PDF filename) is `${name} - ${target_position}`, or just `name` when `target_position` is empty.
+`/resume` is the page to print to PDF. If `private/cover-letter.md` exists (the `private/` folder is gitignored, so never on the deployed site), the page first renders it as Markdown under its own `<ResumeHeader>` inside `.cover-letter`, which has `break-after: page` in print, so the letter prints on page 1 and the resume starts on page 2. The page-break rules (`break-inside: avoid-page` on `.resume-company-summary`, `.resume-position`, `.resume-education`, and `.resume-skills`) live in the package's `src/styles.css`. The site's `@media print` block at the end of `src/global.css` forces `color-scheme: light` (so a dark theme, from the OS or the toggle, still prints dark text on white), sets print sizing to keep `/resume` at two Letter pages (`@page { margin: 0.5in }`, 10.5pt root font, tighter heading/paragraph/list margins), and otherwise handles only the page chrome: it hides `.page-footer` and `nav p, nav li`, and removes the `.page-header` background. The site header's logo and name are **not** hidden, so the `(main)` pages don't print cleanly; use `/resume`. Section order differs from the home page (Skills, then Experience, then Education), set with `<Resume sections={[…]}>`. The print page passes `introHeadingClassName="intro-heading"` (a site rule in `global.css`). The browser tab title (and so the default PDF filename) is `${name} - ${target_position}`, or just `name` when `target_position` is empty.
 
 ## Conventions
 

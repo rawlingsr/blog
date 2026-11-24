@@ -3,15 +3,14 @@ target_position: Software Developer
 summary:
   Software professional with 11+ years in the industry, including 7+ years at a company building software for
   FDA-regulated industries. Experience spans front-end development in React and Angular, test automation in Ruby and
-  Selenium, and six years as the primary owner of weekly patch releases across five supported release branches.
+  Selenium, and six years as the primary, and sometimes backup, owner of weekly patch releases across five
+  supported release branches.
   Finishing a B.S. in Computer Science at WGU and looking for a Software Developer role building reliable,
   well-tested applications.
 schools:
   - name: Western Governors University
     degree: Bachelor of Science, Computer Science
-    description:
-      Curriculum focused on Computer Science. C++, Java, Python, and Web Development courses, mixed in with Math, Technology,
-      and General Education courses.
+    description: Coursework in C++, Java, Python, and web development.
     website: https://www.wgu.edu/
     graduation_date: 2028-04
     still_attending: true
@@ -25,6 +24,7 @@ skills:
       - Angular
       - Node.js
       - Java
+      - Python
       - Ruby
       - ColdFusion
       - SQL
@@ -36,6 +36,7 @@ skills:
       - Selenium WebDriver
       - PostgreSQL
       - Postman
+      - SQL Server
       - Jira
       - Vercel
       - Linux
@@ -50,7 +51,7 @@ skills:
       - TDD
       - Code Reviews
       - Debugging
-      - Agile Development
+      - Agile Development (SAFe)
       - Technical Documentation
       - Regulatory Compliance (FDA/GxP)
 companies:
@@ -61,7 +62,8 @@ companies:
       - title: Full-time Computer Science Student, WGU
         dates_worked: [2024-05]
         achievements:
-          - Coursework in C++, Java, Python, and web development.
+          - Built and open-sourced yaml-to-resume, a framework-neutral TypeScript/React package that renders
+            resumes from YAML, and used it for my personal site (Next.js, Vitest).
   - name: MasterControl Inc.
     dates_worked: [2016-06, 2023-11]
     description: Builds quality-management software for highly regulated industries like pharmaceutical companies and medical device manufacturers.
@@ -71,35 +73,51 @@ companies:
       - title: Software Quality Engineer II
         dates_worked: [2021-03, 2023-11]
         achievements:
-          - Shipped production bug fixes and features in React components, and fixed security issues while
-            modernizing them for better performance and maintainability.
-          - Wrote automated tests for the components I worked on, using the team's Ruby and Selenium framework.
-          - Diagnosed and fixed a department-wide ChromeDriver failure that was blocking automated tests,
-            preventing 3 to 4 days of automated testing downtime.
-          - Mentored 4+ junior software and quality engineers, which sped up their onboarding.
+          - When a change to how Google distributes ChromeDriver made every UI test fail for 16+ automation
+            engineers on 8+ teams, fixed the test framework mid-sprint. By the time the department was
+            discussing the outage, the fix was merged and teams only needed to pull it.
+          - Resolved security-scan findings in the React front end by upgrading dozens of badly outdated npm
+            dependencies and fixing everything the upgrades broke. Converted class components to function
+            components with hooks and helped plan the path to fully current versions; pages loaded noticeably faster.
+          - Shipped production bug fixes and features in React components, covered by automated Selenium tests.
+          - Mentored 4+ junior software and quality engineers, which sped up their onboarding, and
+            pair-programmed with offshore contractors joining the team.
       - title: Software Engineer II
         dates_worked: [2019-01, 2021-03]
         achievements:
-          - Extended the company's internal Ruby Selenium wrapper to support more browsers, enabling
-            cross-browser testing and live demos of working software.
+          - Extended the company's internal Ruby Selenium wrapper to support more browsers, and added configurable
+            browser executables so testers could run against Chromium builds matched to specific Chrome versions.
+          - Updated automated tests to create users through a faster setup method, making end-to-end
+            runs faster and more reliable.
+          - Wrote and rewrote Java integration tests for Spring REST controllers, and used Postman to check
+            API response shapes.
           - Wrote down undocumented team knowledge as onboarding guides for new hires and process docs
             for existing team members.
       - title: Software Quality Engineer I
         dates_worked: [2016-06, 2019-01]
         achievements:
-          - Wrote scripts to automate Jenkins job runs, which saved 20 minutes a week and removed manual
-            steps that could fail.
-          - Helped convert manual tests into automated scripts that record video evidence that the software
-            meets its functional requirements, as regulated customers need.
+          - Built an Oracle 11 test environment on my own initiative and found a new Java feature failed on it.
+            Made the case for dropping Oracle to close the gap between dev and customer environments; it was
+            removed in the next release, and I tested the removal.
+          - Verified defect fixes with targeted end-to-end regression runs, choosing tests that exercised the
+            same fields and pages as the change and setting the branch, suite version, and test runners.
+            Reviewed failure footage in the in-house test disposition tool and sent work back when tests failed.
+          - Trusted as a peer code reviewer by developers before holding a developer title, reviewing front-end,
+            back-end, and test code and catching defects by reading code before they reached testing.
+          - Helped convert manual tests into automated scripts that record video evidence for regulated
+            customers, and scripted Jenkins job runs to remove error-prone manual steps.
       - title: Patch Steward (concurrent with roles above)
         dates_worked: [2016-11, 2023-02]
         achievements:
-          - Owned weekly patch releases across ~5 supported branches and their upgrade paths, checking against
-            the defect tracker that every fix reached every affected version.
-          - Kept patches safe by including multi-commit fixes all-or-nothing and holding back unfinished work,
-            and told teams ahead of time when their changes would miss the cut.
-          - Gave Technical Writing and Validation exact per-branch lists of stories and defects, saving about
-            5 hours of rework a week.
+          - Owned weekly patch releases across five supported branches. Reviewed commits and commit messages
+            myself to confirm every fix reached every affected branch, and when something looked off, confirmed
+            with teams that they had tested on each branch they pushed to. Tested in-branch patch upgrades, and
+            built throwaway test sites to check the upgrade paths most likely to break.
+          - Prevented partial fixes from shipping by merging multi-commit changes all-or-nothing and holding
+            back unfinished work, and told teams ahead of time when their changes would miss the cut.
+          - Wrote a Python script that scraped SVN and Git commits for defect and story IDs and pulled their
+            status from Bugzilla, VersionOne, and later Jira, giving Technical Writing and Validation exact
+            per-branch lists and saving about 5 hours of rework a week.
   - name: StorageCraft Technologies
     dates_worked: [2012-05, 2016-02]
     description: Software company offering backup and disaster recovery products.
@@ -107,14 +125,12 @@ companies:
     website: https://www.storagecraft.com/
     positions:
       - title: QA Specialist in Technical Support
-        dates_worked: [2012-05, 2016-02]
         achievements:
           - Built and maintained test lab environments for reproducing defects and finding their root causes.
           - Wrote and ran test plans for new product releases, and did exploratory testing to find hidden defects.
           - Analyzed low-level network traffic to troubleshoot customer issues.
-          - Helped put quality control processes in place that improved support case outcomes.
   - name: iTOK Inc.
-    dates_worked: [2010-09, 2012-05]
+    # dates_worked: [2010-09, 2012-05]
     description: Managed service provider for home users and small businesses.
     location: Lehi, UT
     website: https://www.bask.com/

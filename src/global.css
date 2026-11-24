@@ -197,4 +197,22 @@ ul {
   main {
     margin: 0;
   }
+
+  /* Keep /resume to two printed pages: resume-sized text, tighter vertical rhythm,
+     and fixed margins so the page count doesn't depend on the browser's print dialog. */
+  @page {
+    margin: 0.5in;
+  }
+
+  html {
+    font-size: 10.5pt;
+  }
+
+  h1, h2, h3, h4, h5, p {
+    margin-block: 0.35em;
+  }
+
+  ul {
+    margin-block: 0.25em;
+  }
 }

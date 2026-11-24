@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Markdown from "react-markdown";
 import { Resume, ResumeHeader } from "yaml-to-resume/react";
 import { fontAwesomeContactIcon } from "@/components/contact";
 import { getResume } from "@/utils/career-data";
+import { getCoverLetter } from "@/utils/cover-letter";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { name, target_position } = await getResume();
@@ -14,19 +16,31 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ResumePage() {
-  const resume = await getResume();
+  const [resume, coverLetter] = await Promise.all([getResume(), getCoverLetter()]);
+
+  const header = (
+    <div className="container">
+      <ResumeHeader
+        name={resume.name}
+        target_position={resume.target_position}
+        contact_info={resume.contact_info}
+        logo={<Image src="/icon.png" alt="RR Icon" width="64" height="64" className="icon" />}
+        renderIcon={fontAwesomeContactIcon(1)}
+      />
+    </div>
+  );
 
   return (
     <>
-      <div className="container">
-        <ResumeHeader
-          name={resume.name}
-          target_position={resume.target_position}
-          contact_info={resume.contact_info}
-          logo={<Image src="/icon.png" alt="RR Icon" width="64" height="64" className="icon" />}
-          renderIcon={fontAwesomeContactIcon(1)}
-        />
-      </div>
+      {coverLetter && (
+        <section className="cover-letter">
+          {header}
+          <div className="container content">
+            <Markdown>{coverLetter}</Markdown>
+          </div>
+        </section>
+      )}
+      {header}
       <main>
         <div className="container content">
           <Resume
