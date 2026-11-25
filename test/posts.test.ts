@@ -40,11 +40,29 @@ describe("getPost", () => {
   it("returns null for a post with an invalid published_at", async () => {
     expect(await getPost("bad-date")).toBeNull();
   });
+
+  it("returns null for a post with no title", async () => {
+    expect(await getPost("no-title")).toBeNull();
+  });
+
+  it("only turns flags on for real booleans, so quoted \"false\" stays off", async () => {
+    expect(await getPost("quoted-booleans")).toMatchObject({ math: false, gfm: false, cc_licensed: false });
+  });
+
+  it("defaults a missing snippet to an empty string and missing flags to false", async () => {
+    expect(await getPost("no-snippet")).toMatchObject({
+      title: "No Snippet",
+      snippet: "",
+      math: false,
+      gfm: false,
+      cc_licensed: false,
+    });
+  });
 });
 
 describe("getPosts", () => {
-  it("returns valid .md posts, newest first", async () => {
+  it("returns valid .md posts, newest first, leaving out posts without a title or date", async () => {
     const posts = await getPosts();
-    expect(posts.map((p) => p.slug)).toEqual(["newer-post", "older-post"]);
+    expect(posts.map((p) => p.slug)).toEqual(["newer-post", "quoted-booleans", "older-post", "no-snippet"]);
   });
 });
