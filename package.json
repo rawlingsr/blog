@@ -24,7 +24,7 @@
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
     "remark-rehype": "^11.1.2",
-    "yaml-to-resume": "github:rawlingsr/yaml-to-resume#semver:^0.2.0",
+    "yaml-to-resume": "github:rawlingsr/yaml-to-resume#700e0e626a8c0651403cafd5ce169130c227ef80",
     "yaml": "^2.9.1"
   },
   "devDependencies": {

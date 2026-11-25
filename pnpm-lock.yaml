@@ -56,8 +56,8 @@ importers:
         specifier: ^2.9.1
         version: 2.9.1
       yaml-to-resume:
-        specifier: github:rawlingsr/yaml-to-resume#semver:^0.2.0
-        version: https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/5987a058a68af0eb3acc3cf2cdc7ccb0de130ffa(react@19.3.1)
+        specifier: github:rawlingsr/yaml-to-resume#700e0e626a8c0651403cafd5ce169130c227ef80
+        version: https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/700e0e626a8c0651403cafd5ce169130c227ef80(react@19.3.1)
     devDependencies:
       '@types/node':
         specifier: ^20.19.43
@@ -2550,8 +2550,8 @@ packages:
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
 
-  yaml-to-resume@https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/5987a058a68af0eb3acc3cf2cdc7ccb0de130ffa:
-    resolution: {tarball: https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/5987a058a68af0eb3acc3cf2cdc7ccb0de130ffa}
+  yaml-to-resume@https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/700e0e626a8c0651403cafd5ce169130c227ef80:
+    resolution: {tarball: https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/700e0e626a8c0651403cafd5ce169130c227ef80}
     version: 0.2.0
     engines: {node: '>=22'}
     peerDependencies:
@@ -3679,7 +3679,7 @@ snapshots:
       eslint: 9.39.5
       eslint-import-resolver-node: 0.3.10
       eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.72.0(eslint@9.39.5)(typescript@5.9.3))(eslint@9.39.5))(eslint@9.39.5)
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.72.0(eslint@9.39.5)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.5)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.72.0(eslint@9.39.5)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.72.0(eslint@9.39.5)(typescript@5.9.3))(eslint@9.39.5))(eslint@9.39.5))(eslint@9.39.5)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.39.5)
       eslint-plugin-react: 7.37.5(eslint@9.39.5)
       eslint-plugin-react-hooks: 7.1.1(eslint@9.39.5)
@@ -3712,7 +3712,7 @@ snapshots:
       tinyglobby: 0.2.17
       unrs-resolver: 1.12.2
     optionalDependencies:
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.72.0(eslint@9.39.5)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.5)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.72.0(eslint@9.39.5)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.72.0(eslint@9.39.5)(typescript@5.9.3))(eslint@9.39.5))(eslint@9.39.5))(eslint@9.39.5)
     transitivePeerDependencies:
       - supports-color
 
@@ -3727,7 +3727,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.72.0(eslint@9.39.5)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.5):
+  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.72.0(eslint@9.39.5)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.72.0(eslint@9.39.5)(typescript@5.9.3))(eslint@9.39.5))(eslint@9.39.5))(eslint@9.39.5):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.2.0
@@ -5549,7 +5549,7 @@ snapshots:
 
   yallist@3.1.1: {}
 
-  yaml-to-resume@https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/5987a058a68af0eb3acc3cf2cdc7ccb0de130ffa(react@19.3.1):
+  yaml-to-resume@https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/700e0e626a8c0651403cafd5ce169130c227ef80(react@19.3.1):
     dependencies:
       yaml: 2.9.1
     optionalDependencies:
