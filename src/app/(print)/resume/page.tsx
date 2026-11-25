@@ -45,7 +45,7 @@ export default async function ResumePage() {
         <div className="container content">
           <Resume
             resume={resume}
-            sections={["intro", "skills", "experience", "education"]}
+            sections={["intro", "skills", "experience", "education", "certifications"]}
             introHeadingClassName="intro-heading"
           />
         </div>

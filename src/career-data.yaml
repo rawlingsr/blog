@@ -54,6 +54,15 @@ skills:
       - Agile Development (SAFe)
       - Technical Documentation
       - Regulatory Compliance (FDA/GxP)
+certifications:
+  - name: ISTQB Certified Tester Foundation Level
+    issuer: ASTQB
+    year: 2017
+    url: https://atsqa.org/certified-testers/profile/a08c52e8d4f044d9b98f15353ceb85e1
+  - name: Linux Essentials
+    issuer: Linux Professional Institute
+    year: 2025
+    url: https://cs.lpi.org/caf/Xamman/certification/verify/LPI000673994/mqyyrjqkgl
 companies:
   - name: Career Break
     dates_worked: [2023-11]

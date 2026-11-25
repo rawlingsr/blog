@@ -55,8 +55,8 @@ importers:
         specifier: ^2.9.1
         version: 2.9.1
       yaml-to-resume:
-        specifier: github:rawlingsr/yaml-to-resume#semver:^0.1.0
-        version: https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/fb7c662e1cb3cdb143dfd0b6a6420ee5b70a8228(react@19.2.7)
+        specifier: github:rawlingsr/yaml-to-resume#semver:^0.2.0
+        version: https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/5987a058a68af0eb3acc3cf2cdc7ccb0de130ffa(react@19.2.7)
     devDependencies:
       '@types/node':
         specifier: ^20.19.43
@@ -2529,9 +2529,9 @@ packages:
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
 
-  yaml-to-resume@https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/fb7c662e1cb3cdb143dfd0b6a6420ee5b70a8228:
-    resolution: {tarball: https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/fb7c662e1cb3cdb143dfd0b6a6420ee5b70a8228}
-    version: 0.1.0
+  yaml-to-resume@https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/5987a058a68af0eb3acc3cf2cdc7ccb0de130ffa:
+    resolution: {tarball: https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/5987a058a68af0eb3acc3cf2cdc7ccb0de130ffa}
+    version: 0.2.0
     engines: {node: '>=22'}
     peerDependencies:
       react: '>=18'
@@ -5507,7 +5507,7 @@ snapshots:
 
   yallist@3.1.1: {}
 
-  yaml-to-resume@https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/fb7c662e1cb3cdb143dfd0b6a6420ee5b70a8228(react@19.2.7):
+  yaml-to-resume@https://codeload.github.com/rawlingsr/yaml-to-resume/tar.gz/5987a058a68af0eb3acc3cf2cdc7ccb0de130ffa(react@19.2.7):
     dependencies:
       yaml: 2.9.1
     optionalDependencies:
