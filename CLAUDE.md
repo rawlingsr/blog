@@ -18,7 +18,7 @@ pnpm test     # vitest run (site tests only; the package's tests live in its rep
 pnpm test:watch
 ```
 
-Check changes with `pnpm lint`, `pnpm test`, and `pnpm build`.
+Check changes with `pnpm lint`, `pnpm test`, and `pnpm build`. After dependency changes, also run `pnpm audit`. Two known findings remain as of Nov 2026, and neither affects the deployed site: a low-severity `katex` advisory (pulled in by `remark-math`; the site renders math with MathJax, not KaTeX) and a moderate `minimatch` one (ESLint tooling, dev-only). `@xmldom/xmldom` is pinned to `>=0.9.12` through `pnpm.overrides` (it comes in via `rehype-mathjax`).
 
 ## Tests
 
@@ -62,8 +62,8 @@ The `@/*` import alias maps to `src/*`.
 - **How the site gets it:** `"yaml-to-resume": "github:rawlingsr/yaml-to-resume#semver:^0.2.0"`. The `#semver:` range matches the repo's `vX.Y.Z` tags, and `pnpm-lock.yaml` pins the exact commit. The package's `exports` point at TypeScript source in `src/` and GitHub installs build nothing, so `next.config.ts` lists it in `transpilePackages`. Keep that until the site switches to an npm release (which would ship compiled `dist/`).
 - **Updating:** release in the package repo (bump `version`, commit, tag `vX.Y.Z`, push with tags), then here `pnpm update yaml-to-resume` and commit `package.json`/`pnpm-lock.yaml`. A new major (or a 0.x minor, under `^0.2.0`) needs the spec in `package.json` changed.
 - **Trying package changes before a release:** either way, the committed `package.json` and lockfile must end up back on the `#semver:` spec, or Vercel can't install it.
-  - **Local, unpushed:** `pnpm link ../yaml-to-resume`. pnpm 10 records this as a `"yaml-to-resume": "link:../yaml-to-resume"` entry in `pnpm.overrides` in `package.json` (an override beats any version spec), so undo it by removing that entry and running `pnpm install`.
-  - **Pushed to a branch, untagged:** pin the exact commit, `github:rawlingsr/yaml-to-resume#<full sha>`, and `pnpm install`. This installs from GitHub the way Vercel does. Pushing to a branch instead of `main` keeps GitHub's README (which names the next `#semver:` range) from pointing at a tag that doesn't exist yet.
+  - **Pushed to a branch, untagged (use this one):** push the package branch (e.g. `working`), pin the exact commit, `github:rawlingsr/yaml-to-resume#<full sha>`, and `pnpm install`. This installs from GitHub the way Vercel does, so `next dev`, `next build`, and the tests all work. Update the sha after each push. Pushing to a branch instead of `main` keeps GitHub's README (which names the next `#semver:` range) from pointing at a tag that doesn't exist yet. Don't commit the pinned `package.json`/lockfile; stage other files by name while pinned.
+  - **Local, unpushed (tests only):** `pnpm link ../yaml-to-resume` works for `pnpm test`, but **not** for `next dev` or `next build`: Turbopack won't load files from outside the project root, so every page fails with "Module not found: Can't resolve 'yaml-to-resume'". pnpm 10 records the link as a `"yaml-to-resume": "link:../yaml-to-resume"` entry in `pnpm.overrides` in `package.json` (an override beats any version spec); undo it by removing that entry and running `pnpm install`, or `git checkout -- package.json pnpm-lock.yaml`.
 
 ## Career data (resume)
 
@@ -79,15 +79,24 @@ The `@/*` import alias maps to `src/*`.
 
 ## Blog posts
 
-- Each `src/posts/<slug>.md` file has front-matter with these fields: `title`, `published_at` (ISO date), `snippet`, `math`, `gfm`, `cc_licensed`.
-- `math: true` turns on remark-math and rehype-mathjax. `gfm: true` turns on remark-gfm. `cc_licensed: true` adds a CC BY-NC-SA badge (`public/by-nc-sa.png`).
+- Each `src/posts/<slug>.md` file has front-matter with these fields: `title`, `published_at` (ISO date), `snippet`, `math`, `gfm`, `cc_licensed`. The `Post` interface in `src/utils/posts.ts` documents each one.
+- `math: true` turns on remark-math and rehype-mathjax (LaTeX). `gfm: true` turns on remark-gfm (GitHub Flavored Markdown: tables, strikethrough, task lists, autolinked URLs, footnotes). `cc_licensed: true` adds a CC BY-NC-SA badge (`public/by-nc-sa.png`).
+- Front-matter is type-checked, not trusted: the three flags are on only for a real YAML `true` (a quoted `"true"` or `"false"` is a string, so it's off), and a missing `snippet` becomes `""`.
 - `getPosts()` reads only the `*.md` files in `src/posts/` (other files are ignored) and sorts by `published_at`, newest first.
 - Slugs (filenames without `.md`) may only contain letters, numbers, and hyphens. `getPost()` rejects anything else so URLs can't reach files outside `src/posts`, which means a file named any other way 404s.
-- A post with a missing or invalid `published_at` is treated as not found: it 404s and is left off `/blog`.
+- A post with a missing or blank `title`, or a missing or invalid `published_at`, is treated as not found: it 404s and is left off `/blog`. `getPost()` reads the file once and returns `null` only for a missing file (ENOENT); other read errors are thrown.
 
 ## Print resume
 
 `/resume` is the page to print to PDF. If `private/cover-letter.md` exists (the `private/` folder is gitignored, so never on the deployed site), the page first renders it as Markdown under its own `<ResumeHeader>` inside `.cover-letter`, which has `break-after: page` in print, so the letter prints on page 1 and the resume starts on page 2. The page-break rules (`break-inside: avoid-page` on `.resume-company-summary`, `.resume-position`, `.resume-education`, `.resume-skills`, and `.resume-certifications`) live in the package's `src/styles.css`. The site's `@media print` block at the end of `src/global.css` forces `color-scheme: light` (so a dark theme, from the OS or the toggle, still prints dark text on white), sets print sizing to keep `/resume` at two Letter pages (`@page { margin: 0.5in }`, 10.5pt root font, tighter heading/paragraph/list margins), and otherwise handles only the page chrome: it hides `.page-footer` and `nav p, nav li`, and removes the `.page-header` background. The site header's logo and name are **not** hidden, so the `(main)` pages don't print cleanly; use `/resume`. Section order differs from the home page (Skills, Experience, Education, then Certifications, which fills the space at the end of page 2), set with `<Resume sections={[…]}>`. The home page uses the package's default order, which puts Certifications last. Check page fit in a real Firefox print preview; layout-height estimates don't account for where page breaks land. The print page passes `introHeadingClassName="intro-heading"` (a site rule in `global.css`). The browser tab title (and so the default PDF filename) is `${name} - ${target_position}`, or just `name` when `target_position` is empty.
+
+## Security headers
+
+`next.config.ts` sends these on every route and sets `poweredByHeader: false`:
+- `Content-Security-Policy: frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'`
+- `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `X-Frame-Options: DENY` (for browsers without `frame-ancestors`), and a `Permissions-Policy` that turns off camera, microphone, geolocation, and `interest-cohort`.
+
+There's no `script-src` on purpose: Next's inline RSC scripts would need a per-request nonce, and nonces force dynamic rendering, which this static site avoids. No HSTS either: Vercel sends it for HTTPS domains, and setting it in the app would also apply to `next start` on localhost. If a new feature conflicts, loosen the one directive instead of removing the headers: an off-site form needs its origin in `form-action`, an `<object>`/`<embed>` needs `object-src`, being framed by another site needs `frame-ancestors` (and dropping `X-Frame-Options`), and camera/mic/location need `Permissions-Policy`. Third-party scripts, images, fonts, and iframes on these pages aren't restricted. The browser console names the directive that blocked something. To check, run `pnpm build && pnpm start -p 3123` and `curl -sI http://localhost:3123/`.
 
 ## Conventions
 
